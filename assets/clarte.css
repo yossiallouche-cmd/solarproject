@@ -271,7 +271,7 @@
 .cl-cta__actions .cl-small { color: rgb(var(--cl-paper) / .65); }
 
 /* ---------- Fiche produit : bloc prix ----------------------------------- */
-.cl-pricebox { padding: 1.25rem 1.35rem 1.35rem; border-radius: var(--cl-radius); background: rgb(var(--cl-ink)); color: rgb(var(--cl-paper)); box-shadow: var(--cl-shadow-sm); }
+.cl-pricebox { display: block; padding: 1.25rem 1.35rem 1.35rem; border-radius: var(--cl-radius); background: rgb(var(--cl-ink)); color: rgb(var(--cl-paper)); box-shadow: var(--cl-shadow-sm); }
 .cl-pricebox__head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: .5rem; }
 .cl-pricebox__head strong { font-size: .95rem; }
 .cl-pricebox .cl-price-line { border-color: rgb(var(--cl-paper) / .14); font-size: .95rem; }
@@ -339,6 +339,7 @@
 }
 
 /* ---------- Fiche produit : configurateur visuel ------------------------ */
+clarte-configurator, clarte-rdv, clarte-installation, clarte-projection, clarte-pricebox { display: block; }
 .cl-config { display: grid; gap: 1rem; }
 .cl-config__title { font-weight: 600; font-size: .95rem; margin: 0; }
 .cl-config__preview { display: grid; gap: .75rem; padding: 1rem; border-radius: var(--cl-radius); background: rgb(var(--cl-paper)); border: 1px solid rgb(var(--cl-line)); }

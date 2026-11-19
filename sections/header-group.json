@@ -8,7 +8,7 @@
         "m1": {
           "type": "message",
           "settings": {
-            "text": "<p><strong>Prix affichés, pose incluse</strong> · Appel technique offert sous 48 h · Pose sous 14 jours, une seule visite</p>"
+            "text": "Prix affichés, pose incluse · Appel technique offert sous 48 h · Pose sous 14 jours, une seule visite"
           }
         }
       },
