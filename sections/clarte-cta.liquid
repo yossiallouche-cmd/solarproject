@@ -9,10 +9,12 @@
   #shopify-section-{{ section.id }} .cl-cta__box { background: {{ s.box_background | default: '#0E1A2B' }}; color: {{ s.box_text_color | default: '#F6F4EE' }}; }
 </style>
 
-<section class="cl-cta cl-section cl-section--tight" aria-labelledby="cl-cta-{{ section.id }}">
+<section class="cl-cta cl-section cl-section--tight{% unless settings.clarte_heading_italic_accent %} cl-accent-color{% endunless %}" aria-labelledby="cl-cta-{{ section.id }}">
   <div class="cl-container">
     <div class="cl-cta__box cl-ink">
-      <div class="cl-cta__glow"></div>
+      {%- if s.image != blank -%}
+        <div class="cl-cta__bg">{{ s.image | image_url: width: 1800 | image_tag: loading: 'lazy', sizes: '100vw', widths: '800, 1200, 1800', alt: '' }}</div>
+      {%- endif -%}
       <div class="cl-cta__copy">
         {%- if s.eyebrow != blank -%}<p class="cl-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
         <h2 id="cl-cta-{{ section.id }}" class="cl-h2">{{ s.title | remove: '<p>' | remove: '</p>' }}</h2>
@@ -42,6 +44,7 @@
     { "type": "text", "id": "button_2_text", "label": "Bouton secondaire", "default": "Poser une question" },
     { "type": "url", "id": "button_2_url", "label": "Lien secondaire" },
     { "type": "text", "id": "note", "label": "Note", "default": "Réponse sous 24 h ouvrées · du lundi au samedi" },
+    { "type": "image_picker", "id": "image", "label": "Photo de fond (optionnel)" },
     { "type": "header", "content": "Couleurs" },
     { "type": "color", "id": "background", "label": "Fond de section", "default": "#F6F4EE" },
     { "type": "color", "id": "box_background", "label": "Fond de la boîte", "default": "#0E1A2B" },

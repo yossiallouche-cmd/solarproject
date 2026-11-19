@@ -10,7 +10,7 @@
   #shopify-section-{{ section.id }} .cl-feature { background: {{ s.background | default: '#0E1A2B' }}; color: {{ s.text_color | default: '#F6F4EE' }}; }
 </style>
 
-<section class="cl-feature cl-section cl-ink" aria-labelledby="cl-feature-{{ section.id }}">
+<section class="cl-feature cl-section cl-ink{% unless settings.clarte_heading_italic_accent %} cl-accent-color{% endunless %}" aria-labelledby="cl-feature-{{ section.id }}">
   <div class="cl-container">
     <div class="cl-feature__grid">
       <div class="cl-feature__media">

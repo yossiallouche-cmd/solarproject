@@ -10,7 +10,7 @@
   #shopify-section-{{ section.id }} .cl-proj { background: {{ s.background | default: '#FFFFFF' }}; color: {{ s.text_color | default: '#0E1A2B' }}; }
 </style>
 
-<section class="cl-proj cl-section" aria-labelledby="cl-proj-{{ section.id }}">
+<section class="cl-proj cl-section{% unless settings.clarte_heading_italic_accent %} cl-accent-color{% endunless %}" aria-labelledby="cl-proj-{{ section.id }}">
   <div class="cl-container">
     <div class="cl-proj__grid">
       <div class="cl-feature__copy">

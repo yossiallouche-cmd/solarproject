@@ -6,22 +6,18 @@
         "c1": {
           "type": "chip",
           "settings": {
-            "icon": "euro",
-            "text": "Prix affichés, pose incluse",
-            "highlight": true
+            "text": "Prix affichés, pose incluse"
           }
         },
         "c2": {
           "type": "chip",
           "settings": {
-            "icon": "phone",
             "text": "Appel technique offert sous 48 h"
           }
         },
         "c3": {
           "type": "chip",
           "settings": {
-            "icon": "calendar",
             "text": "Pose sous 14 jours, une seule visite"
           }
         }
@@ -39,7 +35,6 @@
         "button_1_url": "/collections/panneaux-solaires",
         "button_2_text": "Voir les carports solaires",
         "button_2_url": "/collections/carports-solaires",
-        "image_ratio": "4 / 5",
         "show_card": true,
         "price_product": "kit-solaire-toiture",
         "card_title": "Kit 6 panneaux · 3 kWc",
@@ -53,8 +48,7 @@
         "label_total": "Total posé",
         "card_note": "TTC · acompte 30 % à la commande",
         "card_link_text": "Configurer ce kit →",
-        "background": "#F6F4EE",
-        "text_color": "#0E1A2B"
+        "image_alt": "Maison avec panneaux solaires posés en toiture"
       }
     },
     "trust": {
@@ -187,9 +181,7 @@
             "kicker": "Je veux",
             "title": "M'abriter et produire",
             "text": "Carport solaire métal ou bois, 1 ou 2 voitures.",
-            "manual_price": 5999,
-            "url": "/collections/carports-solaires",
-            "accent": true
+            "collection": "carports-solaires"
           }
         },
         "n2": {
@@ -577,6 +569,41 @@
         "box_background": "#0E1A2B",
         "box_text_color": "#F6F4EE"
       }
+    },
+    "zones": {
+      "type": "clarte-zones",
+      "blocks": {
+        "z1": {
+          "type": "fact",
+          "settings": {
+            "text": "Aucun frais de déplacement, prix identique dans tous les départements"
+          }
+        },
+        "z2": {
+          "type": "fact",
+          "settings": {
+            "text": "Installateurs RGE QualiPV et QualiPAC basés en Île-de-France"
+          }
+        },
+        "z3": {
+          "type": "fact",
+          "settings": {
+            "text": "Déclaration préalable en mairie et demande de raccordement Enedis incluses"
+          }
+        }
+      },
+      "block_order": [
+        "z1",
+        "z2",
+        "z3"
+      ],
+      "settings": {
+        "eyebrow": "Où nous intervenons",
+        "title": "<p>Installé chez vous, <em>partout en Île-de-France.</em></p>",
+        "text": "<p>Nos équipes certifiées RGE interviennent dans toute l'Île-de-France. Le prix affiché est le même quel que soit votre département : aucun frais de déplacement.</p>",
+        "background": "#FFFFFF",
+        "text_color": "#0E1A2B"
+      }
     }
   },
   "order": [
@@ -589,6 +616,7 @@
     "steps",
     "projection",
     "guarantees",
+    "zones",
     "testimonials",
     "faq",
     "cta"

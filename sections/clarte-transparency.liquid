@@ -9,7 +9,7 @@
   #shopify-section-{{ section.id }} .cl-transp { background: {{ s.background | default: '#0E1A2B' }}; color: {{ s.text_color | default: '#F6F4EE' }}; }
 </style>
 
-<section class="cl-transp cl-section cl-ink" aria-labelledby="cl-transp-{{ section.id }}">
+<section class="cl-transp cl-section cl-ink{% unless settings.clarte_heading_italic_accent %} cl-accent-color{% endunless %}" aria-labelledby="cl-transp-{{ section.id }}">
   <div class="cl-container">
     <div class="cl-transp__grid">
       <div class="cl-feature__copy">

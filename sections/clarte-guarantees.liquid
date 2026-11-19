@@ -8,7 +8,7 @@
   #shopify-section-{{ section.id }} .cl-guarsec { background: {{ s.background | default: '#0E1A2B' }}; color: {{ s.text_color | default: '#F6F4EE' }}; }
 </style>
 
-<section class="cl-guarsec cl-section cl-ink" aria-labelledby="cl-guar-{{ section.id }}">
+<section class="cl-guarsec cl-section cl-ink{% unless settings.clarte_heading_italic_accent %} cl-accent-color{% endunless %}" aria-labelledby="cl-guar-{{ section.id }}">
   <div class="cl-container">
     <div class="cl-head cl-head--split">
       <div>

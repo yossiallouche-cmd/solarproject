@@ -1,0 +1,75 @@
+{%- comment -%}
+  CLARTÉ — Zones d'intervention (SEO local)
+  Liste des départements / villes couverts (réglages du thème → Entreprise), faits clés et photo.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign areas = s.areas_override | default: settings.clarte_areas | newline_to_br | split: '<br />'
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} .cl-zones { background: {{ s.background | default: '#FFFFFF' }}; color: {{ s.text_color | default: '#0E1A2B' }}; }
+</style>
+
+<section class="cl-zones cl-section{% unless settings.clarte_heading_italic_accent %} cl-accent-color{% endunless %}" aria-labelledby="cl-zones-{{ section.id }}">
+  <div class="cl-container">
+    <div class="cl-zones__grid">
+      <div>
+        {%- if s.eyebrow != blank -%}<p class="cl-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h2 id="cl-zones-{{ section.id }}" class="cl-h2">{{ s.title | remove: '<p>' | remove: '</p>' }}</h2>
+        {%- if s.text != blank -%}<div class="cl-lead" style="margin-top:1rem">{{ s.text }}</div>{%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="cl-zones__facts" role="list">
+            {%- for block in section.blocks -%}
+              <li {{ block.shopify_attributes }}>{%- render 'clarte-icon', icon: 'check' -%}<span>{{ block.settings.text | escape }}</span></li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+
+      <div>
+        {%- if s.image != blank -%}
+          <div class="cl-zones__media"><div class="cl-media">{{ s.image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 900px) 50vw, 100vw', widths: '600, 900, 1200', alt: s.image.alt | default: s.title | strip_html }}</div></div>
+        {%- endif -%}
+        <ul class="cl-zones__list" role="list" {% if s.image != blank %}style="margin-top:1.5rem"{% endif %}>
+          {%- for a in areas -%}
+            {%- assign a_s = a | strip -%}
+            {%- if a_s != blank -%}<li>{{ a_s | escape }}</li>{%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Clarté · Zones",
+  "tag": "section",
+  "class": "shopify-section--clarte-zones",
+  "disabled_on": { "groups": ["header", "footer", "custom.overlay"] },
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Où nous intervenons" },
+    { "type": "richtext", "id": "title", "label": "Titre", "default": "<p>Installé chez vous, <em>partout en Île-de-France.</em></p>" },
+    { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Nos équipes certifiées RGE interviennent dans toute l'Île-de-France. Le prix affiché est le même quel que soit votre département : aucun frais de déplacement.</p>" },
+    { "type": "textarea", "id": "areas_override", "label": "Zones (une par ligne)", "info": "Laisser vide pour utiliser la liste des réglages du thème (Entreprise)." },
+    { "type": "image_picker", "id": "image", "label": "Photo" },
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background", "label": "Fond", "default": "#FFFFFF" },
+    { "type": "color", "id": "text_color", "label": "Texte", "default": "#0E1A2B" }
+  ],
+  "blocks": [
+    { "type": "fact", "name": "Fait clé", "settings": [ { "type": "text", "id": "text", "label": "Texte", "default": "Aucun frais de déplacement" } ] }
+  ],
+  "presets": [
+    { "name": "Clarté · Zones", "category": "Clarté", "blocks": [
+      { "type": "fact", "settings": { "text": "Aucun frais de déplacement, prix identique dans tous les départements" } },
+      { "type": "fact", "settings": { "text": "Installateurs RGE QualiPV et QualiPAC basés en Île-de-France" } },
+      { "type": "fact", "settings": { "text": "Déclaration préalable en mairie et demande de raccordement Enedis incluses" } }
+    ] }
+  ]
+}
+{% endschema %}

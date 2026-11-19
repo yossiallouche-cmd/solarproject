@@ -1,0 +1,81 @@
+{%- comment -%}
+  CLARTÉ — Données structurées schema.org (SEO / GEO)
+  Organisation + entreprise locale (zones d'intervention, certifications), site web avec recherche.
+  Les fiches produit et les FAQ ont leur propre balisage (microdata-schema, faq).
+{%- endcomment -%}
+
+{%- liquid
+  assign name = settings.clarte_company_name | default: shop.name
+  assign areas = settings.clarte_areas | newline_to_br | split: '<br />'
+  assign certs = settings.clarte_certifications | split: ','
+  assign logo = settings.favicon
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ shop.url }}/#website",
+      "url": "{{ shop.url }}",
+      "name": {{ name | json }},
+      "inLanguage": "fr-FR",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": ["Organization", "HomeAndConstructionBusiness"],
+      "@id": "{{ shop.url }}/#organization",
+      "name": {{ name | json }},
+      {%- if settings.clarte_legal_name != blank -%}"legalName": {{ settings.clarte_legal_name | json }},{%- endif -%}
+      "url": "{{ shop.url }}",
+      {%- if logo != blank -%}"logo": {{ logo | image_url: width: 512 | prepend: 'https:' | json }},{%- endif -%}
+      {%- if settings.clarte_phone != blank -%}"telephone": {{ settings.clarte_phone | json }},{%- endif -%}
+      {%- if settings.clarte_email != blank -%}"email": {{ settings.clarte_email | json }},{%- endif -%}
+      "description": {{ shop.description | default: "Panneaux solaires, batteries, pompes à chaleur, climatisation et carports solaires vendus et posés au prix affiché, fourniture et pose incluses." | json }},
+      "priceRange": "€€",
+      "currenciesAccepted": "EUR",
+      "paymentAccepted": "Carte bancaire, virement, financement",
+      {%- if settings.clarte_hours != blank -%}"openingHours": {{ settings.clarte_hours | json }},{%- endif -%}
+      {%- if settings.clarte_founding_year != blank -%}"foundingDate": {{ settings.clarte_founding_year | json }},{%- endif -%}
+      "address": {
+        "@type": "PostalAddress",
+        {%- if settings.clarte_street != blank -%}"streetAddress": {{ settings.clarte_street | json }},{%- endif -%}
+        {%- if settings.clarte_postal != blank -%}"postalCode": {{ settings.clarte_postal | json }},{%- endif -%}
+        "addressLocality": {{ settings.clarte_city | default: 'Paris' | json }},
+        "addressCountry": "FR"
+      },
+      "areaServed": [
+        {%- for a in areas -%}
+          {%- assign a_s = a | strip -%}
+          {%- if a_s != blank -%}{ "@type": "AdministrativeArea", "name": {{ a_s | json }} }{% unless forloop.last %},{% endunless %}{%- endif -%}
+        {%- endfor -%}
+      ],
+      "hasCredential": [
+        {%- for c in certs -%}
+          {%- assign c_s = c | strip -%}
+          {%- if c_s != blank -%}{ "@type": "EducationalOccupationalCredential", "name": {{ c_s | json }} }{% unless forloop.last %},{% endunless %}{%- endif -%}
+        {%- endfor -%}
+      ],
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Installation de panneaux solaires photovoltaïques", "serviceType": "Installation photovoltaïque" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Installation de carport solaire", "serviceType": "Carport photovoltaïque" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Installation de pompe à chaleur air/eau", "serviceType": "Pompe à chaleur" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Installation de climatisation réversible", "serviceType": "Climatisation" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Installation de batterie de stockage domestique", "serviceType": "Stockage d'énergie" } }
+      ],
+      "sameAs": [
+        {%- assign socials = '' -%}
+        {%- if settings.social_facebook != blank -%}{{ settings.social_facebook | json }},{%- endif -%}
+        {%- if settings.social_instagram != blank -%}{{ settings.social_instagram | json }},{%- endif -%}
+        {%- if settings.social_linkedin != blank -%}{{ settings.social_linkedin | json }},{%- endif -%}
+        {%- if settings.social_youtube != blank -%}{{ settings.social_youtube | json }},{%- endif -%}
+        {{ shop.url | json }}
+      ]
+    }
+  ]
+}
+</script>

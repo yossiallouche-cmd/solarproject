@@ -43,13 +43,12 @@
   endif
 -%}
 
-<style>
-  #shopify-section-{{ section.id }} .cl-hero { background: {{ s.background | default: '#F6F4EE' }}; color: {{ s.text_color | default: '#0E1A2B' }}; }
-  #shopify-section-{{ section.id }} .cl-hero__visual .cl-media { aspect-ratio: {{ s.image_ratio }}; }
-</style>
-
-<section class="cl-hero cl-section" aria-labelledby="cl-hero-{{ section.id }}">
-  <div class="cl-hero__bg"></div>
+<section class="cl-hero{% if s.image == blank %} cl-hero--noimage{% endif %}{% unless settings.clarte_heading_italic_accent %} cl-accent-color{% endunless %}" aria-labelledby="cl-hero-{{ section.id }}">
+  <div class="cl-hero__bg">
+    {%- if s.image != blank -%}
+      {{ s.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '100vw', widths: '800, 1200, 1600, 2000, 2400', alt: s.image.alt | default: s.image_alt | escape }}
+    {%- endif -%}
+  </div>
   <div class="cl-container">
     <div class="cl-hero__grid">
       <div class="cl-hero__copy">
@@ -75,31 +74,21 @@
         {%- endif -%}
 
         {%- if section.blocks.size > 0 -%}
-          <ul class="cl-hero__chips" role="list">
+          <ul class="cl-inline-list" role="list">
             {%- for block in section.blocks -%}
-              <li class="cl-chip {% if block.settings.highlight %}cl-chip--amber{% endif %}" {{ block.shopify_attributes }}>
-                {%- render 'clarte-icon', icon: block.settings.icon -%}
-                {{ block.settings.text | escape }}
-              </li>
+              <li {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</li>
             {%- endfor -%}
           </ul>
         {%- endif -%}
       </div>
 
-      <div class="cl-hero__visual">
-        {%- if s.image != blank -%}
-          <div class="cl-media">
-            {{ s.image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 1000px) 45vw, 100vw', widths: '600, 900, 1200, 1600', alt: s.image.alt | default: s.title | strip_html }}
-          </div>
-        {%- else -%}
-          <div class="cl-media cl-media--placeholder">{%- render 'clarte-icon', icon: 'carport' -%}</div>
-        {%- endif -%}
+      <div class="cl-hero__side">
 
         {%- if s.show_card -%}
           <aside class="cl-hero__card" aria-label="Exemple de prix posé">
             <div class="cl-hero__card-title">
               <strong>{{ card_title | escape }}</strong>
-              {%- if s.card_badge != blank -%}<span class="cl-chip cl-chip--amber">{{ s.card_badge | escape }}</span>{%- endif -%}
+              {%- if s.card_badge != blank -%}<span>{{ s.card_badge | escape }}</span>{%- endif -%}
             </div>
             <div class="cl-price-line"><span>{{ s.label_fourniture | escape }}</span><span class="cl-amount">{{ fourniture | money_without_trailing_zeros }}</span></div>
             <div class="cl-price-line"><span>{{ s.label_pose | escape }}</span><span class="cl-amount">{{ pose | money_without_trailing_zeros }}</span></div>
@@ -135,8 +124,7 @@
     { "type": "url", "id": "button_2_url", "label": "Lien du bouton secondaire" },
     { "type": "header", "content": "Visuel" },
     { "type": "image_picker", "id": "image", "label": "Image" },
-    { "type": "select", "id": "image_ratio", "label": "Format de l'image", "options": [
-      { "value": "4 / 5", "label": "Portrait 4:5" }, { "value": "1 / 1", "label": "Carré" }, { "value": "4 / 3", "label": "Paysage 4:3" } ], "default": "4 / 5" },
+    { "type": "text", "id": "image_alt", "label": "Texte alternatif de l'image (SEO)", "default": "Maison avec panneaux solaires posés en toiture" },
     { "type": "header", "content": "Carte prix", "info": "Choisissez un produit : fourniture et pose sont lues dans ses métachamps. Sinon saisissez les montants." },
     { "type": "checkbox", "id": "show_card", "label": "Afficher la carte prix", "default": true },
     { "type": "product", "id": "price_product", "label": "Produit de référence" },
@@ -152,21 +140,13 @@
     { "type": "text", "id": "card_note", "label": "Note sous la carte", "default": "TTC · acompte 30 % à la commande" },
     { "type": "text", "id": "card_link_text", "label": "Texte du lien", "default": "Configurer →" },
     { "type": "url", "id": "card_link_url", "label": "Lien (si aucun produit)" },
-    { "type": "header", "content": "Couleurs" },
-    { "type": "color", "id": "background", "label": "Fond", "default": "#F6F4EE" },
-    { "type": "color", "id": "text_color", "label": "Texte", "default": "#0E1A2B" }
   ],
   "blocks": [
     {
       "type": "chip",
       "name": "Puce de réassurance",
       "settings": [
-        { "type": "select", "id": "icon", "label": "Icône", "options": [
-          { "value": "euro", "label": "Euro" }, { "value": "phone", "label": "Téléphone" }, { "value": "calendar", "label": "Calendrier" },
-          { "value": "clock", "label": "Horloge" }, { "value": "shield", "label": "Bouclier" }, { "value": "check", "label": "Coche" },
-          { "value": "bolt", "label": "Éclair" }, { "value": "tool", "label": "Outils" }, { "value": "truck", "label": "Camion" } ], "default": "check" },
-        { "type": "text", "id": "text", "label": "Texte", "default": "Prix affichés, pose incluse" },
-        { "type": "checkbox", "id": "highlight", "label": "Mettre en avant (ambre)", "default": false }
+        { "type": "text", "id": "text", "label": "Texte", "default": "Prix affichés, pose incluse" }
       ]
     }
   ],
@@ -175,9 +155,9 @@
       "name": "Clarté · Hero prix",
       "category": "Clarté",
       "blocks": [
-        { "type": "chip", "settings": { "icon": "euro", "text": "Prix affichés, pose incluse", "highlight": true } },
-        { "type": "chip", "settings": { "icon": "phone", "text": "Appel technique offert sous 48 h" } },
-        { "type": "chip", "settings": { "icon": "calendar", "text": "Pose sous 14 jours, une seule visite" } }
+        { "type": "chip", "settings": { "text": "Prix affichés, pose incluse" } },
+        { "type": "chip", "settings": { "text": "Appel technique offert sous 48 h" } },
+        { "type": "chip", "settings": { "text": "Pose sous 14 jours, une seule visite" } }
       ]
     }
   ]

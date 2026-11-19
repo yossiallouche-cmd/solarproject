@@ -18,7 +18,7 @@
   #shopify-section-{{ section.id }} .cl-stepsec { background: {{ s.background | default: '#F6F4EE' }}; color: {{ s.text_color | default: '#0E1A2B' }}; }
 </style>
 
-<section class="cl-stepsec cl-section" aria-labelledby="cl-steps-{{ section.id }}">
+<section class="cl-stepsec cl-section{% unless settings.clarte_heading_italic_accent %} cl-accent-color{% endunless %}" aria-labelledby="cl-steps-{{ section.id }}">
   <div class="cl-container">
     <div class="cl-head cl-head--split">
       <div>

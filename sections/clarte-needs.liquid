@@ -10,7 +10,7 @@
   #shopify-section-{{ section.id }} .cl-needs { background: {{ s.background | default: '#F6F4EE' }}; color: {{ s.text_color | default: '#0E1A2B' }}; }
 </style>
 
-<section class="cl-needs cl-section" aria-labelledby="cl-needs-{{ section.id }}">
+<section class="cl-needs cl-section{% unless settings.clarte_heading_italic_accent %} cl-accent-color{% endunless %}" aria-labelledby="cl-needs-{{ section.id }}">
   <div class="cl-container">
     <div class="cl-head cl-head--split">
       <div>
@@ -48,13 +48,29 @@
             assign price = b.manual_price | times: 100
           endif
         -%}
-        <a class="cl-need {% if b.accent %}cl-need--accent{% endif %}" href="{{ url | default: '#' }}" {{ block.shopify_attributes }}>
-          <span class="cl-need__icon">
-            {%- if b.custom_icon != blank -%}
-              {{ b.custom_icon | image_url: width: 96 | image_tag: loading: 'lazy', alt: '' }}
+        {%- liquid
+          assign img = b.image
+          if img == blank and b.product != blank
+            assign img = b.product.featured_image
+          endif
+          if img == blank and b.collection != blank
+            assign img = b.collection.image | default: b.collection.products.first.featured_image
+          endif
+        -%}
+        <a class="cl-need" href="{{ url | default: '#' }}" {{ block.shopify_attributes }}>
+          <span class="cl-need__media{% if img == blank %} cl-need__media--empty{% endif %}">
+            {%- if img != blank -%}
+              {{ img | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(min-width: 1100px) 20vw, (min-width: 760px) 33vw, 50vw', widths: '300, 500, 800', alt: img.alt | default: b.title | escape }}
             {%- else -%}
               {%- render 'clarte-icon', icon: b.icon -%}
             {%- endif -%}
+            <span class="cl-need__icon">
+              {%- if b.custom_icon != blank -%}
+                {{ b.custom_icon | image_url: width: 96 | image_tag: loading: 'lazy', alt: '' }}
+              {%- else -%}
+                {%- render 'clarte-icon', icon: b.icon -%}
+              {%- endif -%}
+            </span>
           </span>
           <span class="cl-need__body">
             {%- if b.kicker != blank -%}<span class="cl-need__kicker">{{ b.kicker | escape }}</span>{%- endif -%}
@@ -103,6 +119,7 @@
           { "value": "carport", "label": "Carport" }, { "value": "sun", "label": "Soleil" }, { "value": "battery", "label": "Batterie" },
           { "value": "flame", "label": "Flamme (chauffage)" }, { "value": "snow", "label": "Flocon (clim)" }, { "value": "umbrella", "label": "Pergola / abri" },
           { "value": "home", "label": "Maison" }, { "value": "bolt", "label": "Éclair" }, { "value": "car", "label": "Voiture" } ], "default": "sun" },
+        { "type": "image_picker", "id": "image", "label": "Photo", "info": "Sinon : image de la collection ou du produit lié." },
         { "type": "image_picker", "id": "custom_icon", "label": "Icône personnalisée (optionnel)" },
         { "type": "text", "id": "kicker", "label": "Petit texte au-dessus", "default": "Je veux" },
         { "type": "text", "id": "title", "label": "Titre", "default": "Produire mon électricité" },
@@ -111,8 +128,7 @@
         { "type": "product", "id": "product", "label": "Ou produit" },
         { "type": "number", "id": "manual_price", "label": "Ou prix saisi (€)" },
         { "type": "text", "id": "price_fallback", "label": "Texte si aucun prix", "default": "Voir les prix" },
-        { "type": "url", "id": "url", "label": "Lien (optionnel)" },
-        { "type": "checkbox", "id": "accent", "label": "Carte mise en avant (fond sombre)", "default": false }
+        { "type": "url", "id": "url", "label": "Lien (optionnel)" }
       ]
     }
   ],
@@ -121,7 +137,7 @@
       "name": "Clarté · Besoins",
       "category": "Clarté",
       "blocks": [
-        { "type": "need", "settings": { "icon": "carport", "kicker": "Je veux", "title": "M'abriter et produire", "text": "Carport solaire métal ou bois, 1 ou 2 voitures.", "manual_price": 5999, "accent": true } },
+        { "type": "need", "settings": { "icon": "carport", "kicker": "Je veux", "title": "M'abriter et produire", "text": "Carport solaire métal ou bois, 1 ou 2 voitures.", "manual_price": 5999 } },
         { "type": "need", "settings": { "icon": "sun", "kicker": "Je veux", "title": "Produire", "text": "Kits solaires 6 à 18 panneaux, posés en toiture.", "manual_price": 3300 } },
         { "type": "need", "settings": { "icon": "battery", "kicker": "Je veux", "title": "Stocker", "text": "Batteries 5 à 20 kWh, seules ou avec panneaux.", "manual_price": 1650 } },
         { "type": "need", "settings": { "icon": "flame", "kicker": "Je veux", "title": "Chauffer", "text": "Pompes à chaleur air/eau, posées et mises en service.", "manual_price": 6050 } },

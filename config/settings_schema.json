@@ -509,6 +509,25 @@
         "info": "Séparées par des points-virgules, ex. 500;700"
       },
       {
+        "type": "text",
+        "id": "clarte_text_font",
+        "label": "Police de texte (Google Fonts)",
+        "default": "Manrope",
+        "info": "Laisser vide pour utiliser la police de texte Shopify."
+      },
+      {
+        "type": "text",
+        "id": "clarte_text_font_weights",
+        "label": "Graisses à charger (texte)",
+        "default": "400;500;600;700"
+      },
+      {
+        "type": "checkbox",
+        "id": "clarte_heading_italic_accent",
+        "label": "Accent des titres en italique (au lieu de la couleur ambre)",
+        "default": true
+      },
+      {
         "type": "header",
         "content": "Couleurs de marque",
         "info": "Utilisées par les sections Clarté (accueil, fiche produit, panier)."
@@ -663,6 +682,73 @@
         "id": "clarte_financing_note",
         "label": "Mention financement",
         "default": "Mensualité indicative, sous réserve d'acceptation du dossier de financement."
+      },
+      {
+        "type": "header",
+        "content": "Entreprise (SEO, données structurées)",
+        "info": "Utilisé pour les balises schema.org Organisation / entreprise locale et le pied de page."
+      },
+      {
+        "type": "text",
+        "id": "clarte_company_name",
+        "label": "Nom commercial",
+        "default": "Clarté"
+      },
+      {
+        "type": "text",
+        "id": "clarte_legal_name",
+        "label": "Raison sociale"
+      },
+      {
+        "type": "text",
+        "id": "clarte_phone",
+        "label": "Téléphone",
+        "default": "+33 1 00 00 00 00"
+      },
+      {
+        "type": "text",
+        "id": "clarte_email",
+        "label": "E-mail",
+        "default": "contact@exemple.fr"
+      },
+      {
+        "type": "text",
+        "id": "clarte_street",
+        "label": "Adresse"
+      },
+      {
+        "type": "text",
+        "id": "clarte_postal",
+        "label": "Code postal"
+      },
+      {
+        "type": "text",
+        "id": "clarte_city",
+        "label": "Ville",
+        "default": "Paris"
+      },
+      {
+        "type": "textarea",
+        "id": "clarte_areas",
+        "label": "Zones d'intervention (une par ligne)",
+        "default": "Paris (75)\nHauts-de-Seine (92)\nSeine-Saint-Denis (93)\nVal-de-Marne (94)\nYvelines (78)\nEssonne (91)\nVal-d'Oise (95)\nSeine-et-Marne (77)"
+      },
+      {
+        "type": "text",
+        "id": "clarte_hours",
+        "label": "Horaires",
+        "default": "Du lundi au samedi, 9 h – 19 h"
+      },
+      {
+        "type": "text",
+        "id": "clarte_certifications",
+        "label": "Certifications (séparées par des virgules)",
+        "default": "RGE QualiPV, RGE QualiPAC, Garantie décennale"
+      },
+      {
+        "type": "text",
+        "id": "clarte_founding_year",
+        "label": "Année de création"
       }
     ]
   },
