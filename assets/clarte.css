@@ -360,23 +360,23 @@ clarte-configurator, clarte-rdv, clarte-installation, clarte-projection, clarte-
 .cl-hero__cats { margin-top: 2.5rem; }
 
 /* Comparatif */
-.cl-compare .cl-eyebrow { color: rgb(var(--cl-accent)); }
-.cl-compare .cl-lead { color: rgb(var(--cl-paper) / .75); }
-.cl-compare__wrap { overflow-x: auto; margin-top: 2.5rem; border-radius: 14px; background: rgb(var(--cl-paper) / .04); border: 1px solid rgb(var(--cl-paper) / .12); }
-.cl-compare__table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: .95rem; }
-.cl-compare__table th, .cl-compare__table td { padding: 1.05rem 1.25rem; text-align: center; border-bottom: 1px solid rgb(var(--cl-paper) / .1); vertical-align: middle; }
-.cl-compare__table tbody tr:last-child th, .cl-compare__table tbody tr:last-child td { border-bottom: 0; }
-.cl-compare__table th[scope="row"] { text-align: left; font-weight: 500; color: rgb(var(--cl-paper) / .85); width: 34%; }
-.cl-compare__table thead th { padding-top: 1.4rem; padding-bottom: 1.2rem; vertical-align: bottom; }
-.cl-compare__brand { display: block; font-family: var(--heading-font-family); font-size: 1.25rem; font-weight: 500; }
-.cl-compare__sub { display: block; font-size: .74rem; opacity: .65; margin-top: .2rem; }
-.cl-compare__us { background: rgb(var(--cl-accent) / .12); }
-.cl-compare__table thead .cl-compare__us { background: rgb(var(--cl-accent)); color: rgb(var(--cl-ink)); border-radius: 12px 12px 0 0; }
-.cl-compare__table thead .cl-compare__us .cl-compare__sub { opacity: .8; }
-.cl-compare__yes { display: inline-grid; place-items: center; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: rgb(var(--cl-green)); color: #fff; }
-.cl-compare__yes svg { width: .95rem; height: .95rem; }
-.cl-compare__no { display: inline-grid; place-items: center; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: rgb(var(--cl-paper) / .12); color: rgb(var(--cl-paper) / .6); font-size: .9rem; }
-.cl-compare td.cl-compare__us { font-weight: 600; }
+.cl-versus .cl-eyebrow { color: rgb(var(--cl-accent)); }
+.cl-versus .cl-lead { color: rgb(var(--cl-paper) / .75); }
+.cl-versus__wrap { overflow-x: auto; margin-top: 2.5rem; border-radius: 14px; background: rgb(var(--cl-paper) / .04); border: 1px solid rgb(var(--cl-paper) / .12); }
+.cl-versus__table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: .95rem; }
+.cl-versus__table th, .cl-versus__table td { padding: 1.05rem 1.25rem; text-align: center; border-bottom: 1px solid rgb(var(--cl-paper) / .1); vertical-align: middle; }
+.cl-versus__table tbody tr:last-child th, .cl-versus__table tbody tr:last-child td { border-bottom: 0; }
+.cl-versus__table th[scope="row"] { text-align: left; font-weight: 500; color: rgb(var(--cl-paper) / .85); width: 34%; }
+.cl-versus__table thead th { padding-top: 1.4rem; padding-bottom: 1.2rem; vertical-align: bottom; }
+.cl-versus__brand { display: block; font-family: var(--heading-font-family); font-size: 1.25rem; font-weight: 500; }
+.cl-versus__sub { display: block; font-size: .74rem; opacity: .65; margin-top: .2rem; }
+.cl-versus__us { background: rgb(var(--cl-accent) / .12); }
+.cl-versus__table thead .cl-versus__us { background: rgb(var(--cl-accent)); color: rgb(var(--cl-ink)); border-radius: 12px 12px 0 0; }
+.cl-versus__table thead .cl-versus__us .cl-versus__sub { opacity: .8; }
+.cl-versus__yes { display: inline-grid; place-items: center; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: rgb(var(--cl-green)); color: #fff; }
+.cl-versus__yes svg { width: .95rem; height: .95rem; }
+.cl-versus__no { display: inline-grid; place-items: center; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: rgb(var(--cl-paper) / .12); color: rgb(var(--cl-paper) / .6); font-size: .9rem; }
+.cl-versus td.cl-versus__us { font-weight: 600; }
 .cl-actions--center { justify-content: center; margin-top: 2rem; }
 
 /* Sections Impact sur l’accueil : titres en Fraunces, sous-titre « Étape » */

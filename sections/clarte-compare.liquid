@@ -6,25 +6,25 @@
 {%- assign s = section.settings -%}
 
 <style>
-  #shopify-section-{{ section.id }} .cl-compare { background: {{ s.background | default: '#0E1A2B' }}; color: {{ s.text_color | default: '#F6F4EE' }}; }
+  #shopify-section-{{ section.id }} .cl-versus { background: {{ s.background | default: '#0E1A2B' }}; color: {{ s.text_color | default: '#F6F4EE' }}; }
 </style>
 
-<section class="cl-compare cl-section{% unless settings.clarte_heading_italic_accent %} cl-accent-color{% endunless %}" aria-labelledby="cl-compare-{{ section.id }}">
+<section class="cl-versus cl-section{% unless settings.clarte_heading_italic_accent %} cl-accent-color{% endunless %}" aria-labelledby="cl-versus-{{ section.id }}">
   <div class="cl-container">
     <div class="cl-head cl-head--center">
       {%- if s.eyebrow != blank -%}<p class="cl-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
-      <h2 id="cl-compare-{{ section.id }}" class="cl-h2">{{ s.title | remove: '<p>' | remove: '</p>' }}</h2>
+      <h2 id="cl-versus-{{ section.id }}" class="cl-h2">{{ s.title | remove: '<p>' | remove: '</p>' }}</h2>
       {%- if s.text != blank -%}<div class="cl-lead">{{ s.text }}</div>{%- endif -%}
     </div>
 
-    <div class="cl-compare__wrap">
-      <table class="cl-compare__table">
+    <div class="cl-versus__wrap">
+      <table class="cl-versus__table">
         <thead>
           <tr>
             <th scope="col"><span class="visually-hidden">Critère</span></th>
-            <th scope="col" class="cl-compare__us"><span class="cl-compare__brand">{{ s.col_1 | default: settings.clarte_company_name | escape }}</span>{%- if s.col_1_sub != blank -%}<span class="cl-compare__sub">{{ s.col_1_sub | escape }}</span>{%- endif -%}</th>
-            <th scope="col"><span class="cl-compare__brand">{{ s.col_2 | escape }}</span>{%- if s.col_2_sub != blank -%}<span class="cl-compare__sub">{{ s.col_2_sub | escape }}</span>{%- endif -%}</th>
-            <th scope="col"><span class="cl-compare__brand">{{ s.col_3 | escape }}</span>{%- if s.col_3_sub != blank -%}<span class="cl-compare__sub">{{ s.col_3_sub | escape }}</span>{%- endif -%}</th>
+            <th scope="col" class="cl-versus__us"><span class="cl-versus__brand">{{ s.col_1 | default: settings.clarte_company_name | escape }}</span>{%- if s.col_1_sub != blank -%}<span class="cl-versus__sub">{{ s.col_1_sub | escape }}</span>{%- endif -%}</th>
+            <th scope="col"><span class="cl-versus__brand">{{ s.col_2 | escape }}</span>{%- if s.col_2_sub != blank -%}<span class="cl-versus__sub">{{ s.col_2_sub | escape }}</span>{%- endif -%}</th>
+            <th scope="col"><span class="cl-versus__brand">{{ s.col_3 | escape }}</span>{%- if s.col_3_sub != blank -%}<span class="cl-versus__sub">{{ s.col_3_sub | escape }}</span>{%- endif -%}</th>
           </tr>
         </thead>
         <tbody>
@@ -35,11 +35,11 @@
                 {%- assign key = 'value_' | append: i -%}
                 {%- assign v = block.settings[key] | strip -%}
                 {%- assign vd = v | downcase -%}
-                <td{% if i == 1 %} class="cl-compare__us"{% endif %}>
+                <td{% if i == 1 %} class="cl-versus__us"{% endif %}>
                   {%- if vd == 'oui' -%}
-                    <span class="cl-compare__yes">{%- render 'clarte-icon', icon: 'check' -%}<span class="visually-hidden">Oui</span></span>
+                    <span class="cl-versus__yes">{%- render 'clarte-icon', icon: 'check' -%}<span class="visually-hidden">Oui</span></span>
                   {%- elsif vd == 'non' -%}
-                    <span class="cl-compare__no">✕<span class="visually-hidden">Non</span></span>
+                    <span class="cl-versus__no">✕<span class="visually-hidden">Non</span></span>
                   {%- else -%}
                     {{ v | escape }}
                   {%- endif -%}
