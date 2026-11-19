@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -35,6 +44,8 @@
         "button_1_url": "/collections/panneaux-solaires",
         "button_2_text": "Voir les carports solaires",
         "button_2_url": "/collections/carports-solaires",
+        "image": "shopify://shop_images/clarte-hero-toiture-solaire.jpg",
+        "image_alt": "Maison avec panneaux solaires en toiture",
         "show_card": true,
         "price_product": "kit-solaire-toiture",
         "card_title": "Kit 6 panneaux · 3 kWc",
@@ -47,9 +58,7 @@
         "label_free": "Offert",
         "label_total": "Total posé",
         "card_note": "TTC · acompte 30 % à la commande",
-        "card_link_text": "Configurer ce kit →",
-        "image_alt": "Maison avec panneaux solaires en toiture",
-        "image": "shopify://shop_images/clarte-hero-toiture-solaire.jpg"
+        "card_link_text": "Configurer ce kit →"
       }
     },
     "trust": {
@@ -163,14 +172,14 @@
         "eyebrow": "Produit phare",
         "title": "<p>Le carport solaire : abritez votre voiture, <em>produisez votre électricité.</em></p>",
         "text": "<p>Structure métal pour 1 ou 2 voitures, ou bois sur mesure. Posé sur plots béton, sans fondation lourde, avec déclaration préalable en mairie fournie. Prix affiché, pose incluse.</p>",
+        "image": "shopify://shop_images/clarte-carport-solaire.jpg",
         "badge": "À partir de 5 999 € posé",
         "button_text": "Configurer mon carport",
         "button_url": "/collections/carports-solaires",
         "link_text": "Voir tous les carports",
         "link_url": "/collections/carports-solaires",
         "background": "#0E1A2B",
-        "text_color": "#F6F4EE",
-        "image": "shopify://shop_images/clarte-carport-solaire.jpg"
+        "text_color": "#F6F4EE"
       }
     },
     "needs": {
@@ -474,8 +483,6 @@
     "testimonials": {
       "type": "testimonials",
       "disabled": true,
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "full_width": true,
         "stack_testimonials": true,
@@ -567,10 +574,10 @@
         "button_2_text": "Poser une question",
         "button_2_url": "/pages/contact",
         "note": "Réponse sous 24 h ouvrées · du lundi au samedi",
+        "image": "shopify://shop_images/clarte-famille-maison.jpg",
         "background": "#F6F4EE",
         "box_background": "#0E1A2B",
-        "box_text_color": "#F6F4EE",
-        "image": "shopify://shop_images/clarte-famille-maison.jpg"
+        "box_text_color": "#F6F4EE"
       }
     },
     "zones": {
@@ -604,9 +611,9 @@
         "eyebrow": "Où nous intervenons",
         "title": "<p>Installé chez vous, <em>partout en Île-de-France.</em></p>",
         "text": "<p>Nos équipes certifiées RGE interviennent dans toute l'Île-de-France. Le prix affiché est le même quel que soit votre département : aucun frais de déplacement.</p>",
+        "image": "shopify://shop_images/clarte-technicien-pose.jpg",
         "background": "#FFFFFF",
-        "text_color": "#0E1A2B",
-        "image": "shopify://shop_images/clarte-technicien-pose.jpg"
+        "text_color": "#0E1A2B"
       }
     }
   },
