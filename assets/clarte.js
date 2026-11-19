@@ -270,7 +270,7 @@ class ClarteConfigurator extends HTMLElement {
   build() {
     this.box.innerHTML = '';
     this.data.options.forEach((opt, i) => {
-      const numeric = opt.values.length > 1 && opt.values.every((v) => !isNaN(ClarteConfigurator.num(v)));
+      const numeric = opt.values.length > 2 && opt.values.every((v) => !isNaN(ClarteConfigurator.num(v)));
       const wrap = document.createElement('div');
       wrap.className = 'cl-config__opt';
       if (numeric) {

@@ -418,7 +418,8 @@
           {%- endif -%}
 
         {%- when 'clarte_configurator' -%}
-          {%- if product.has_only_default_variant == false -%}
+          {%- assign only_tag = block.settings.only_tag | strip | downcase -%}
+          {%- if product.has_only_default_variant == false and only_tag == blank or product.has_only_default_variant == false and product.tags contains only_tag -%}
             {%- render 'clarte-configurator', product: product, product_form_id: product_form_id, block: block -%}
           {%- endif -%}
 

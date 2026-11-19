@@ -110,6 +110,15 @@
         "disclosures": {
           "type": "disclosures",
           "settings": {}
+        },
+        "configurator": {
+          "type": "clarte_configurator",
+          "settings": {
+            "title": "Composez votre carport",
+            "only_tag": "carport",
+            "show_preview": true,
+            "note": "<p>Le nombre de panneaux et la puissance sont calculés pour vos dimensions. Confirmés lors de l'appel technique.</p>"
+          }
         }
       },
       "block_order": [
@@ -118,6 +127,7 @@
         "badges",
         "rating",
         "variant_picker",
+        "configurator",
         "clarte_price",
         "clarte_installation",
         "buy_buttons",
