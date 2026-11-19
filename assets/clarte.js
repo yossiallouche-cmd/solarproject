@@ -316,9 +316,12 @@ class ClarteConfigurator extends HTMLElement {
   /* Coche l'option correspondante dans le sélecteur de variantes d'Impact (masqué) */
   syncTheme(v) {
     if (!this.form) return;
+    // Les inputs d'Impact portent l'ID de la valeur d'option ; on retrouve la bonne case par le texte de son label.
+    const norm = (s) => String(s).replace(/\s+/g, ' ').trim();
     v.options.forEach((value, i) => {
-      const input = Array.from(this.form.ownerDocument.querySelectorAll(`input[data-option-position="${i + 1}"][form="${this.form.id}"]`))
-        .find((el) => el.value === value);
+      const inputs = Array.from(document.querySelectorAll(`input[data-option-position="${i + 1}"][form="${this.form.id}"]`));
+      const input = inputs.find((el) => el.value === value)
+        || inputs.find((el) => { const l = el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`); return l && norm(l.textContent) === norm(value); });
       if (input && !input.checked) { input.checked = true; input.dispatchEvent(new Event('change', { bubbles: true })); }
     });
   }
