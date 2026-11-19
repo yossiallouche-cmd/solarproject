@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
@@ -29,21 +20,75 @@
           "settings": {
             "text": "Pose sous 14 jours, une seule visite"
           }
+        },
+        "k1": {
+          "type": "category",
+          "settings": {
+            "collection": "carports-solaires",
+            "title": "Carports solaires",
+            "icon": "carport"
+          }
+        },
+        "k2": {
+          "type": "category",
+          "settings": {
+            "collection": "panneaux-solaires",
+            "title": "Panneaux solaires",
+            "icon": "sun"
+          }
+        },
+        "k3": {
+          "type": "category",
+          "settings": {
+            "collection": "solaire-batterie",
+            "title": "Solaire + batterie",
+            "icon": "battery"
+          }
+        },
+        "k4": {
+          "type": "category",
+          "settings": {
+            "collection": "pompes-a-chaleur",
+            "title": "Pompes à chaleur",
+            "icon": "flame"
+          }
+        },
+        "k5": {
+          "type": "category",
+          "settings": {
+            "collection": "climatisation",
+            "title": "Climatisation",
+            "icon": "snow"
+          }
+        },
+        "k6": {
+          "type": "category",
+          "settings": {
+            "collection": "pergolas-solaires",
+            "title": "Pergolas solaires",
+            "icon": "umbrella"
+          }
         }
       },
       "block_order": [
         "c1",
         "c2",
-        "c3"
+        "c3",
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6"
       ],
       "settings": {
-        "eyebrow": "Solaire · Batteries · Pompes à chaleur · Carports",
-        "title": "<p>Votre énergie, <em>au prix affiché.</em> Pose incluse.</p>",
-        "lead": "<p>Panneaux solaires, batteries, pompes à chaleur, climatisation et carports solaires. Le prix que vous voyez comprend la fourniture et la pose par des installateurs certifiés. Sans devis, sans visite préalable, sans surprise.</p>",
-        "button_1_text": "Estimer mon projet",
-        "button_1_url": "/collections/panneaux-solaires",
-        "button_2_text": "Voir les carports solaires",
-        "button_2_url": "/collections/carports-solaires",
+        "eyebrow": "Solaire · Batteries · Carports · Pompes à chaleur · Climatisation",
+        "title": "<p>L’énergie de votre maison, <em>posée au prix affiché.</em></p>",
+        "lead": "<p>Des panneaux au carport, de la pompe à chaleur à la clim : chaque prix comprend la fourniture et la pose par des installateurs certifiés. Vous commandez en ligne, on pose sous 14 jours.</p>",
+        "button_1_text": "Découvrir les best-sellers",
+        "button_1_url": "/collections/meilleures-ventes",
+        "button_2_text": "Configurer un carport",
+        "button_2_url": "/products/carport-solaire-metal",
         "image": "shopify://shop_images/clarte-hero-toiture-solaire.jpg",
         "image_alt": "Maison avec panneaux solaires en toiture",
         "show_card": true,
@@ -189,9 +234,9 @@
           "type": "need",
           "settings": {
             "icon": "carport",
-            "kicker": "Je veux",
-            "title": "M'abriter et produire",
-            "text": "Carport solaire métal ou bois, 1 ou 2 voitures.",
+            "kicker": "Carports solaires",
+            "title": "Abritez la voiture, produisez l’électricité",
+            "text": "Métal 1 ou 2 voitures, ou bois sur mesure. Borne de recharge en option.",
             "collection": "carports-solaires"
           }
         },
@@ -199,9 +244,9 @@
           "type": "need",
           "settings": {
             "icon": "sun",
-            "kicker": "Je veux",
-            "title": "Produire",
-            "text": "Kits solaires 6 à 18 panneaux, posés en toiture.",
+            "kicker": "Panneaux solaires",
+            "title": "Produire sur votre toit",
+            "text": "Kits complets de 3 à 9 kWc, posés en une journée.",
             "collection": "panneaux-solaires"
           }
         },
@@ -209,9 +254,9 @@
           "type": "need",
           "settings": {
             "icon": "battery",
-            "kicker": "Je veux",
-            "title": "Stocker",
-            "text": "Batteries 5 à 20 kWh, seules ou avec panneaux.",
+            "kicker": "Solaire + batterie",
+            "title": "Stocker pour le soir",
+            "text": "Autoconsommation maximale, mono ou triphasé.",
             "collection": "solaire-batterie"
           }
         },
@@ -219,9 +264,9 @@
           "type": "need",
           "settings": {
             "icon": "flame",
-            "kicker": "Je veux",
-            "title": "Chauffer",
-            "text": "Pompes à chaleur air/eau, posées et mises en service.",
+            "kicker": "Pompes à chaleur",
+            "title": "Chauffer pour moins cher",
+            "text": "PAC air-eau Atlantic et Chappée, aides déduites.",
             "collection": "pompes-a-chaleur"
           }
         },
@@ -229,10 +274,20 @@
           "type": "need",
           "settings": {
             "icon": "snow",
-            "kicker": "Je veux",
-            "title": "Rafraîchir",
-            "text": "Climatisation réversible mono ou multi-split.",
+            "kicker": "Climatisation",
+            "title": "Rafraîchir l’été, chauffer l’hiver",
+            "text": "Murale ou console, posée et mise en service.",
             "collection": "climatisation"
+          }
+        },
+        "n6": {
+          "type": "need",
+          "settings": {
+            "kicker": "Pergolas solaires",
+            "title": "Vivre dehors, produire dedans",
+            "text": "Bois, aluminium ou bioclimatique, à votre mesure.",
+            "collection": "pergolas-solaires",
+            "icon": "umbrella"
           }
         }
       },
@@ -241,12 +296,13 @@
         "n2",
         "n3",
         "n4",
-        "n5"
+        "n5",
+        "n6"
       ],
       "settings": {
-        "eyebrow": "Par où commencer ?",
-        "title": "<p>Dites-nous ce que vous voulez faire, <em>on vous dit combien ça coûte.</em></p>",
-        "text": "<p>Chaque prix affiché comprend la fourniture, la pose et la mise en service. Vous configurez, vous voyez le total, vous commandez.</p>",
+        "eyebrow": "Nos univers",
+        "title": "<p>Tout ce qui fait baisser la facture, <em>posé chez vous.</em></p>",
+        "text": "<p>Six familles de produits, un seul principe : le prix que vous voyez est le prix posé.</p>",
         "price_prefix": "à partir de",
         "background": "#F6F4EE",
         "text_color": "#0E1A2B"
@@ -319,8 +375,8 @@
         "l4"
       ],
       "settings": {
-        "eyebrow": "Notre différence",
-        "title": "<p>Le prix que vous voyez <em>est le prix que vous payez.</em></p>",
+        "eyebrow": "La promesse Clarté",
+        "title": "<p>Des chiffres, <em>pas des promesses.</em></p>",
         "text": "<p>Ailleurs, le prix arrive après trois devis et deux visites. Ici, il est affiché avant même que vous nous parliez. Fourniture, pose, mise en service : tout est compris, et rien n'est ajouté le jour J.</p>",
         "compare_before_title": "Devis classique",
         "compare_after_title": "Ici",
@@ -334,29 +390,18 @@
     "bestsellers": {
       "type": "featured-collection",
       "settings": {
-        "products": [
-          "kit-solaire-toiture",
-          "kit-solaire-batterie-ucanpower-monophase",
-          "pac-air-eau-chappee-eria-s",
-          "clim-reversible-atlantic-murao",
-          "batterie-ecoflow-all-in-one",
-          "pergola-solaire-ecoya"
-        ],
+        "collection": "meilleures-ventes",
         "full_width": true,
         "stack_products": true,
         "show_progress_bar": false,
-        "products_count": 6,
+        "products_count": 8,
         "products_per_row_mobile": "2",
-        "products_per_row_desktop": 3,
-        "subheading": "Les plus demandés",
-        "title": "Nos best-sellers, prix posé",
-        "content": "<p>Chaque prix comprend la fourniture et la pose. Configurez le nombre de panneaux ou la puissance sur la fiche produit.</p>",
-        "link_url": "/collections/all",
-        "link_text": "Tout le catalogue",
-        "background": "#FFFFFF",
-        "text_color": "#0E1A2B",
-        "product_card_background": "#F6F4EE",
-        "product_card_text_color": "#0E1A2B"
+        "products_per_row_desktop": 4,
+        "subheading": "Nos best-sellers",
+        "title": "Les plus commandés ce mois-ci",
+        "content": "<p>Prix TTC, fourniture et pose comprises. Sans devis, sans surprise.</p>",
+        "link_url": "/collections/meilleures-ventes",
+        "link_text": "Tout voir"
       }
     },
     "steps": {
@@ -615,21 +660,231 @@
         "background": "#FFFFFF",
         "text_color": "#0E1A2B"
       }
+    },
+    "u_solaire": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "panneaux-solaires",
+        "full_width": true,
+        "stack_products": true,
+        "products_count": 4,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "subheading": "Étape 01 · Produire",
+        "title": "Vos panneaux posés, dès 3 300 €",
+        "content": "<p>Toiture tuiles, intégration au bâti ou toit plat. Kits complets de 6 à 20 panneaux, raccordement et démarches compris.</p>",
+        "link_url": "/collections/panneaux-solaires",
+        "link_text": "Voir tous les kits solaires"
+      }
+    },
+    "u_stock": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "solaire-batterie",
+        "full_width": true,
+        "stack_products": true,
+        "products_count": 4,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "subheading": "Étape 02 · Stocker",
+        "title": "Le soleil, même la nuit",
+        "content": "<p>Kits solaire + batterie et batteries seules : consommez votre production le soir, posé et mis en service.</p>",
+        "link_url": "/collections/solaire-batterie",
+        "link_text": "Voir le stockage",
+        "background": "#0E1A2B",
+        "text_color": "#F6F4EE",
+        "heading_color": "#F6F4EE",
+        "product_card_background": "#15243A",
+        "product_card_text_color": "#F6F4EE"
+      }
+    },
+    "u_chauffage": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "pompes-a-chaleur",
+        "full_width": true,
+        "stack_products": true,
+        "products_count": 4,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "subheading": "Étape 03 · Chauffer & rafraîchir",
+        "title": "Pompes à chaleur et climatisation, posées",
+        "content": "<p>PAC air-eau Atlantic et Chappée, clim réversible Atlantic, Thermor et Airwell. Prix posé affiché, aides de l’État déduites quand vous y avez droit.</p>",
+        "link_url": "/collections/pompes-a-chaleur",
+        "link_text": "Voir le chauffage"
+      }
+    },
+    "u_clim": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "climatisation",
+        "full_width": true,
+        "stack_products": true,
+        "products_count": 4,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "subheading": "Confort d’été",
+        "title": "Climatisation réversible posée, dès 1 440 €",
+        "content": "<p>Murale ou console, liaison frigorifique jusqu’à 10 m et mise en service comprises.</p>",
+        "link_url": "/collections/climatisation",
+        "link_text": "Voir la climatisation"
+      }
+    },
+    "compare": {
+      "type": "clarte-compare",
+      "settings": {
+        "button_url": "/collections/meilleures-ventes"
+      },
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "label": "Prix posé connu avant tout engagement",
+            "value_1": "oui",
+            "value_2": "non",
+            "value_3": "Matériel seul"
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "label": "Délai pour obtenir un prix",
+            "value_1": "Immédiat",
+            "value_2": "2 à 6 semaines",
+            "value_3": "Immédiat"
+          }
+        },
+        "r3": {
+          "type": "row",
+          "settings": {
+            "label": "Visite technique",
+            "value_1": "Appel offert sous 48 h",
+            "value_2": "Rendez-vous à planifier",
+            "value_3": "non"
+          }
+        },
+        "r4": {
+          "type": "row",
+          "settings": {
+            "label": "Pose par installateur certifié RGE",
+            "value_1": "oui",
+            "value_2": "oui",
+            "value_3": "non"
+          }
+        },
+        "r5": {
+          "type": "row",
+          "settings": {
+            "label": "Délai de pose",
+            "value_1": "Sous 14 jours",
+            "value_2": "1 à 3 mois",
+            "value_3": "Vous-même"
+          }
+        },
+        "r6": {
+          "type": "row",
+          "settings": {
+            "label": "Démarches (mairie, Consuel, Enedis)",
+            "value_1": "Incluses",
+            "value_2": "Variable",
+            "value_3": "non"
+          }
+        },
+        "r7": {
+          "type": "row",
+          "settings": {
+            "label": "Garantie décennale sur la pose",
+            "value_1": "oui",
+            "value_2": "oui",
+            "value_3": "non"
+          }
+        },
+        "r8": {
+          "type": "row",
+          "settings": {
+            "label": "Paiement en ligne, acompte 30 %",
+            "value_1": "oui",
+            "value_2": "non",
+            "value_3": "100 % à la commande"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    },
+    "guides": {
+      "type": "blog-posts",
+      "settings": {
+        "full_width": true,
+        "show_excerpt": true,
+        "show_date": false,
+        "show_author": false,
+        "show_comments_count": false,
+        "show_category": true,
+        "subheading": "Guides & conseils",
+        "title": "Bien choisir, sans jargon",
+        "content": "<p>Aides de l’État, autoconsommation, dimensionnement : nos guides pour décider en connaissance de cause.</p>",
+        "link_url": "/blogs/guides",
+        "link_text": "Tous les guides"
+      },
+      "blocks": {
+        "b1": {
+          "type": "blog",
+          "settings": {
+            "blog": "guides",
+            "posts_count": 3,
+            "stack_items": true
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ]
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "full_width": true,
+        "show_icon": false,
+        "title": "Recevez nos conseils énergie",
+        "content": "<p>Aides, autoconsommation, nouveautés : un e-mail par mois, pas plus.</p>",
+        "button_text": "S’inscrire",
+        "subtext": "Désinscription en un clic.",
+        "background": "#F0A52A",
+        "text_color": "#0E1A2B",
+        "button_background": "#0E1A2B",
+        "button_text_color": "#F6F4EE"
+      }
     }
   },
   "order": [
     "hero",
     "trust",
-    "feature",
     "needs",
-    "transparency",
     "bestsellers",
-    "steps",
+    "transparency",
+    "feature",
+    "u_solaire",
+    "u_stock",
+    "u_chauffage",
+    "u_clim",
+    "compare",
     "projection",
+    "steps",
     "guarantees",
-    "zones",
     "testimonials",
+    "guides",
+    "zones",
     "faq",
+    "newsletter",
     "cta"
   ]
 }

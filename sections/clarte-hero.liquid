@@ -73,14 +73,46 @@
           </div>
         {%- endif -%}
 
-        {%- if section.blocks.size > 0 -%}
+        {%- assign chips = section.blocks | where: 'type', 'chip' -%}
+        {%- if chips.size > 0 -%}
           <ul class="cl-inline-list" role="list">
-            {%- for block in section.blocks -%}
+            {%- for block in chips -%}
               <li {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</li>
             {%- endfor -%}
           </ul>
         {%- endif -%}
       </div>
+
+      {%- assign cats = section.blocks | where: 'type', 'category' -%}
+      {%- if cats.size > 0 -%}
+        <nav class="cl-hero__cats" aria-label="Nos univers">
+          {%- for block in cats -%}
+            {%- liquid
+              assign b = block.settings
+              assign url = b.url
+              if url == blank and b.collection != blank
+                assign url = b.collection.url
+              endif
+              assign label = b.title
+              if label == blank and b.collection != blank
+                assign label = b.collection.title
+              endif
+              assign price = nil
+              if b.collection != blank
+                assign cheapest = b.collection.products | sort: 'price_min' | first
+                if cheapest
+                  assign price = cheapest.price_min
+                endif
+              endif
+            -%}
+            <a class="cl-hero__cat" href="{{ url | default: '#' }}" {{ block.shopify_attributes }}>
+              <span class="cl-hero__cat-icon">{%- render 'clarte-icon', icon: b.icon -%}</span>
+              <span class="cl-hero__cat-label">{{ label | escape }}</span>
+              {%- if price -%}<span class="cl-hero__cat-price">dès {{ price | money_without_trailing_zeros }}</span>{%- endif -%}
+            </a>
+          {%- endfor -%}
+        </nav>
+      {%- endif -%}
 
       <div class="cl-hero__side">
 
@@ -111,7 +143,7 @@
   "tag": "section",
   "class": "shopify-section--clarte-hero",
   "disabled_on": { "groups": ["header", "footer", "custom.overlay"] },
-  "max_blocks": 4,
+  "max_blocks": 12,
   "settings": [
     { "type": "header", "content": "Texte" },
     { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Solaire · Batteries · Pompes à chaleur · Carports" },
@@ -147,6 +179,20 @@
       "name": "Puce de réassurance",
       "settings": [
         { "type": "text", "id": "text", "label": "Texte", "default": "Prix affichés, pose incluse" }
+      ]
+    },
+    {
+      "type": "category",
+      "name": "Raccourci univers",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "title", "label": "Libellé (sinon nom de la collection)" },
+        { "type": "url", "id": "url", "label": "Lien (sinon la collection)" },
+        { "type": "select", "id": "icon", "label": "Icône", "default": "sun", "options": [
+          { "value": "sun", "label": "Soleil" }, { "value": "battery", "label": "Batterie" }, { "value": "carport", "label": "Carport" },
+          { "value": "flame", "label": "Chaleur" }, { "value": "snow", "label": "Froid" }, { "value": "umbrella", "label": "Pergola" },
+          { "value": "home", "label": "Maison" }, { "value": "euro", "label": "Euro" }, { "value": "bolt", "label": "Éclair" }
+        ] }
       ]
     }
   ],
