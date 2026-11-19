@@ -137,7 +137,8 @@ class ClarteInstallation extends HTMLElement {
   update() {
     const express = this.isExpress;
     if (this.consentBox) { if (express) this.consentBox.setAttribute('data-visible', ''); else this.consentBox.removeAttribute('data-visible'); }
-    if (!express) { this.error?.removeAttribute('data-visible'); if (this.consent) this.consent.checked = false; }
+    if (!express) { if (this.consent) this.consent.checked = false; }
+    if (!express || this.consent?.checked) this.error?.removeAttribute('data-visible');
     const checked = this.radios.find((r) => r.checked);
     if (this.propertyDelay) this.propertyDelay.value = checked?.dataset.label || '';
     if (this.propertyConsent) {
