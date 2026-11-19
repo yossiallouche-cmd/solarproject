@@ -21,7 +21,7 @@
       <table class="cl-versus__table">
         <thead>
           <tr>
-            <th scope="col"><span class="visually-hidden">Critère</span></th>
+            <th scope="col"><span class="sr-only">Critère</span></th>
             <th scope="col" class="cl-versus__us"><span class="cl-versus__brand">{{ s.col_1 | default: settings.clarte_company_name | escape }}</span>{%- if s.col_1_sub != blank -%}<span class="cl-versus__sub">{{ s.col_1_sub | escape }}</span>{%- endif -%}</th>
             <th scope="col"><span class="cl-versus__brand">{{ s.col_2 | escape }}</span>{%- if s.col_2_sub != blank -%}<span class="cl-versus__sub">{{ s.col_2_sub | escape }}</span>{%- endif -%}</th>
             <th scope="col"><span class="cl-versus__brand">{{ s.col_3 | escape }}</span>{%- if s.col_3_sub != blank -%}<span class="cl-versus__sub">{{ s.col_3_sub | escape }}</span>{%- endif -%}</th>
@@ -37,9 +37,9 @@
                 {%- assign vd = v | downcase -%}
                 <td{% if i == 1 %} class="cl-versus__us"{% endif %}>
                   {%- if vd == 'oui' -%}
-                    <span class="cl-versus__yes">{%- render 'clarte-icon', icon: 'check' -%}<span class="visually-hidden">Oui</span></span>
+                    <span class="cl-versus__yes">{%- render 'clarte-icon', icon: 'check' -%}<span class="sr-only">Oui</span></span>
                   {%- elsif vd == 'non' -%}
-                    <span class="cl-versus__no">✕<span class="visually-hidden">Non</span></span>
+                    <span class="cl-versus__no">✕<span class="sr-only">Non</span></span>
                   {%- else -%}
                     {{ v | escape }}
                   {%- endif -%}
