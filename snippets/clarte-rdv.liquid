@@ -1,0 +1,74 @@
+{%- comment -%}
+  CLARTÉ — Rendez-vous (panier)
+  Créneau d'appel technique (sous 48 h) et date de pose souhaitée (J+3 à J+14, ou J+1 à J+3 si pose express
+  présente dans le panier). Enregistrés comme attributs de commande.
+
+  * block
+{%- endcomment -%}
+
+{%- liquid
+  assign b = block.settings
+  assign call_hours = settings.clarte_call_hours | default: 48
+  assign install_days = settings.clarte_install_days | default: 14
+  assign first_day = settings.clarte_first_install_day | default: 3
+  assign express_hours = settings.clarte_express_hours | default: 72
+
+  assign has_express = false
+  if settings.clarte_express_product != blank
+    for item in cart.items
+      if item.product_id == settings.clarte_express_product.id
+        assign has_express = true
+      endif
+    endfor
+  endif
+
+  assign only_services = true
+  for item in cart.items
+    unless item.product.type == 'Services & options'
+      assign only_services = false
+    endunless
+  endfor
+-%}
+
+{%- unless only_services -%}
+  <clarte-rdv
+    class="cl-rdv"
+    data-call-hours="{{ call_hours }}"
+    data-first-day="{{ first_day }}"
+    data-last-day="{{ install_days }}"
+    data-express="{{ has_express }}"
+    {{ block.shopify_attributes }}
+  >
+    <div class="cl-rdv__head">
+      <strong>{{ b.title | escape }}</strong>
+      <span>{{ b.text | replace: '[appel]', call_hours | replace: '[pose]', install_days | escape }}</span>
+    </div>
+
+    {%- if has_express -%}
+      <div class="cl-rdv__express">
+        {%- render 'clarte-icon', icon: 'bolt' -%}
+        <span>{{ b.express_text | replace: '[express]', express_hours }}</span>
+      </div>
+    {%- endif -%}
+
+    <div class="cl-rdv__field">
+      <label>{{ b.call_label | escape }}</label>
+      <div class="cl-rdv__slots" data-slots data-current="{{ cart.attributes["Créneau d'appel technique"] | escape }}"></div>
+      <p class="cl-rdv__hint">{{ b.call_hint | escape }}</p>
+    </div>
+
+    <div class="cl-rdv__field">
+      <label for="cl-rdv-date-{{ section.id }}">{{ b.date_label | escape }}</label>
+      <input id="cl-rdv-date-{{ section.id }}" type="date" data-date {% if b.date_required %}required{% endif %}>
+      <input type="hidden" name="attributes[Date de pose souhaitée]" value="{{ cart.attributes['Date de pose souhaitée'] | escape }}" data-date-attribute>
+      <p class="cl-rdv__hint" data-date-hint></p>
+    </div>
+
+    {%- if b.show_phone -%}
+      <div class="cl-rdv__field">
+        <label for="cl-rdv-phone-{{ section.id }}">{{ b.phone_label | escape }}</label>
+        <input id="cl-rdv-phone-{{ section.id }}" type="tel" name="attributes[Téléphone pour l'appel technique]" value="{{ cart.attributes["Téléphone pour l'appel technique"] | escape }}" autocomplete="tel" placeholder="06 12 34 56 78" {% if b.phone_required %}required{% endif %}>
+      </div>
+    {%- endif -%}
+  </clarte-rdv>
+{%- endunless -%}

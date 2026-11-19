@@ -1,0 +1,82 @@
+{%- comment -%}
+  CLARTÉ — Délai de pose (fiche produit)
+  Standard (inclus) ou Express (produit de service ajouté au panier) avec demande expresse d'exécution
+  anticipée (art. L221-25 / L221-28 C. conso). Masqué sur les produits portant le tag des produits aidés.
+
+  * product, product_form_id, block
+{%- endcomment -%}
+
+{%- liquid
+  assign b = block.settings
+  assign call_hours = settings.clarte_call_hours | default: 48
+  assign install_days = settings.clarte_install_days | default: 14
+  assign express_hours = settings.clarte_express_hours | default: 72
+  assign express_call_hours = settings.clarte_express_call_hours | default: 24
+  assign express_product = settings.clarte_express_product
+  assign aided_tag = settings.clarte_aided_tag | downcase
+  assign is_aided = false
+  if aided_tag != blank and product.tags contains aided_tag
+    assign is_aided = true
+  endif
+  assign express_available = false
+  if settings.clarte_express_enabled and express_product != blank and express_product.available and is_aided == false
+    assign express_available = true
+  endif
+  assign express_variant = express_product.selected_or_first_available_variant
+
+  assign std_label = b.standard_title | append: ' (sous ' | append: install_days | append: ' jours)'
+  assign express_price_text = express_variant.price | money_without_trailing_zeros
+  assign exp_label = b.express_title | append: ' (sous ' | append: express_hours | append: ' h, +' | append: express_price_text | append: ')'
+-%}
+
+<clarte-installation
+  class="cl-install"
+  form="{{ product_form_id }}"
+  data-product-title="{{ product.title | escape }}"
+  {% if express_available %}data-express-variant="{{ express_variant.id }}" data-express-price="{{ express_variant.price }}"{% endif %}
+>
+  <p class="cl-install__label">{{ b.title | escape }}</p>
+
+  <div class="cl-install__options" role="radiogroup" aria-label="{{ b.title | escape }}">
+    <label class="cl-install__opt">
+      <input type="radio" name="clarte_delay_{{ section.id }}" data-delay="standard" data-label="{{ std_label | escape }}" checked>
+      <span class="cl-install__opt-box">
+        <span class="cl-install__opt-top"><strong>{{ b.standard_title | escape }}</strong><span class="cl-install__opt-price cl-install__opt-price--free">{{ b.included_text | escape }}</span></span>
+        <span class="cl-install__opt-desc">{{ b.standard_text | replace: '[appel]', call_hours | replace: '[pose]', install_days }}</span>
+      </span>
+    </label>
+
+    {%- if express_available -%}
+      <label class="cl-install__opt cl-install__opt--express">
+        <input type="radio" name="clarte_delay_{{ section.id }}" data-delay="express" data-label="{{ exp_label | escape }}">
+        <span class="cl-install__opt-box">
+          <span class="cl-install__opt-top"><strong>{{ b.express_title | escape }}</strong><span class="cl-install__opt-price">+ {{ express_variant.price | money_without_trailing_zeros }}</span></span>
+          <span class="cl-install__opt-desc">{{ b.express_text | replace: '[appel]', express_call_hours | replace: '[pose]', express_hours }}</span>
+        </span>
+      </label>
+    {%- endif -%}
+  </div>
+
+  {%- if is_aided and b.aided_text != blank -%}
+    <div class="cl-install__aided">{{ b.aided_text }}</div>
+  {%- endif -%}
+
+  {%- if express_available -%}
+    <label class="cl-install__consent" data-consent>
+      <input type="checkbox" data-consent-input data-label="Oui — demande expresse d'exécution avant la fin du délai de rétractation">
+      <span>{{ settings.clarte_express_consent }}</span>
+    </label>
+    <p class="cl-install__error" data-error role="alert">{{ b.error_text | escape }}</p>
+  {%- endif -%}
+
+  {%- if b.show_timeline -%}
+    <div class="cl-install__timeline">
+      <div class="cl-install__tl"><small>{{ b.timeline_call_label | escape }}</small><strong>{{ b.timeline_call_value | replace: '[appel]', call_hours | escape }}</strong></div>
+      <div class="cl-install__tl"><small>{{ b.timeline_install_label | escape }}</small><strong>{{ b.timeline_install_value | replace: '[pose]', install_days | escape }}</strong></div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%}Propriétés de ligne envoyées avec le produit{%- endcomment -%}
+  <input type="hidden" name="properties[Délai de pose]" value="{{ std_label | escape }}" form="{{ product_form_id }}" data-prop="delay">
+  <input type="hidden" name="properties[Demande expresse]" value="" form="{{ product_form_id }}" data-prop="consent" disabled>
+</clarte-installation>

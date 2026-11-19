@@ -15,17 +15,63 @@
           "type": "badges",
           "settings": {}
         },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
         "rating": {
           "type": "rating",
           "settings": {}
         },
-        "payment_terms": {
-          "type": "payment_terms",
+        "variant_picker": {
+          "type": "variant_picker",
           "settings": {}
+        },
+        "clarte_price": {
+          "type": "clarte_price",
+          "settings": {
+            "title": "Votre prix, tout compris",
+            "badge": "Pose incluse",
+            "label_fourniture": "Fourniture",
+            "label_pose": "Pose par installateur certifié",
+            "show_call_line": true,
+            "label_call": "Appel technique sous [appel] h",
+            "label_free": "Offert",
+            "label_express": "Pose express",
+            "label_total": "Total posé",
+            "show_monthly": true,
+            "label_monthly": "ou [mois] mensualités de",
+            "show_deposit": true,
+            "label_deposit": "Acompte [acompte] % à la commande :",
+            "label_balance": "solde après pose :"
+          }
+        },
+        "clarte_installation": {
+          "type": "clarte_installation",
+          "settings": {
+            "title": "Délai de pose",
+            "standard_title": "Standard",
+            "included_text": "Inclus",
+            "standard_text": "Appel technique sous [appel] h, vérification et pose le même jour sous [pose] jours.",
+            "express_title": "Express",
+            "express_text": "Appel sous [appel] h, pose sous [pose] h. Demande expresse requise.",
+            "error_text": "Pour une pose express, cochez la demande expresse ci-dessus.",
+            "aided_text": "<p>Produit éligible aux aides de l'État : l'accord de l'Anah doit précéder les travaux, la pose express n'est pas proposée. Nous constituons le dossier avec vous lors de l'appel technique.</p>",
+            "show_timeline": true,
+            "timeline_call_label": "Appel technique",
+            "timeline_call_value": "Sous [appel] h, offert",
+            "timeline_install_label": "Vérification + pose",
+            "timeline_install_value": "Sous [pose] jours, 1 journée"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false
+          }
+        },
+        "clarte_includes": {
+          "type": "clarte_includes",
+          "settings": {
+            "title": "Ce que comprend le prix",
+            "items": "Fourniture du matériel et livraison sur site\nPose par installateur certifié RGE\nMise en service et paramétrage\nDéclaration préalable et demande de raccordement\nGarantie décennale installation"
+          }
         },
         "separator": {
           "type": "separator",
@@ -33,26 +79,36 @@
         },
         "description": {
           "type": "description",
-          "settings": {}
+          "settings": {
+            "collapse_content": true
+          }
+        },
+        "c1": {
+          "type": "collapsible_text",
+          "settings": {
+            "title": "Comment se passe la pose ?",
+            "icon": "picto-truck",
+            "content": "<p>Un technicien vous appelle sous 48 h pour vérifier toiture, tableau électrique et accès. Le jour J, l'équipe vérifie sur place, installe et met en service : une seule journée chez vous.</p>"
+          }
+        },
+        "c2": {
+          "type": "collapsible_text",
+          "settings": {
+            "title": "Garanties & assurances",
+            "icon": "picto-shield",
+            "content": "<p>Installation couverte par notre assurance décennale. Panneaux garantis 25 ans, onduleurs et batteries 10 ans. Installateurs certifiés RGE.</p>"
+          }
+        },
+        "c3": {
+          "type": "collapsible_text",
+          "settings": {
+            "title": "Paiement & rétractation",
+            "icon": "picto-credit-card",
+            "content": "<p>30 % à la commande, solde après pose. Vous disposez de 14 jours pour vous rétracter après la commande ; en pose express, vous demandez expressément l'exécution anticipée et perdez ce droit une fois l'installation entièrement réalisée.</p>"
+          }
         },
         "disclosures": {
           "type": "disclosures",
-          "settings": {}
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {}
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {}
-        },
-        "pickup_availability": {
-          "type": "pickup_availability",
           "settings": {}
         }
       },
@@ -60,15 +116,18 @@
         "vendor",
         "title",
         "badges",
-        "price",
         "rating",
-        "payment_terms",
+        "variant_picker",
+        "clarte_price",
+        "clarte_installation",
+        "buy_buttons",
+        "clarte_includes",
         "separator",
         "description",
-        "disclosures",
-        "variant_picker",
-        "quantity_selector",
-        "buy_buttons"
+        "c1",
+        "c2",
+        "c3",
+        "disclosures"
       ],
       "settings": {}
     },

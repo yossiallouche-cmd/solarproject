@@ -5,23 +5,23 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
-        "message": {
+        "m1": {
           "type": "message",
           "settings": {
-            "text": "Announce something here"
+            "text": "<p><strong>Prix affichés, pose incluse</strong> · Appel technique offert sous 48 h · Pose sous 14 jours, une seule visite</p>"
           }
         }
       },
       "block_order": [
-        "message"
+        "m1"
       ],
       "settings": {
         "enable_sticky": false,
         "text_size": "text-xs",
         "navigation_mode": "scrolling",
         "scrolling_speed": 10,
-        "background": "#1a1a1a",
-        "text_color": "#ffffff"
+        "background": "#0E1A2B",
+        "text_color": "#F6F4EE"
       }
     },
     "header": {
@@ -36,8 +36,8 @@
         "menu_open_trigger": "click",
         "opening_from": "bottom",
         "layout": "logo_left_navigation_center",
-        "show_social_media": true,
-        "show_country_flag": true,
+        "show_social_media": false,
+        "show_country_flag": false,
         "show_country_name": false,
         "transparent_header_text_color": "#ffffff",
         "reduce_padding": false,

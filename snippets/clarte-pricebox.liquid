@@ -1,0 +1,65 @@
+{%- comment -%}
+  CLARTÉ — Bloc prix posé (fiche produit)
+  Lit les métachamps de variante custom.fourniture et custom.pose (number_decimal, en euros).
+  Si absents, le prix de la variante est affiché comme total.
+
+  * product, product_form_id, block
+{%- endcomment -%}
+
+{%- liquid
+  assign b = block.settings
+  assign variant = product.selected_or_first_available_variant
+  assign fourniture = variant.metafields.custom.fourniture.value | default: 0 | times: 100 | round
+  assign pose = variant.metafields.custom.pose.value | default: 0 | times: 100 | round
+  assign total = variant.price
+  assign months = settings.clarte_months | default: 0
+  assign deposit = settings.clarte_deposit_percent | default: 0
+  assign monthly = 0
+  if months > 0
+    assign monthly = total | divided_by: months
+  endif
+  assign deposit_amount = total | times: deposit | divided_by: 100
+  assign balance = total | minus: deposit_amount
+  assign call_hours = settings.clarte_call_hours | default: 48
+-%}
+
+<clarte-pricebox class="cl-pricebox" form="{{ product_form_id }}" data-variant="{{ variant.id }}" data-months="{{ months }}" data-deposit="{{ deposit }}">
+  <script type="application/json" data-variants>
+    {
+      {%- for v in product.variants -%}
+        "{{ v.id }}": { "f": {{ v.metafields.custom.fourniture.value | default: 0 | times: 100 | round }}, "p": {{ v.metafields.custom.pose.value | default: 0 | times: 100 | round }}, "t": {{ v.price }} }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    }
+  </script>
+
+  <div class="cl-pricebox__head">
+    <strong>{{ b.title | escape }}</strong>
+    {%- if b.badge != blank -%}<span class="cl-chip cl-chip--amber">{{ b.badge | escape }}</span>{%- endif -%}
+  </div>
+
+  {%- if fourniture > 0 or pose > 0 -%}
+    <div class="cl-price-line"><span>{{ b.label_fourniture | escape }}</span><span class="cl-amount" data-out="fourniture">{{ fourniture | money_without_trailing_zeros }}</span></div>
+    <div class="cl-price-line"><span>{{ b.label_pose | escape }}</span><span class="cl-amount" data-out="pose">{{ pose | money_without_trailing_zeros }}</span></div>
+  {%- endif -%}
+  {%- if b.show_call_line -%}
+    <div class="cl-price-line"><span>{{ b.label_call | replace: '[appel]', call_hours | escape }}</span><span class="cl-free">{{ b.label_free | escape }}</span></div>
+  {%- endif -%}
+  <div class="cl-price-line" data-extra-line hidden><span>{{ b.label_express | escape }}</span><span class="cl-amount" data-out="extra"></span></div>
+  <div class="cl-price-line cl-price-line--total"><span>{{ b.label_total | escape }}</span><span class="cl-amount" data-out="total">{{ total | money_without_trailing_zeros }}</span></div>
+
+  {%- if months > 0 or deposit > 0 -%}
+    <div class="cl-pricebox__sub">
+      {%- if months > 0 and b.show_monthly -%}
+        <span>{{ b.label_monthly | replace: '[mois]', months }} <strong data-out="monthly">{{ monthly | money_without_trailing_zeros }}</strong></span>
+      {%- endif -%}
+      {%- if deposit > 0 and b.show_deposit -%}
+        <span>{{ b.label_deposit | replace: '[acompte]', deposit }} <strong data-out="deposit">{{ deposit_amount | money_without_trailing_zeros }}</strong> · {{ b.label_balance | escape }} <strong data-out="balance">{{ balance | money_without_trailing_zeros }}</strong></span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <p class="cl-pricebox__note">
+    {%- if cart.taxes_included -%}{{ 'product.general.taxes_included' | t }}{%- else -%}{{ 'product.general.taxes_excluded' | t }}{%- endif %}
+    {%- if months > 0 and b.show_monthly and settings.clarte_financing_note != blank %} · {{ settings.clarte_financing_note | escape }}{%- endif -%}
+  </p>
+</clarte-pricebox>

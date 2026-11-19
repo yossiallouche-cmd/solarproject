@@ -48,6 +48,14 @@
       <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
     {%- endunless -%}
 
+    {%- if settings.clarte_heading_font != blank -%}
+      {%- assign clarte_font_family = settings.clarte_heading_font | strip | replace: ' ', '+' -%}
+      {%- assign clarte_font_weights = settings.clarte_heading_font_weights | default: '500;600;700;800' | remove: ' ' -%}
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{ clarte_font_family }}:wght@{{ clarte_font_weights }}&display=swap">
+    {%- endif -%}
+
     {%- render 'social-meta-tags' -%}
     {%- render 'microdata-schema' -%}
     {%- render 'css-variables' -%}
@@ -70,6 +78,8 @@
     {{ content_for_header }}
 
     {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
+    {{- 'clarte.css' | asset_url | stylesheet_tag -}}
+    <script type="module" src="{{ 'clarte.js' | asset_url }}"></script>
   </head>
 
   <body class="{% if settings.zoom_image_on_hover %}zoom-image--enabled{% endif %}">

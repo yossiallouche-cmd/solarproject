@@ -118,8 +118,13 @@
      */
 
     /* Font properties */
+    {%- if settings.clarte_heading_font != blank -%}
+    --heading-font-family: "{{ settings.clarte_heading_font | strip }}", {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
+    --heading-font-weight: 700;
+    {%- else -%}
     --heading-font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
     --heading-font-weight: {{ settings.heading_font.weight }};
+    {%- endif -%}
     --heading-font-style: {{ settings.heading_font.style }};
     --heading-text-transform: {{ settings.heading_text_transform }};
     --heading-letter-spacing: {% if direction == 'rtl' %}0{% else %}{{ settings.heading_letter_spacing | divided_by: 100.0 }}em{% endif %};
@@ -154,6 +159,15 @@
     {%- assign product_on_sale_accent_brightness = settings.product_on_sale_accent | color_brightness -%}
     {%- assign product_sold_out_badge_brightness = settings.product_sold_out_badge_background | color_brightness -%}
     {%- assign product_primary_badge_brightness = settings.product_primary_badge_background | color_brightness -%}
+
+    /* Clarté brand tokens (see "Clarté — Marque & parcours" theme settings) */
+    --cl-ink: {{ settings.clarte_ink.rgb }};
+    --cl-paper: {{ settings.clarte_paper.rgb }};
+    --cl-accent: {{ settings.clarte_accent.rgb }};
+    --cl-accent-text: {{ settings.clarte_accent_text.rgb }};
+    --cl-green: {{ settings.clarte_green.rgb }};
+    --cl-muted: {{ settings.clarte_muted.rgb }};
+    --cl-line: {{ settings.clarte_line.rgb }};
 
     --accent: {{ settings.primary_button_background.rgb }};
     --text-primary: {{ settings.text_color.rgb }};

@@ -1,872 +1,596 @@
 {
   "sections": {
-    "section-1": {
-      "type": "slideshow",
+    "hero": {
+      "type": "clarte-hero",
       "blocks": {
-        "block-1": {
-          "type": "image",
+        "c1": {
+          "type": "chip",
           "settings": {
-            "content_max_width": 640,
-            "mobile_text_position": "place-self-center text-center",
-            "desktop_text_position": "sm:place-self-center sm:text-center",
-            "subheading": "Tell your story",
-            "title": "Slide 1",
-            "heading_tag": "h1",
-            "text_color": "#ffffff",
-            "button_background": "#ffffff",
-            "button_text_color": "#000000",
-            "overlay_color": "#000000",
-            "overlay_opacity": 30
+            "icon": "euro",
+            "text": "Prix affichés, pose incluse",
+            "highlight": true
           }
         },
-        "block-2": {
-          "type": "image",
+        "c2": {
+          "type": "chip",
           "settings": {
-            "content_max_width": 780,
-            "mobile_text_position": "place-self-center text-center",
-            "desktop_text_position": "sm:place-self-center sm:text-center",
-            "subheading": "Tell your story",
-            "title": "Slide 2",
-            "heading_tag": "h1",
-            "text_color": "#ffffff",
-            "button_background": "#ffffff",
-            "button_text_color": "#000000",
-            "overlay_color": "#000000",
-            "overlay_opacity": 30
+            "icon": "phone",
+            "text": "Appel technique offert sous 48 h"
           }
         },
-        "block-3": {
-          "type": "image",
+        "c3": {
+          "type": "chip",
           "settings": {
-            "content_max_width": 780,
-            "mobile_text_position": "place-self-center text-center",
-            "desktop_text_position": "sm:place-self-center sm:text-center",
-            "subheading": "Tell your story",
-            "title": "Slide 3",
-            "heading_tag": "h1",
-            "text_color": "#ffffff",
-            "button_background": "#ffffff",
-            "button_text_color": "#000000",
-            "overlay_color": "#000000",
-            "overlay_opacity": 30
+            "icon": "calendar",
+            "text": "Pose sous 14 jours, une seule visite"
           }
         }
       },
       "block_order": [
-        "block-1",
-        "block-2",
-        "block-3"
+        "c1",
+        "c2",
+        "c3"
       ],
-      "name": "Slideshow",
       "settings": {
-        "full_width": false,
-        "allow_transparent_header": true,
-        "show_initial_transition": false,
-        "image_size": "auto",
-        "controls_type": "numbers",
-        "transition_type": "fade_with_text",
-        "autoplay": true,
-        "cycle_speed": 6,
-        "background": "rgba(0,0,0,0)",
-        "background_gradient": "linear-gradient(127deg, rgba(66, 74, 48, 1) 11%, rgba(138, 157, 123, 1) 100%)"
+        "eyebrow": "Solaire · Batteries · Pompes à chaleur · Carports",
+        "title": "<p>Votre énergie, <em>au prix affiché.</em> Pose incluse.</p>",
+        "lead": "<p>Panneaux solaires, batteries, pompes à chaleur, climatisation et carports solaires. Le prix que vous voyez comprend la fourniture et la pose par des installateurs certifiés. Sans devis, sans visite préalable, sans surprise.</p>",
+        "button_1_text": "Estimer mon projet",
+        "button_1_url": "/collections/panneaux-solaires",
+        "button_2_text": "Voir les carports solaires",
+        "button_2_url": "/collections/carports-solaires",
+        "image_ratio": "4 / 5",
+        "show_card": true,
+        "price_product": "kit-solaire-toiture",
+        "card_title": "Kit 6 panneaux · 3 kWc",
+        "card_badge": "Prix posé",
+        "manual_fourniture": 1500,
+        "manual_pose": 1800,
+        "label_fourniture": "Fourniture",
+        "label_pose": "Pose par installateur certifié",
+        "label_call": "Appel technique",
+        "label_free": "Offert",
+        "label_total": "Total posé",
+        "card_note": "TTC · acompte 30 % à la commande",
+        "card_link_text": "Configurer →",
+        "background": "#F6F4EE",
+        "text_color": "#0E1A2B"
       }
     },
-    "section-2": {
-      "type": "image-link-blocks",
+    "trust": {
+      "type": "clarte-trust-bar",
       "blocks": {
-        "block-1": {
+        "t1": {
           "type": "item",
           "settings": {
-            "stretch_image": true,
-            "link_text": "Title 1",
-            "text_color": "#ffffff",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
+            "icon": "euro",
+            "title": "Prix affichés, pose incluse",
+            "text": "Fourniture + pose, TTC, sans devis"
           }
         },
-        "block-2": {
+        "t2": {
           "type": "item",
           "settings": {
-            "stretch_image": true,
-            "link_text": "Title 2",
-            "text_color": "#ffffff",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
+            "icon": "phone",
+            "title": "Appel technique offert",
+            "text": "Sous 48 h, avec un technicien"
           }
         },
-        "block-3": {
+        "t3": {
           "type": "item",
           "settings": {
-            "stretch_image": true,
-            "link_text": "Title 3",
-            "text_color": "#ffffff",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
+            "icon": "calendar",
+            "title": "Posé sous 14 jours",
+            "text": "Vérification et pose le même jour"
           }
         },
-        "block-4": {
+        "t4": {
           "type": "item",
           "settings": {
-            "stretch_image": true,
-            "link_text": "Title 4",
-            "text_color": "#ffffff",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
-        "block-5": {
-          "type": "item",
-          "settings": {
-            "stretch_image": true,
-            "link_text": "Title 5",
-            "text_color": "#ffffff",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
+            "icon": "shield",
+            "title": "Garantie décennale",
+            "text": "Installateurs certifiés RGE"
           }
         }
       },
       "block_order": [
-        "block-1",
-        "block-2",
-        "block-3",
-        "block-4",
-        "block-5"
+        "t1",
+        "t2",
+        "t3",
+        "t4"
       ],
-      "name": "Image link blocks",
       "settings": {
-        "full_width": false,
-        "block_size": "large",
-        "text_color": "#1a1a1a"
+        "background": "#FFFFFF",
+        "text_color": "#0E1A2B"
       }
     },
-    "section-3": {
-      "type": "scrolling-text",
-      "settings": {
-        "full_width": true,
-        "text": "Scrolling text",
-        "text_size": "large",
-        "text_style": "fill",
-        "scrolling_mode": "auto",
-        "scrolling_speed": 5,
-        "text_gradient": "linear-gradient(90deg, rgba(77, 82, 60, 1), rgba(133, 141, 103, 1) 100%)"
-      }
-    },
-    "section-4": {
-      "type": "collection-list",
+    "feature": {
+      "type": "clarte-feature",
       "blocks": {
-        "block-1": {
-          "type": "collection",
+        "o1": {
+          "type": "option",
           "settings": {
-            "heading_tag": "h3",
-            "text_position": "place-self-end-start text-start",
-            "text_color": "#ffffff",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
+            "title": "Carport métal 1 voiture",
+            "text": "3 × 5 m · 6 panneaux · 2,7 kWc",
+            "price_prefix": "dès",
+            "price_text": "5 999 €",
+            "url": "/collections/carports-solaires"
           }
         },
-        "block-2": {
-          "type": "collection",
+        "o2": {
+          "type": "option",
           "settings": {
-            "heading_tag": "h3",
-            "text_position": "place-self-end-start text-start",
-            "text_color": "#ffffff",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
+            "title": "Carport métal 2 voitures",
+            "text": "6 × 5 m · 12 panneaux · 5,4 kWc",
+            "price_prefix": "",
+            "price_text": "Prix dans le configurateur",
+            "url": "/collections/carports-solaires"
           }
         },
-        "block-3": {
-          "type": "collection",
+        "o3": {
+          "type": "option",
           "settings": {
-            "heading_tag": "h3",
-            "text_position": "place-self-end-start text-start",
-            "text_color": "#ffffff",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
+            "title": "Carport bois sur mesure",
+            "text": "Dimensions libres, prix instantané",
+            "price_prefix": "",
+            "price_text": "Sur mesure",
+            "url": "/collections/carports-solaires"
+          }
+        },
+        "f1": {
+          "type": "fact",
+          "settings": {
+            "text": "Plots béton, sans fondation"
+          }
+        },
+        "f2": {
+          "type": "fact",
+          "settings": {
+            "text": "Déclaration mairie fournie"
+          }
+        },
+        "f3": {
+          "type": "fact",
+          "settings": {
+            "text": "Borne de recharge en option"
           }
         }
       },
       "block_order": [
-        "block-1",
-        "block-2",
-        "block-3"
+        "o1",
+        "o2",
+        "o3",
+        "f1",
+        "f2",
+        "f3"
       ],
       "settings": {
-        "full_width": true,
-        "stack_collections": false,
-        "collections_per_row_mobile": "1",
-        "collections_per_row": 3,
-        "show_progress_bar": false
+        "eyebrow": "Produit phare",
+        "title": "<p>Le carport solaire : abritez votre voiture, <em>produisez votre électricité.</em></p>",
+        "text": "<p>Structure métal pour 1 ou 2 voitures, ou bois sur mesure. Posé sur plots béton, sans fondation lourde, avec déclaration préalable en mairie fournie. Prix affiché, pose incluse.</p>",
+        "badge": "À partir de 5 999 € posé",
+        "button_text": "Configurer mon carport",
+        "button_url": "/collections/carports-solaires",
+        "link_text": "Voir tous les carports",
+        "link_url": "/collections/carports-solaires",
+        "background": "#0E1A2B",
+        "text_color": "#F6F4EE"
       }
     },
-    "section-5": {
+    "needs": {
+      "type": "clarte-needs",
+      "blocks": {
+        "n1": {
+          "type": "need",
+          "settings": {
+            "icon": "carport",
+            "kicker": "Je veux",
+            "title": "M'abriter et produire",
+            "text": "Carport solaire métal ou bois, 1 ou 2 voitures.",
+            "manual_price": 5999,
+            "url": "/collections/carports-solaires",
+            "accent": true
+          }
+        },
+        "n2": {
+          "type": "need",
+          "settings": {
+            "icon": "sun",
+            "kicker": "Je veux",
+            "title": "Produire",
+            "text": "Kits solaires 6 à 18 panneaux, posés en toiture.",
+            "collection": "panneaux-solaires"
+          }
+        },
+        "n3": {
+          "type": "need",
+          "settings": {
+            "icon": "battery",
+            "kicker": "Je veux",
+            "title": "Stocker",
+            "text": "Batteries 5 à 20 kWh, seules ou avec panneaux.",
+            "collection": "solaire-batterie"
+          }
+        },
+        "n4": {
+          "type": "need",
+          "settings": {
+            "icon": "flame",
+            "kicker": "Je veux",
+            "title": "Chauffer",
+            "text": "Pompes à chaleur air/eau, posées et mises en service.",
+            "collection": "pompes-a-chaleur"
+          }
+        },
+        "n5": {
+          "type": "need",
+          "settings": {
+            "icon": "snow",
+            "kicker": "Je veux",
+            "title": "Rafraîchir",
+            "text": "Climatisation réversible mono ou multi-split.",
+            "collection": "climatisation"
+          }
+        }
+      },
+      "block_order": [
+        "n1",
+        "n2",
+        "n3",
+        "n4",
+        "n5"
+      ],
+      "settings": {
+        "eyebrow": "Par où commencer ?",
+        "title": "<p>Dites-nous ce que vous voulez faire, <em>on vous dit combien ça coûte.</em></p>",
+        "text": "<p>Chaque prix affiché comprend la fourniture, la pose et la mise en service. Vous configurez, vous voyez le total, vous commandez.</p>",
+        "price_prefix": "à partir de",
+        "background": "#F6F4EE",
+        "text_color": "#0E1A2B"
+      }
+    },
+    "transparency": {
+      "type": "clarte-transparency",
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "value": "0 €",
+            "label": "de frais cachés le jour de la pose"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "value": "48 h",
+            "label": "pour votre appel technique offert"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "value": "14 j",
+            "label": "entre la commande et la pose"
+          }
+        },
+        "l1": {
+          "type": "line",
+          "settings": {
+            "label": "Connaître le prix",
+            "before": "Après devis, 1 à 3 semaines",
+            "after": "Affiché sur la fiche produit"
+          }
+        },
+        "l2": {
+          "type": "line",
+          "settings": {
+            "label": "Visite technique",
+            "before": "1 à 2 déplacements",
+            "after": "Appel offert sous 48 h"
+          }
+        },
+        "l3": {
+          "type": "line",
+          "settings": {
+            "label": "Immobilisation",
+            "before": "Visite puis pose, 2 journées",
+            "after": "Vérification + pose, 1 journée"
+          }
+        },
+        "l4": {
+          "type": "line",
+          "settings": {
+            "label": "Suppléments le jour J",
+            "before": "Fréquents",
+            "after": "Aucun"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "l1",
+        "l2",
+        "l3",
+        "l4"
+      ],
+      "settings": {
+        "eyebrow": "Notre différence",
+        "title": "<p>Le prix que vous voyez <em>est le prix que vous payez.</em></p>",
+        "text": "<p>Ailleurs, le prix arrive après trois devis et deux visites. Ici, il est affiché avant même que vous nous parliez. Fourniture, pose, mise en service : tout est compris, et rien n'est ajouté le jour J.</p>",
+        "compare_before_title": "Devis classique",
+        "compare_after_title": "Ici",
+        "total_label": "Délai avant un prix ferme",
+        "before_total": "3 à 6 semaines",
+        "after_total": "Immédiat",
+        "background": "#0E1A2B",
+        "text_color": "#F6F4EE"
+      }
+    },
+    "bestsellers": {
       "type": "featured-collection",
       "settings": {
+        "products": [
+          "kit-solaire-toiture",
+          "kit-solaire-batterie-ucanpower-monophase",
+          "pac-air-eau-chappee-eria-s",
+          "clim-reversible-atlantic-murao",
+          "batterie-ecoflow-all-in-one",
+          "pergola-solaire-ecoya"
+        ],
         "full_width": true,
-        "stack_products": false,
+        "stack_products": true,
         "show_progress_bar": false,
         "products_count": 6,
         "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "title": "Best sellers",
-        "link_url": "shopify:\/\/collections\/all",
-        "link_text": "View all"
+        "products_per_row_desktop": 3,
+        "subheading": "Les plus demandés",
+        "title": "Nos best-sellers, prix posé",
+        "content": "<p>Chaque prix comprend la fourniture et la pose. Configurez le nombre de panneaux ou la puissance sur la fiche produit.</p>",
+        "link_url": "/collections/all",
+        "link_text": "Tout le catalogue",
+        "background": "#FFFFFF",
+        "text_color": "#0E1A2B",
+        "product_card_background": "#F6F4EE",
+        "product_card_text_color": "#0E1A2B"
       }
     },
-    "section-6": {
-      "type": "impact-text",
+    "steps": {
+      "type": "clarte-steps",
       "blocks": {
-        "block-1": {
+        "e1": {
+          "type": "step",
+          "settings": {
+            "when": "Aujourd'hui",
+            "title": "Vous configurez et commandez",
+            "text": "<p>Choisissez votre produit, les options, voyez le prix posé et validez avec 30 % d'acompte. Le solde est réglé après la pose.</p>"
+          }
+        },
+        "e2": {
+          "type": "step",
+          "settings": {
+            "when": "Sous [appel] h",
+            "title": "Un technicien vous appelle",
+            "text": "<p>Appel technique offert : toiture, tableau électrique, accès, photos. On confirme la faisabilité et on fixe la date de pose.</p>",
+            "accent": true
+          }
+        },
+        "e3": {
+          "type": "step",
+          "settings": {
+            "when": "Sous [pose] jours",
+            "title": "Vérification et pose le même jour",
+            "text": "<p>L'équipe arrive, vérifie sur place, installe et met en service. Une seule journée chez vous, aucun supplément.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "e1",
+        "e2",
+        "e3"
+      ],
+      "settings": {
+        "eyebrow": "Comment ça marche",
+        "title": "<p>Trois étapes. <em>Une seule visite.</em></p>",
+        "text": "<p>Pas de pré-visite : un technicien vous appelle, puis l'équipe vérifie et pose le même jour. Vous ne bloquez qu'une journée.</p>",
+        "show_express": true,
+        "express_text": "<p><strong>Pressé ?</strong> Pose express sous [express] h pour [prix], au choix sur la fiche produit.</p>",
+        "express_price_fallback": "99 €",
+        "express_link_text": "Comment ça marche",
+        "express_link_url": "/pages/comment-ca-marche",
+        "background": "#F6F4EE",
+        "text_color": "#0E1A2B"
+      }
+    },
+    "projection": {
+      "type": "clarte-projection",
+      "settings": {
+        "eyebrow": "Projetez-vous",
+        "title": "<p>Combien vous <em>économisez</em> vraiment ?</p>",
+        "text": "<p>Réglez votre facture actuelle : on estime vos économies année après année avec un kit solaire 6 panneaux posé. Une estimation prudente, affinée lors de votre appel technique.</p>",
+        "button_text": "Voir les kits solaires",
+        "button_url": "/collections/panneaux-solaires",
+        "saving_rate": 45,
+        "inflation": 4,
+        "reference_price": 3300,
+        "years": 20,
+        "bill_label": "Ma facture d'électricité par mois",
+        "bill_min": 50,
+        "bill_max": 400,
+        "bill_default": 150,
+        "kpi_year_label": "Économie la 1re année",
+        "kpi_total_label": "Sur [ans] ans",
+        "kpi_roi_label": "Rentabilisé en",
+        "legend": "Économies annuelles estimées sur [ans] ans, pour un kit posé à [prix] €. Barre ambre : première année.",
+        "background": "#FFFFFF",
+        "text_color": "#0E1A2B"
+      }
+    },
+    "guarantees": {
+      "type": "clarte-guarantees",
+      "blocks": {
+        "g1": {
           "type": "item",
           "settings": {
-            "title": "Text",
-            "subheading": "Share content",
-            "content": "<p>Use this section to share helpful information with your customers. Tell a story, explain a detail, or highlight a unique feature. This is your space to connect and add personality to your store.<\/p>",
-            "button_text": "Shop all",
-            "button_url": "shopify:\/\/collections\/all",
-            "animate_impact_text": false,
-            "animate_impact_text_duration": 2
-          }
-        }
-      },
-      "block_order": [
-        "block-1"
-      ],
-      "settings": {
-        "full_width": true,
-        "stack_mobile": true,
-        "text_alignment": "center",
-        "impact_text_style": "fill",
-        "text_divider": "none",
-        "impact_text_size_ratio": 1,
-        "heading_gradient": "linear-gradient(180deg, rgba(26, 26, 26, 0.2), rgba(26, 26, 26, 0) 100%)"
-      }
-    },
-    "section-7": {
-      "type": "image-with-text-overlay",
-      "blocks": {
-        "block-1": {
-          "type": "subheading",
-          "settings": {
-            "text": "Subheading"
+            "icon": "shield",
+            "title": "Garantie décennale",
+            "text": "<p>L'installation est couverte 10 ans par notre assurance décennale, en plus des garanties fabricants (25 ans sur les panneaux).</p>"
           }
         },
-        "block-2": {
-          "type": "heading",
-          "settings": {
-            "text": "Image with text overlay",
-            "heading_tag": "h1"
-          }
-        },
-        "block-3": {
-          "type": "richtext",
-          "settings": {
-            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "block-1",
-        "block-2",
-        "block-3"
-      ],
-      "settings": {
-        "full_width": true,
-        "allow_transparent_header": false,
-        "enable_parallax": false,
-        "image_size": "auto",
-        "mobile_text_position": "place-self-center text-center",
-        "desktop_text_position": "sm:place-self-center sm:text-center",
-        "text_color": "#ffffff",
-        "overlay_color": "#000000",
-        "overlay_opacity": 0
-      }
-    },
-    "section-8": {
-      "type": "media-grid",
-      "blocks": {
-        "block-1": {
-          "type": "video",
-          "settings": {
-            "external_video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
-            "show_video_controls": false,
-            "title": "Video",
-            "heading_tag": "h3",
-            "mobile_text_position": "place-self-center text-center",
-            "desktop_column_span": 2,
-            "desktop_row_span": 2,
-            "desktop_text_position": "sm:place-self-end-start sm:text-start",
-            "background": "#000000",
-            "text_color": "#ffffff",
-            "button_background": "#000000",
-            "button_text_color": "#ffffff",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
-        "block-2": {
-          "type": "image",
-          "settings": {
-            "title": "Image 1",
-            "heading_tag": "h5",
-            "mobile_text_position": "place-self-end-start text-start",
-            "desktop_column_span": 1,
-            "desktop_row_span": 1,
-            "desktop_text_position": "sm:place-self-end-start sm:text-start",
-            "background": "#000000",
-            "text_color": "#ffffff",
-            "button_background": "#000000",
-            "button_text_color": "#ffffff",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
-        "block-3": {
-          "type": "image",
-          "settings": {
-            "title": "Image 2",
-            "heading_tag": "h5",
-            "mobile_text_position": "place-self-end-start text-start",
-            "desktop_column_span": 1,
-            "desktop_row_span": 1,
-            "desktop_text_position": "sm:place-self-end-start sm:text-start",
-            "background": "#000000",
-            "text_color": "#ffffff",
-            "button_background": "#000000",
-            "button_text_color": "#ffffff",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
-        "block-4": {
-          "type": "image",
-          "settings": {
-            "title": "Image 3",
-            "heading_tag": "h3",
-            "mobile_text_position": "place-self-end-start text-start",
-            "desktop_column_span": 2,
-            "desktop_row_span": 1,
-            "desktop_text_position": "sm:place-self-end-start sm:text-start",
-            "background": "#000000",
-            "text_color": "#ffffff",
-            "button_background": "#000000",
-            "button_text_color": "#ffffff",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        }
-      },
-      "block_order": [
-        "block-1",
-        "block-2",
-        "block-3",
-        "block-4"
-      ],
-      "settings": {
-        "full_width": true,
-        "reduce_width": false,
-        "desktop_row_height": 290,
-        "mobile_row_height": 150
-      }
-    },
-    "section-9": {
-      "type": "before-after-image",
-      "settings": {
-        "full_width": false,
-        "subheading": "Before\/after",
-        "title": "Compare images",
-        "content": "<p>Show how your product transforms experiences with a powerful before-and-after.<\/p>",
-        "expand_image": false,
-        "text_position": "center",
-        "before_after_text_position": "bottom",
-        "before_text": "Before",
-        "after_text": "After",
-        "drag_initial_position": 39,
-        "background": "rgba(0,0,0,0)",
-        "before_text_color": "#ffffff",
-        "after_text_color": "#ffffff",
-        "drag_cursor_background": "#ffffff",
-        "drag_cursor_color": "#000000"
-      }
-    },
-    "section-10": {
-      "type": "press",
-      "blocks": {
-        "block-1": {
-          "type": "quote",
-          "settings": {
-            "logo_width": 120,
-            "content": "Absolutely love it! It exceeded all my expectations. The quality is top-notch, and I’ve already recommended it to several friends.",
-            "show_rating": false,
-            "rating": 4
-          }
-        },
-        "block-2": {
-          "type": "quote",
-          "settings": {
-            "logo_width": 100,
-            "content": "A game-changer — I noticed the difference right away. It’s rare to find something that delivers exactly what it promises, but this does.",
-            "show_rating": false,
-            "rating": 4
-          }
-        },
-        "block-3": {
-          "type": "quote",
-          "settings": {
-            "logo_width": 100,
-            "content": "Fast delivery, great quality, and amazing support! I had a few questions and the team was incredibly helpful and friendly throughout.",
-            "show_rating": false,
-            "rating": 4
-          }
-        }
-      },
-      "block_order": [
-        "block-1",
-        "block-2",
-        "block-3"
-      ],
-      "settings": {
-        "full_width": true,
-        "content_size": "medium"
-      }
-    },
-    "section-11": {
-      "type": "hot-spots",
-      "blocks": {
-        "block-1": {
+        "g2": {
           "type": "item",
           "settings": {
-            "horizontal_position": 83,
-            "vertical_position": 74,
-            "horizontal_position_mobile": 83,
-            "vertical_position_mobile": 74,
-            "icon_width": 32,
-            "title": "Premium materials",
-            "content": "<p>Built to last with carefully selected, high-quality components.<\/p>"
+            "icon": "tool",
+            "title": "Installateurs certifiés RGE",
+            "text": "<p>Chaque chantier est réalisé par une équipe certifiée RGE QualiPV / QualiPAC, sélectionnée et suivie par nous.</p>"
           }
         },
-        "block-2": {
+        "g3": {
           "type": "item",
           "settings": {
-            "horizontal_position": 61,
-            "vertical_position": 16,
-            "horizontal_position_mobile": 43,
-            "vertical_position_mobile": 24,
-            "icon_width": 32,
-            "title": "Thoughtful design",
-            "content": "<p>Every detail is crafted to enhance usability and style.<br\/><\/p>"
+            "icon": "euro",
+            "title": "Prix ferme, solde après pose",
+            "text": "<p>30 % à la commande, le reste une fois l'installation mise en service. Aucun supplément le jour J.</p>"
           }
         },
-        "block-3": {
+        "g4": {
           "type": "item",
           "settings": {
-            "horizontal_position": 45,
-            "vertical_position": 66,
-            "horizontal_position_mobile": 47,
-            "vertical_position_mobile": 56,
-            "icon_width": 32,
-            "title": "Seamless integration",
-            "content": "<p>Works effortlessly with your lifestyle or existing setup.<\/p>"
+            "icon": "phone",
+            "title": "Un seul interlocuteur",
+            "text": "<p>Avant, pendant et après : la même équipe répond, au téléphone comme par e-mail, pendant toute la vie de l'installation.</p>"
           }
         }
       },
       "block_order": [
-        "block-1",
-        "block-2",
-        "block-3"
+        "g1",
+        "g2",
+        "g3",
+        "g4"
       ],
+      "settings": {
+        "eyebrow": "Vous êtes couvert",
+        "title": "<p>Des garanties écrites, <em>pas des promesses.</em></p>",
+        "text": "<p>Nous sommes votre interlocuteur unique, de la commande au service après-vente. Nos installateurs sont certifiés et assurés, et nous le sommes aussi.</p>",
+        "background": "#0E1A2B",
+        "text_color": "#F6F4EE"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "disabled": true,
+      "blocks": {},
+      "block_order": [],
       "settings": {
         "full_width": true,
-        "title": "Discover the details",
-        "content": "<p>Highlight key features of your product or service by placing hotspots over an image. Use this section to guide your customers and draw attention to what matters most.<\/p>",
-        "button_text": "Learn more",
-        "desktop_text_position": "place-self-start text-start",
-        "image_background_gradient": "linear-gradient(90deg, rgba(77, 82, 60, 1), rgba(133, 141, 103, 1) 100%)",
-        "overlay_color": "#000000",
-        "overlay_opacity": 0,
-        "overlay_text_color": "#ffffff",
-        "overlay_button_background": "#ffffff",
-        "overlay_button_text_color": "#4d523c",
-        "hot_spot_dot_background": "#ffffff",
-        "hot_spot_dot_text_color": "#000000",
-        "hot_spot_content_background": "#ffffff",
-        "hot_spot_content_text_color": "#000000",
-        "hot_spot_content_opacity": 90,
-        "hot_spot_content_blur_radius": 3
+        "stack_testimonials": true,
+        "subheading": "Ils ont choisi le prix affiché",
+        "title": "Avis clients",
+        "content": "<p>Ajoutez ici vos premiers avis vérifiés.</p>",
+        "background": "#FFFFFF",
+        "text_color": "#0E1A2B"
       }
     },
-    "section-12": {
-      "type": "impact-text",
-      "blocks": {
-        "block-1": {
-          "type": "item",
-          "settings": {
-            "title": "6",
-            "subheading": "Hours of battery",
-            "content": "<p>Share some key points about your products.<\/p>",
-            "animate_impact_text": true,
-            "animate_impact_text_duration": 1.6
-          }
-        },
-        "block-2": {
-          "type": "item",
-          "settings": {
-            "title": "12",
-            "subheading": "Meters deep",
-            "content": "<p>Share some key points about your products.<\/p>",
-            "animate_impact_text": true,
-            "animate_impact_text_duration": 1.6
-          }
-        }
-      },
-      "block_order": [
-        "block-1",
-        "block-2"
-      ],
-      "settings": {
-        "full_width": true,
-        "stack_mobile": true,
-        "text_alignment": "center",
-        "impact_text_style": "fill",
-        "text_divider": "line",
-        "impact_text_size_ratio": 1.5,
-        "background_gradient": "linear-gradient(90deg, rgba(77, 82, 60, 1), rgba(133, 141, 103, 1) 100%)",
-        "heading_text_color": "#ffffff",
-        "text_color": "#ffffff"
-      }
-    },
-    "section-13": {
-      "type": "multiple-images-with-text",
-      "blocks": {
-        "block-1": {
-          "type": "item",
-          "settings": {
-            "image_rotation_degrees": 2,
-            "subheading": "About us",
-            "title": "Designed in New York",
-            "content": "<p>Share some content about the founders, your team and your values. Pair this text with one or multiple images to create impactful visual effect.<\/p>"
-          }
-        },
-        "block-2": {
-          "type": "item",
-          "settings": {
-            "image_rotation_degrees": -2,
-            "subheading": "Our products",
-            "title": "Superior design",
-            "content": "<p>Share some content abour your products and what make them unique. Pair this text with one or multiple images to create impactful visual effect.<\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "block-1",
-        "block-2"
-      ],
-      "settings": {
-        "full_width": true,
-        "images_layout": "scattered",
-        "collage_images_alignment": "middle"
-      }
-    },
-    "section-14": {
-      "type": "featured-product",
-      "blocks": {
-        "block-1": {
-          "type": "vendor",
-          "settings": {}
-        },
-        "block-2": {
-          "type": "title",
-          "settings": {
-            "heading_tag": "h2"
-          }
-        },
-        "block-3": {
-          "type": "badges",
-          "settings": {}
-        },
-        "block-4": {
-          "type": "price",
-          "settings": {
-            "show_taxes_notice": false
-          }
-        },
-        "block-5": {
-          "type": "rating",
-          "settings": {
-            "show_empty": false
-          }
-        },
-        "block-6": {
-          "type": "separator",
-          "settings": {}
-        },
-        "block-7": {
-          "type": "description",
-          "settings": {
-            "icon": "none",
-            "icon_width": 20,
-            "collapse_content": false
-          }
-        },
-        "block-8": {
-          "type": "variant_picker",
-          "settings": {
-            "hide_sold_out_variants": false,
-            "stack_blocks": true,
-            "selector_style": "block",
-            "swatch_selector_style": "swatch"
-          }
-        },
-        "block-9": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_payment_button": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "block-10": {
-          "type": "pickup_availability",
-          "settings": {}
-        },
-        "block-11": {
-          "type": "share_buttons",
-          "settings": {
-            "alignment": "start"
-          }
-        }
-      },
-      "block_order": [
-        "block-1",
-        "block-2",
-        "block-3",
-        "block-4",
-        "block-5",
-        "block-6",
-        "block-7",
-        "block-8",
-        "block-9",
-        "block-10",
-        "block-11"
-      ],
-      "settings": {
-        "full_width": false,
-        "desktop_media_width": 55,
-        "desktop_media_layout": "carousel_thumbnails_left",
-        "mobile_media_size": "expanded",
-        "mobile_carousel_control": "floating_dots",
-        "enable_video_autoplay": true,
-        "enable_video_looping": false,
-        "enable_image_zoom": true,
-        "max_image_zoom_level": 3,
-        "background": "#ffffff",
-        "input_background": "rgba(0,0,0,0)"
-      }
-    },
-    "section-15": {
-      "type": "comparison-table",
-      "blocks": {
-        "block-1": {
-          "type": "headings",
-          "settings": {
-            "heading_1": "Driver",
-            "heading_2": "Weight",
-            "heading_3": "Dimensions",
-            "heading_4": "Battery"
-          }
-        },
-        "block-2": {
-          "type": "values",
-          "settings": {
-            "value_1": "<p>40mm Beryllium<\/p>",
-            "value_2": "<p>245g<\/p>",
-            "value_3": "<p>165mm x 190mm x 66mm<\/p>",
-            "value_4": "<p>24 hours<\/p>"
-          }
-        },
-        "block-3": {
-          "type": "values",
-          "settings": {
-            "value_1": "<p>40mm Beryllium<\/p>",
-            "value_2": "<p>205g (On-Ear), 239g (Over-Ear)<\/p>",
-            "value_3": "<p>190mm x 155mm x 34mm (On-Ear), 200mm x 165mm x 40mm (Over-Ear)<\/p>",
-            "value_4": "<p>16 hours<\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "block-1",
-        "block-2",
-        "block-3"
-      ],
-      "settings": {
-        "full_width": true,
-        "subheading": "Compare",
-        "title": "Highlight key differences at a glance",
-        "content": "<p>This section is perfect for showcasing product comparisons side-by-side. Use it to display key features, specifications, and pricing so customers can quickly decide which item fits their needs.<\/p>",
-        "button_text": "Learn more",
-        "text_position": "start",
-        "max_rows": 5,
-        "view_all_text": "View all",
-        "view_less_text": "View less",
-        "view_product": "View",
-        "show_product_swatch": true
-      }
-    },
-    "section-16": {
-      "type": "revealed-image-on-scroll",
-      "settings": {
-        "title": "Outstanding products with exceptional brands",
-        "text_color_inside": "#ffffff",
-        "text_color_outside": "#000000"
-      }
-    },
-    "section-17": {
-      "type": "timeline",
-      "blocks": {
-        "block-1": {
-          "type": "slide",
-          "settings": {
-            "navigation_label": "2014",
-            "subheading": "The beginning",
-            "title": "Our journey starts with a simple idea"
-          }
-        },
-        "block-2": {
-          "type": "slide",
-          "settings": {
-            "navigation_label": "2017",
-            "subheading": "First Launch",
-            "title": "Introducing our very first product to the world"
-          }
-        },
-        "block-3": {
-          "type": "slide",
-          "settings": {
-            "navigation_label": "2018",
-            "subheading": "Early growth",
-            "title": "Building momentum and expanding the team"
-          }
-        },
-        "block-4": {
-          "type": "slide",
-          "settings": {
-            "navigation_label": "2019",
-            "subheading": "Going global",
-            "title": "Reaching customers across continents"
-          }
-        },
-        "block-5": {
-          "type": "slide",
-          "settings": {
-            "navigation_label": "2020",
-            "subheading": "Milestone achieved",
-            "title": "Celebrating 100,000 happy customers"
-          }
-        },
-        "block-6": {
-          "type": "slide",
-          "settings": {
-            "navigation_label": "2021",
-            "subheading": "Stronger than ever",
-            "title": "Scaling new heights and looking ahead"
-          }
-        }
-      },
-      "block_order": [
-        "block-1",
-        "block-2",
-        "block-3",
-        "block-4",
-        "block-5",
-        "block-6"
-      ],
-      "settings": {
-        "full_width": true
-      }
-    },
-    "section-18": {
+    "faq": {
       "type": "faq",
       "blocks": {
-        "block-1": {
+        "q1": {
           "type": "item",
           "settings": {
-            "title": "Do you ship overseas?",
-            "content": "<p>Yes, we ship all over the world. Shipping costs will apply, and will be added at checkout. We run discounts and promotions all year, so stay tuned for exclusive deals.<\/p>"
+            "title": "Le prix affiché comprend-il vraiment tout ?",
+            "content": "<p>Oui : la fourniture, la pose par un installateur certifié, la mise en service et les démarches administratives standard (déclaration préalable, demande de raccordement). Les seules options payantes sont celles que vous cochez vous-même (dépose d'anciens panneaux, câble long, pose express).</p>"
           }
         },
-        "block-2": {
+        "q2": {
           "type": "item",
           "settings": {
-            "title": "Do I need to setup an account to place an order?",
-            "content": "<p>You do not need to set up an account to place an order. However creating an account allows you to store your shipping information, see order history, and view your product’s warranty information. Additional features will be added to the account page in the near future.<\/p>"
+            "title": "Pourquoi pas de visite avant la pose ?",
+            "content": "<p>Parce que 95 % des points se vérifient par téléphone et photos : type de toiture, tableau électrique, accès. Un technicien vous appelle sous 48 h. Le jour de la pose, l'équipe vérifie sur place avant d'installer. Si un écart apparaît, vous choisissez : on adapte sans supplément prévu, ou vous annulez sans frais.</p>"
           }
         },
-        "block-3": {
+        "q3": {
           "type": "item",
           "settings": {
-            "title": "Do you offer gift wrapping",
-            "content": "<p>Yes, we can wrap your item in our signature box with tissue paper, and include a card with your personal message. The option is available during checkout for an additional $5. Please note this service is not available for wireless speaker purchases.<\/p>"
+            "title": "Puis-je être installé plus vite que 14 jours ?",
+            "content": "<p>Oui, avec la pose express : appel sous 24 h et pose sous 72 h pour 99 €. Comme la pose a lieu pendant votre délai de rétractation de 14 jours, nous vous demandons de la demander expressément lors de la commande. Cette option n'est pas proposée sur les produits éligibles à MaPrimeRénov' (l'accord de l'Anah doit précéder les travaux).</p>"
           }
         },
-        "block-4": {
+        "q4": {
           "type": "item",
           "settings": {
-            "title": "How long will it take to get my orders?",
-            "content": "<p>It depends on where you are. Orders processed here will take 5-7 business days to arrive. Overseas deliveries can take anywhere from 7-16 days. Delivery details will be provided in your confirmation email.<\/p>"
+            "title": "Comment se passe le paiement ?",
+            "content": "<p>30 % à la commande, le solde après la mise en service. Paiement en 3 ou 4 fois sans frais possible, et financement sur 12 à 60 mois via notre partenaire (sous réserve d'acceptation).</p>"
           }
         },
-        "block-5": {
+        "q5": {
           "type": "item",
           "settings": {
-            "title": "What is your return policy?",
-            "content": "<p>All products purchased from our website may be returned within 14 days of purchase for a full refund less shipping costs, no questions asked. International return orders may be subject to return shipping fees. To initiate such a return please <a href=\"\/pages\/contact\" title=\"Contact\">contact us<\/a>.<\/p>"
+            "title": "Qui installe, et quelles garanties ?",
+            "content": "<p>Des installateurs certifiés RGE (QualiPV, QualiPAC) que nous sélectionnons et suivons. L'installation est couverte par notre assurance décennale ; les panneaux sont garantis 25 ans, les onduleurs et batteries 10 ans.</p>"
           }
         },
-        "block-6": {
+        "q6": {
           "type": "item",
           "settings": {
-            "title": "Any question?",
-            "content": "<p>You can contact us through our <a href=\"\/pages\/contact\" title=\"Contact\">contact page<\/a>! We will be happy to assist you.<\/p>"
+            "title": "Et les aides de l'État ?",
+            "content": "<p>Prime à l'autoconsommation, TVA réduite, MaPrimeRénov' pour les pompes à chaleur : nous indiquons sur chaque fiche les aides applicables et constituons le dossier avec vous lors de l'appel technique.</p>"
           }
         }
       },
       "block_order": [
-        "block-1",
-        "block-2",
-        "block-3",
-        "block-4",
-        "block-5",
-        "block-6"
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
       ],
       "settings": {
-        "full_width": false,
-        "title": "Have a question ? We are here to help.",
-        "content": "<p>Check out the most common questions our customers asked. Still have questions ?\u2028Contact our customer support.<\/p>",
-        "team_avatar_width": 160,
-        "support_hours": "Our customer support is available monday to friday: 8am-8:30pm.",
-        "answer_time": "Average answer time: 24h",
+        "full_width": true,
+        "subheading": "Questions fréquentes",
+        "title": "Tout ce qu'on nous demande avant de commander",
+        "content": "<p>Une autre question ? Appelez-nous ou écrivez-nous, on répond vite.</p>",
+        "support_hours": "Du lundi au samedi, 9 h – 19 h.",
+        "answer_time": "Réponse en moins de 24 h",
+        "button_text": "Nous écrire",
+        "button_url": "/pages/contact",
         "text_position": "start",
-        "background": "#ffffff"
+        "background": "#F6F4EE",
+        "text_color": "#0E1A2B",
+        "accordion_background": "#FFFFFF",
+        "accordion_text_color": "#0E1A2B"
+      }
+    },
+    "cta": {
+      "type": "clarte-cta",
+      "settings": {
+        "eyebrow": "Prêt à passer au prix affiché ?",
+        "title": "<p>Configurez votre installation. <em>Le prix s'affiche, vous décidez.</em></p>",
+        "text": "<p>Sans devis, sans visite préalable, sans engagement avant la commande. Un technicien vous appelle sous 48 h.</p>",
+        "button_text": "Estimer mon projet",
+        "button_url": "/collections/all",
+        "button_2_text": "Poser une question",
+        "button_2_url": "/pages/contact",
+        "note": "Réponse sous 24 h ouvrées · du lundi au samedi",
+        "background": "#F6F4EE",
+        "box_background": "#0E1A2B",
+        "box_text_color": "#F6F4EE"
       }
     }
   },
   "order": [
-    "section-1",
-    "section-2",
-    "section-3",
-    "section-4",
-    "section-5",
-    "section-6",
-    "section-7",
-    "section-8",
-    "section-9",
-    "section-10",
-    "section-11",
-    "section-12",
-    "section-13",
-    "section-14",
-    "section-15",
-    "section-16",
-    "section-17",
-    "section-18"
+    "hero",
+    "trust",
+    "feature",
+    "needs",
+    "transparency",
+    "bestsellers",
+    "steps",
+    "projection",
+    "guarantees",
+    "testimonials",
+    "faq",
+    "cta"
   ]
 }

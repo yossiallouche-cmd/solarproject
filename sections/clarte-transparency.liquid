@@ -1,0 +1,109 @@
+{%- comment -%}
+  CLARTÉ — Transparence : « le prix que vous voyez est le prix que vous payez »
+  Bande sombre avec 3 chiffres clés (blocs « stat ») et une comparaison devis classique / ici (blocs « ligne »).
+{%- endcomment -%}
+
+{%- assign s = section.settings -%}
+
+<style>
+  #shopify-section-{{ section.id }} .cl-transp { background: {{ s.background | default: '#0E1A2B' }}; color: {{ s.text_color | default: '#F6F4EE' }}; }
+</style>
+
+<section class="cl-transp cl-section cl-ink" aria-labelledby="cl-transp-{{ section.id }}">
+  <div class="cl-container">
+    <div class="cl-transp__grid">
+      <div class="cl-feature__copy">
+        {%- if s.eyebrow != blank -%}<p class="cl-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h2 id="cl-transp-{{ section.id }}" class="cl-h2">{{ s.title | remove: '<p>' | remove: '</p>' }}</h2>
+        {%- if s.text != blank -%}<div class="cl-lead">{{ s.text }}</div>{%- endif -%}
+
+        {%- assign stats = section.blocks | where: 'type', 'stat' -%}
+        {%- if stats.size > 0 -%}
+          <dl class="cl-stats">
+            {%- for block in stats -%}
+              <div class="cl-stat" {{ block.shopify_attributes }}>
+                <dt class="cl-stat__label" style="order:2">{{ block.settings.label | escape }}</dt>
+                <dd class="cl-stat__value" style="order:1;margin:0">{{ block.settings.value | escape }}</dd>
+              </div>
+            {%- endfor -%}
+          </dl>
+        {%- endif -%}
+      </div>
+
+      {%- assign lines = section.blocks | where: 'type', 'line' -%}
+      <div class="cl-compare" role="table" aria-label="{{ s.compare_before_title | escape }} / {{ s.compare_after_title | escape }}">
+        <div class="cl-compare__col cl-compare__col--before" role="rowgroup">
+          <p class="cl-compare__title">{{ s.compare_before_title | escape }}</p>
+          {%- for block in lines -%}
+            <div class="cl-compare__row" role="row"><span>{{ block.settings.label | escape }}</span><span>{{ block.settings.before | escape }}</span></div>
+          {%- endfor -%}
+          <div class="cl-compare__total"><span>{{ s.total_label | escape }}</span><span class="cl-amount">{{ s.before_total | escape }}</span></div>
+        </div>
+        <div class="cl-compare__col cl-compare__col--after" role="rowgroup">
+          <p class="cl-compare__title">{{ s.compare_after_title | escape }}</p>
+          {%- for block in lines -%}
+            <div class="cl-compare__row" role="row" {{ block.shopify_attributes }}><span>{{ block.settings.label | escape }}</span><span>{{ block.settings.after | escape }}</span></div>
+          {%- endfor -%}
+          <div class="cl-compare__total"><span>{{ s.total_label | escape }}</span><span class="cl-amount">{{ s.after_total | escape }}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Clarté · Transparence prix",
+  "tag": "section",
+  "class": "shopify-section--clarte-transparency",
+  "disabled_on": { "groups": ["header", "footer", "custom.overlay"] },
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Notre différence" },
+    { "type": "richtext", "id": "title", "label": "Titre", "default": "<p>Le prix que vous voyez <em>est le prix que vous payez.</em></p>" },
+    { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Ailleurs, le prix arrive après trois devis et deux visites. Ici, il est affiché avant même que vous nous parliez. Fourniture, pose, mise en service : tout est compris, et rien n'est ajouté le jour J.</p>" },
+    { "type": "header", "content": "Comparaison" },
+    { "type": "text", "id": "compare_before_title", "label": "Colonne « avant »", "default": "Devis classique" },
+    { "type": "text", "id": "compare_after_title", "label": "Colonne « ici »", "default": "Ici" },
+    { "type": "text", "id": "total_label", "label": "Libellé total", "default": "Délai avant un prix ferme" },
+    { "type": "text", "id": "before_total", "label": "Total colonne avant", "default": "3 à 6 semaines" },
+    { "type": "text", "id": "after_total", "label": "Total colonne ici", "default": "Immédiat" },
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background", "label": "Fond", "default": "#0E1A2B" },
+    { "type": "color", "id": "text_color", "label": "Texte", "default": "#F6F4EE" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Chiffre clé",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Valeur", "default": "0 €" },
+        { "type": "text", "id": "label", "label": "Libellé", "default": "de frais cachés" }
+      ]
+    },
+    {
+      "type": "line",
+      "name": "Ligne de comparaison",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Libellé", "default": "Visite technique" },
+        { "type": "text", "id": "before", "label": "Devis classique", "default": "1 à 2 déplacements" },
+        { "type": "text", "id": "after", "label": "Ici", "default": "Appel offert sous 48 h" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Clarté · Transparence prix",
+      "category": "Clarté",
+      "blocks": [
+        { "type": "stat", "settings": { "value": "0 €", "label": "de frais cachés le jour de la pose" } },
+        { "type": "stat", "settings": { "value": "48 h", "label": "pour votre appel technique offert" } },
+        { "type": "stat", "settings": { "value": "14 j", "label": "entre la commande et la pose" } },
+        { "type": "line", "settings": { "label": "Connaître le prix", "before": "Après devis, 1 à 3 semaines", "after": "Affiché sur la fiche produit" } },
+        { "type": "line", "settings": { "label": "Visite technique", "before": "1 à 2 déplacements", "after": "Appel offert sous 48 h" } },
+        { "type": "line", "settings": { "label": "Immobilisation", "before": "Visite puis pose, 2 journées", "after": "Vérification + pose, 1 journée" } },
+        { "type": "line", "settings": { "label": "Suppléments le jour J", "before": "Fréquents", "after": "Aucun" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

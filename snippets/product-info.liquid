@@ -407,6 +407,30 @@
             </div>
           {%- endif -%}
 
+        {%- when 'clarte_price' -%}
+          {%- if product.selected_or_first_available_variant != nil -%}
+            {%- render 'clarte-pricebox', product: product, product_form_id: product_form_id, block: block -%}
+          {%- endif -%}
+
+        {%- when 'clarte_installation' -%}
+          {%- if product.available -%}
+            {%- render 'clarte-installation', product: product, product_form_id: product_form_id, block: block -%}
+          {%- endif -%}
+
+        {%- when 'clarte_includes' -%}
+          {%- if block.settings.items != blank -%}
+            <div class="product-info__text v-stack gap-3">
+              {%- if block.settings.title != blank -%}<p class="h6">{{ block.settings.title | escape }}</p>{%- endif -%}
+              <ul class="cl-includes" role="list">
+                {%- assign items = block.settings.items | newline_to_br | split: '<br />' -%}
+                {%- for item in items -%}
+                  {%- assign item_text = item | strip -%}
+                  {%- if item_text != blank -%}<li>{{ item_text }}</li>{%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+
         {%- when 'liquid' -%}
           {%- if block.settings.liquid != blank -%}
             <div class="product-info__liquid">

@@ -1,0 +1,175 @@
+{%- comment -%}
+  CLARTÉ — Hero avec carte prix
+  Grand titre, accroche, boutons, puces de réassurance, visuel et carte « prix posé » alimentée
+  soit par un produit (métachamps custom.fourniture / custom.pose), soit par des montants saisis.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign product = s.price_product
+  assign fourniture = s.manual_fourniture
+  assign pose = s.manual_pose
+  assign card_title = s.card_title
+
+  if product != blank
+    assign v = product.selected_or_first_available_variant
+    if v.metafields.custom.fourniture.value != blank
+      assign fourniture = v.metafields.custom.fourniture.value | times: 100 | round
+    endif
+    if v.metafields.custom.pose.value != blank
+      assign pose = v.metafields.custom.pose.value | times: 100 | round
+    endif
+    if card_title == blank
+      assign card_title = product.title
+    endif
+  else
+    assign fourniture = fourniture | times: 100
+    assign pose = pose | times: 100
+  endif
+
+  assign total = fourniture | plus: pose
+  if product != blank and fourniture == 0 and pose == 0
+    assign total = v.price
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} .cl-hero { background: {{ s.background | default: '#F6F4EE' }}; color: {{ s.text_color | default: '#0E1A2B' }}; }
+  #shopify-section-{{ section.id }} .cl-hero__visual .cl-media { aspect-ratio: {{ s.image_ratio }}; }
+</style>
+
+<section class="cl-hero cl-section" aria-labelledby="cl-hero-{{ section.id }}">
+  <div class="cl-hero__bg"></div>
+  <div class="cl-container">
+    <div class="cl-hero__grid">
+      <div class="cl-hero__copy">
+        {%- if s.eyebrow != blank -%}
+          <p class="cl-eyebrow">{{ s.eyebrow | escape }}</p>
+        {%- endif -%}
+
+        <h1 id="cl-hero-{{ section.id }}" class="cl-h1">{{ s.title | remove: '<p>' | remove: '</p>' }}</h1>
+
+        {%- if s.lead != blank -%}
+          <div class="cl-lead">{{ s.lead }}</div>
+        {%- endif -%}
+
+        {%- if s.button_1_text != blank or s.button_2_text != blank -%}
+          <div class="cl-actions">
+            {%- if s.button_1_text != blank -%}
+              {%- render 'button', content: s.button_1_text, href: s.button_1_url, size: 'xl' -%}
+            {%- endif -%}
+            {%- if s.button_2_text != blank -%}
+              <a href="{{ s.button_2_url }}" class="button button--xl cl-btn-ghost">{{ s.button_2_text | escape }}</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="cl-hero__chips" role="list">
+            {%- for block in section.blocks -%}
+              <li class="cl-chip {% if block.settings.highlight %}cl-chip--amber{% endif %}" {{ block.shopify_attributes }}>
+                {%- render 'clarte-icon', icon: block.settings.icon -%}
+                {{ block.settings.text | escape }}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+
+      <div class="cl-hero__visual">
+        {%- if s.image != blank -%}
+          <div class="cl-media">
+            {{ s.image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 1000px) 45vw, 100vw', widths: '600, 900, 1200, 1600', alt: s.image.alt | default: s.title | strip_html }}
+          </div>
+        {%- else -%}
+          <div class="cl-media cl-media--placeholder">{%- render 'clarte-icon', icon: 'carport' -%}</div>
+        {%- endif -%}
+
+        {%- if s.show_card -%}
+          <aside class="cl-hero__card" aria-label="Exemple de prix posé">
+            <div class="cl-hero__card-title">
+              <strong>{{ card_title | escape }}</strong>
+              {%- if s.card_badge != blank -%}<span class="cl-chip cl-chip--amber">{{ s.card_badge | escape }}</span>{%- endif -%}
+            </div>
+            <div class="cl-price-line"><span>{{ s.label_fourniture | escape }}</span><span class="cl-amount">{{ fourniture | money_without_trailing_zeros }}</span></div>
+            <div class="cl-price-line"><span>{{ s.label_pose | escape }}</span><span class="cl-amount">{{ pose | money_without_trailing_zeros }}</span></div>
+            <div class="cl-price-line"><span>{{ s.label_call | escape }}</span><span class="cl-free">{{ s.label_free | escape }}</span></div>
+            <div class="cl-price-line cl-price-line--total"><span>{{ s.label_total | escape }}</span><span class="cl-amount">{{ total | money_without_trailing_zeros }}</span></div>
+            <div class="cl-hero__card-foot">
+              <span>{{ s.card_note | escape }}</span>
+              {%- if product != blank -%}<a href="{{ product.url }}">{{ s.card_link_text | escape }}</a>{%- elsif s.card_link_url != blank -%}<a href="{{ s.card_link_url }}">{{ s.card_link_text | escape }}</a>{%- endif -%}
+            </div>
+          </aside>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Clarté · Hero prix",
+  "tag": "section",
+  "class": "shopify-section--clarte-hero",
+  "disabled_on": { "groups": ["header", "footer", "custom.overlay"] },
+  "max_blocks": 4,
+  "settings": [
+    { "type": "header", "content": "Texte" },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Solaire · Batteries · Pompes à chaleur · Carports" },
+    { "type": "richtext", "id": "title", "label": "Titre", "info": "Mettez un mot en italique pour le colorer en ambre.", "default": "<p>Votre énergie, <em>au prix affiché.</em> Pose incluse.</p>" },
+    { "type": "richtext", "id": "lead", "label": "Accroche", "default": "<p>Panneaux solaires, batteries, pompes à chaleur, climatisation et carports solaires. Le prix que vous voyez comprend la fourniture et la pose par des installateurs certifiés. Sans devis, sans visite préalable, sans surprise.</p>" },
+    { "type": "header", "content": "Boutons" },
+    { "type": "text", "id": "button_1_text", "label": "Bouton principal", "default": "Estimer mon projet" },
+    { "type": "url", "id": "button_1_url", "label": "Lien du bouton principal" },
+    { "type": "text", "id": "button_2_text", "label": "Bouton secondaire", "default": "Voir les carports solaires" },
+    { "type": "url", "id": "button_2_url", "label": "Lien du bouton secondaire" },
+    { "type": "header", "content": "Visuel" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "select", "id": "image_ratio", "label": "Format de l'image", "options": [
+      { "value": "4 / 5", "label": "Portrait 4:5" }, { "value": "1 / 1", "label": "Carré" }, { "value": "4 / 3", "label": "Paysage 4:3" } ], "default": "4 / 5" },
+    { "type": "header", "content": "Carte prix", "info": "Choisissez un produit : fourniture et pose sont lues dans ses métachamps. Sinon saisissez les montants." },
+    { "type": "checkbox", "id": "show_card", "label": "Afficher la carte prix", "default": true },
+    { "type": "product", "id": "price_product", "label": "Produit de référence" },
+    { "type": "text", "id": "card_title", "label": "Titre de la carte (optionnel)", "default": "Kit 6 panneaux · 3 kWc" },
+    { "type": "text", "id": "card_badge", "label": "Badge", "default": "Prix posé" },
+    { "type": "number", "id": "manual_fourniture", "label": "Fourniture (€) si aucun produit", "default": 1500 },
+    { "type": "number", "id": "manual_pose", "label": "Pose (€) si aucun produit", "default": 1800 },
+    { "type": "text", "id": "label_fourniture", "label": "Libellé fourniture", "default": "Fourniture" },
+    { "type": "text", "id": "label_pose", "label": "Libellé pose", "default": "Pose par installateur certifié" },
+    { "type": "text", "id": "label_call", "label": "Libellé appel technique", "default": "Appel technique" },
+    { "type": "text", "id": "label_free", "label": "Mention offert", "default": "Offert" },
+    { "type": "text", "id": "label_total", "label": "Libellé total", "default": "Total posé" },
+    { "type": "text", "id": "card_note", "label": "Note sous la carte", "default": "TTC · acompte 30 % à la commande" },
+    { "type": "text", "id": "card_link_text", "label": "Texte du lien", "default": "Configurer →" },
+    { "type": "url", "id": "card_link_url", "label": "Lien (si aucun produit)" },
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background", "label": "Fond", "default": "#F6F4EE" },
+    { "type": "color", "id": "text_color", "label": "Texte", "default": "#0E1A2B" }
+  ],
+  "blocks": [
+    {
+      "type": "chip",
+      "name": "Puce de réassurance",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icône", "options": [
+          { "value": "euro", "label": "Euro" }, { "value": "phone", "label": "Téléphone" }, { "value": "calendar", "label": "Calendrier" },
+          { "value": "clock", "label": "Horloge" }, { "value": "shield", "label": "Bouclier" }, { "value": "check", "label": "Coche" },
+          { "value": "bolt", "label": "Éclair" }, { "value": "tool", "label": "Outils" }, { "value": "truck", "label": "Camion" } ], "default": "check" },
+        { "type": "text", "id": "text", "label": "Texte", "default": "Prix affichés, pose incluse" },
+        { "type": "checkbox", "id": "highlight", "label": "Mettre en avant (ambre)", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Clarté · Hero prix",
+      "category": "Clarté",
+      "blocks": [
+        { "type": "chip", "settings": { "icon": "euro", "text": "Prix affichés, pose incluse", "highlight": true } },
+        { "type": "chip", "settings": { "icon": "phone", "text": "Appel technique offert sous 48 h" } },
+        { "type": "chip", "settings": { "icon": "calendar", "text": "Pose sous 14 jours, une seule visite" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

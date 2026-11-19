@@ -4,8 +4,8 @@
     "theme_name": "Impact",
     "theme_author": "Maestrooo",
     "theme_version": "7.2.0",
-    "theme_documentation_url": "https:\/\/support.maestrooo.com\/",
-    "theme_support_url": "https:\/\/support.maestrooo.com\/article\/203-contact-us"
+    "theme_documentation_url": "https://support.maestrooo.com/",
+    "theme_support_url": "https://support.maestrooo.com/article/203-contact-us"
   },
   {
     "name": "Appearance and spacing",
@@ -298,12 +298,12 @@
       },
       {
         "type": "header",
-        "content": "Drawer\/popover"
+        "content": "Drawer/popover"
       },
       {
         "type": "color",
         "id": "dialog_background",
-        "label": "Modal\/popover background",
+        "label": "Modal/popover background",
         "info": "Choose a color similar to the primary background.",
         "default": "#ffffff"
       },
@@ -342,7 +342,7 @@
       {
         "type": "header",
         "content": "Product",
-        "info": "[Learn more](https:\/\/support.maestrooo.com\/article\/75-collection-displaying-custom-label) about setting custom badges."
+        "info": "[Learn more](https://support.maestrooo.com/article/75-collection-displaying-custom-label) about setting custom badges."
       },
       {
         "type": "color",
@@ -393,7 +393,7 @@
         "type": "font_picker",
         "id": "heading_font",
         "label": "Font",
-        "info": "Selecting different fonts can affect the speed of your online store. Learn more about [system fonts.](https:\/\/help.shopify.com\/en\/manual\/online-store\/os\/store-speed\/improving-speed#fonts)",
+        "info": "Selecting different fonts can affect the speed of your online store. Learn more about [system fonts.](https://help.shopify.com/en/manual/online-store/os/store-speed/improving-speed#fonts)",
         "default": "helvetica_n4"
       },
       {
@@ -454,7 +454,7 @@
         "type": "font_picker",
         "id": "text_font",
         "label": "Font",
-        "info": "Selecting different fonts can affect the speed of your online store. Learn more about [system fonts.](https:\/\/help.shopify.com\/en\/manual\/online-store\/os\/store-speed\/improving-speed#fonts)",
+        "info": "Selecting different fonts can affect the speed of your online store. Learn more about [system fonts.](https://help.shopify.com/en/manual/online-store/os/store-speed/improving-speed#fonts)",
         "default": "helvetica_n4"
       },
       {
@@ -484,6 +484,185 @@
         "id": "text_font_letter_spacing",
         "label": "Body letter spacing",
         "default": 0
+      }
+    ]
+  },
+  {
+    "name": "Clarté — Marque & parcours",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Typographie de marque"
+      },
+      {
+        "type": "text",
+        "id": "clarte_heading_font",
+        "label": "Police de titres (Google Fonts)",
+        "default": "Bricolage Grotesque",
+        "info": "Nom exact de la police sur fonts.google.com. Laisser vide pour utiliser la police de titres Shopify ci-dessus."
+      },
+      {
+        "type": "text",
+        "id": "clarte_heading_font_weights",
+        "label": "Graisses à charger",
+        "default": "500;600;700;800",
+        "info": "Séparées par des points-virgules, ex. 500;700"
+      },
+      {
+        "type": "header",
+        "content": "Couleurs de marque",
+        "info": "Utilisées par les sections Clarté (accueil, fiche produit, panier)."
+      },
+      {
+        "type": "color",
+        "id": "clarte_ink",
+        "label": "Encre (fond sombre, titres)",
+        "default": "#0E1A2B"
+      },
+      {
+        "type": "color",
+        "id": "clarte_paper",
+        "label": "Papier (fond clair)",
+        "default": "#F6F4EE"
+      },
+      {
+        "type": "color",
+        "id": "clarte_accent",
+        "label": "Accent (ambre)",
+        "default": "#F0A52A"
+      },
+      {
+        "type": "color",
+        "id": "clarte_accent_text",
+        "label": "Texte sur fond clair en accent",
+        "default": "#8A5A0A"
+      },
+      {
+        "type": "color",
+        "id": "clarte_green",
+        "label": "Vert (validation, économies)",
+        "default": "#2F6B4F"
+      },
+      {
+        "type": "color",
+        "id": "clarte_muted",
+        "label": "Texte secondaire",
+        "default": "#5B6572"
+      },
+      {
+        "type": "color",
+        "id": "clarte_line",
+        "label": "Lignes et bordures",
+        "default": "#E4E1D8"
+      },
+      {
+        "type": "header",
+        "content": "Parcours client",
+        "info": "Ces valeurs alimentent tous les textes de délais du site."
+      },
+      {
+        "type": "range",
+        "id": "clarte_call_hours",
+        "label": "Appel technique offert sous (heures)",
+        "min": 12,
+        "max": 96,
+        "step": 12,
+        "default": 48
+      },
+      {
+        "type": "range",
+        "id": "clarte_install_days",
+        "label": "Pose standard sous (jours)",
+        "min": 5,
+        "max": 45,
+        "step": 1,
+        "default": 14
+      },
+      {
+        "type": "range",
+        "id": "clarte_first_install_day",
+        "label": "Première date de pose possible (J+)",
+        "min": 1,
+        "max": 15,
+        "step": 1,
+        "default": 3
+      },
+      {
+        "type": "header",
+        "content": "Pose express"
+      },
+      {
+        "type": "checkbox",
+        "id": "clarte_express_enabled",
+        "label": "Proposer la pose express",
+        "default": true
+      },
+      {
+        "type": "product",
+        "id": "clarte_express_product",
+        "label": "Produit « Pose express »",
+        "info": "Produit de service ajouté au panier quand le client choisit l'express. Son prix fait foi."
+      },
+      {
+        "type": "range",
+        "id": "clarte_express_hours",
+        "label": "Pose express sous (heures)",
+        "min": 24,
+        "max": 120,
+        "step": 24,
+        "default": 72
+      },
+      {
+        "type": "range",
+        "id": "clarte_express_call_hours",
+        "label": "Appel technique express sous (heures)",
+        "min": 6,
+        "max": 48,
+        "step": 6,
+        "default": 24
+      },
+      {
+        "type": "text",
+        "id": "clarte_aided_tag",
+        "label": "Tag des produits aidés (express masqué)",
+        "default": "aide-etat",
+        "info": "Produits éligibles MaPrimeRénov' : l'accord de l'Anah doit précéder les travaux, l'express n'est pas proposé."
+      },
+      {
+        "type": "richtext",
+        "id": "clarte_express_consent",
+        "label": "Texte de demande expresse (obligatoire)",
+        "default": "<p>Je demande expressément que l'installation commence avant la fin du délai de rétractation de 14 jours et je reconnais qu'une fois l'installation entièrement réalisée, je perds mon droit de rétractation (art. L221-25 et L221-28 du Code de la consommation).</p>"
+      },
+      {
+        "type": "header",
+        "content": "Paiement"
+      },
+      {
+        "type": "range",
+        "id": "clarte_deposit_percent",
+        "label": "Acompte à la commande",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "default": 30
+      },
+      {
+        "type": "range",
+        "id": "clarte_months",
+        "label": "Mensualités affichées (mois)",
+        "min": 0,
+        "max": 60,
+        "step": 6,
+        "default": 36,
+        "info": "0 pour masquer la mensualité indicative."
+      },
+      {
+        "type": "text",
+        "id": "clarte_financing_note",
+        "label": "Mention financement",
+        "default": "Mensualité indicative, sous réserve d'acceptation du dossier de financement."
       }
     ]
   },
@@ -548,7 +727,7 @@
         "type": "select",
         "id": "heading_apparition",
         "label": "Heading apparition",
-        "info": "Line by line apparition can't be used for gradient heading. [Learn more](https:\/\/support.maestrooo.com\/article\/299-limitation-for-gradients-on-impact-theme)",
+        "info": "Line by line apparition can't be used for gradient heading. [Learn more](https://support.maestrooo.com/article/299-limitation-for-gradients-on-impact-theme)",
         "options": [
           {
             "value": "none",
@@ -603,7 +782,7 @@
         "id": "color_swatch_config",
         "label": "Configuration (deprecated)",
         "placeholder": "Red:#ff0000\nGreen:#00ff00\nBlue:#0000ff",
-        "info": "Native color swatch should be used instead. [Learn more](https:\/\/help.shopify.com\/en\/manual\/online-store\/themes\/theme-structure\/theme-settings#options-with-swatches). Configuration based color swatches is deprecated and will be removed in the future. If you still need to use the configuration based system, you can [learn more](https:\/\/support.maestrooo.com\/article\/718-configuring-color-swatches) about the exact naming convention."
+        "info": "Native color swatch should be used instead. [Learn more](https://help.shopify.com/en/manual/online-store/themes/theme-structure/theme-settings#options-with-swatches). Configuration based color swatches is deprecated and will be removed in the future. If you still need to use the configuration based system, you can [learn more](https://support.maestrooo.com/article/718-configuring-color-swatches) about the exact naming convention."
       }
     ]
   },
@@ -632,7 +811,7 @@
         "type": "checkbox",
         "id": "show_product_rating",
         "label": "Show product rating",
-        "info": "To display a rating, add a product rating app. [Learn more](https:\/\/help.shopify.com\/en\/manual\/products\/product-reviews\/installation)",
+        "info": "To display a rating, add a product rating app. [Learn more](https://help.shopify.com/en/manual/products/product-reviews/installation)",
         "default": false
       },
       {
@@ -805,12 +984,12 @@
         "type": "url",
         "id": "cart_empty_button_link",
         "label": "Empty button link",
-        "default": "\/collections\/all"
+        "default": "/collections/all"
       },
       {
         "type": "header",
         "content": "Free shipping bar",
-        "info": "Show a shipping bar advancement on cart page and cart drawer. Configure your [shipping rates](\/admin\/settings\/shipping) to match the amount."
+        "info": "Show a shipping bar advancement on cart page and cart drawer. Configure your [shipping rates](/admin/settings/shipping) to match the amount."
       },
       {
         "type": "checkbox",

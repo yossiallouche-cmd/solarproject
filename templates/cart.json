@@ -3,25 +3,54 @@
     "main": {
       "type": "main-cart",
       "blocks": {
+        "rdv": {
+          "type": "clarte_rdv",
+          "settings": {
+            "title": "Planifions votre installation",
+            "text": "Un technicien vous appelle sous [appel] h, puis l'équipe vérifie et pose le même jour, sous [pose] jours.",
+            "call_label": "Créneau pour l'appel technique (offert)",
+            "call_hint": "Durée : 15 à 20 minutes. Prévoyez quelques photos de votre toiture et de votre tableau électrique.",
+            "date_label": "Date de pose souhaitée",
+            "date_required": true,
+            "show_phone": true,
+            "phone_label": "Numéro à appeler",
+            "phone_required": true,
+            "express_text": "<p><strong>Pose express</strong> : appel sous 24 h et pose sous [express] h. Choisissez un créneau dès demain.</p>"
+          }
+        },
         "totals": {
           "type": "totals",
+          "settings": {
+            "show_shipping_text": true
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "content": "<p>Acompte de 30 % à la commande, solde après la pose. Le prix comprend la fourniture et la pose.</p>"
+          }
+        },
+        "checkout_button": {
+          "type": "checkout_button",
           "settings": {}
         },
         "cart_note": {
           "type": "cart_note",
           "settings": {}
-        },
-        "checkout_button": {
-          "type": "checkout_button",
-          "settings": {}
         }
       },
       "block_order": [
+        "rdv",
         "totals",
-        "cart_note",
-        "checkout_button"
+        "text",
+        "checkout_button",
+        "cart_note"
       ],
-      "settings": {}
+      "settings": {
+        "show_shipping_estimator": false,
+        "allow_discount_application": true,
+        "show_payment_icons": true
+      }
     }
   },
   "order": [

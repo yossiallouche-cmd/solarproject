@@ -164,6 +164,9 @@
                       {%- endif -%}
                     </div>
 
+                  {%- when 'clarte_rdv' -%}
+                    {%- render 'clarte-rdv', block: block -%}
+
                   {%- when 'cart_note' -%}
                     <cart-note class="cart-form__note block" {{ block.shopify_attributes }}>
                       {%- assign order_note = 'cart.general.order_note' | t -%}
@@ -231,6 +234,77 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "clarte_rdv",
+      "name": "Clarté · Rendez-vous",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Créneau d'appel technique et date de pose souhaitée, enregistrés avec la commande. Délais : réglages du thème → Clarté. [appel], [pose], [express] sont remplacés."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Planifions votre installation"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "Un technicien vous appelle sous [appel] h, puis l'équipe vérifie et pose le même jour, sous [pose] jours."
+        },
+        {
+          "type": "text",
+          "id": "call_label",
+          "label": "Libellé créneau d'appel",
+          "default": "Créneau pour l'appel technique (offert)"
+        },
+        {
+          "type": "text",
+          "id": "call_hint",
+          "label": "Aide créneau",
+          "default": "Durée : 15 à 20 minutes. Prévoyez quelques photos de votre toiture et de votre tableau électrique."
+        },
+        {
+          "type": "text",
+          "id": "date_label",
+          "label": "Libellé date de pose",
+          "default": "Date de pose souhaitée"
+        },
+        {
+          "type": "checkbox",
+          "id": "date_required",
+          "label": "Date obligatoire",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_phone",
+          "label": "Demander un téléphone",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "phone_label",
+          "label": "Libellé téléphone",
+          "default": "Numéro à appeler"
+        },
+        {
+          "type": "checkbox",
+          "id": "phone_required",
+          "label": "Téléphone obligatoire",
+          "default": true
+        },
+        {
+          "type": "richtext",
+          "id": "express_text",
+          "label": "Texte si pose express au panier",
+          "default": "<p><strong>Pose express</strong> : appel sous 24 h et pose sous [express] h. Choisissez un créneau dès demain.</p>"
+        }
+      ]
     },
     {
       "type": "totals",

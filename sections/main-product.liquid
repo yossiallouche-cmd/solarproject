@@ -202,6 +202,208 @@
       ]
     },
     {
+      "type": "clarte_price",
+      "name": "Clarté · Prix posé",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Affiche fourniture, pose et total posé à partir des métachamps de variante custom.fourniture et custom.pose. Mensualité et acompte : réglages du thème → Clarté."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Votre prix, tout compris"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "default": "Pose incluse"
+        },
+        {
+          "type": "text",
+          "id": "label_fourniture",
+          "label": "Libellé fourniture",
+          "default": "Fourniture"
+        },
+        {
+          "type": "text",
+          "id": "label_pose",
+          "label": "Libellé pose",
+          "default": "Pose par installateur certifié"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_call_line",
+          "label": "Afficher la ligne appel technique",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "label_call",
+          "label": "Libellé appel technique",
+          "default": "Appel technique sous [appel] h"
+        },
+        {
+          "type": "text",
+          "id": "label_free",
+          "label": "Mention offert",
+          "default": "Offert"
+        },
+        {
+          "type": "text",
+          "id": "label_express",
+          "label": "Libellé pose express",
+          "default": "Pose express"
+        },
+        {
+          "type": "text",
+          "id": "label_total",
+          "label": "Libellé total",
+          "default": "Total posé"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_monthly",
+          "label": "Afficher la mensualité indicative",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "label_monthly",
+          "label": "Libellé mensualité",
+          "default": "ou [mois] mensualités de"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_deposit",
+          "label": "Afficher acompte et solde",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "label_deposit",
+          "label": "Libellé acompte",
+          "default": "Acompte [acompte] % à la commande :"
+        },
+        {
+          "type": "text",
+          "id": "label_balance",
+          "label": "Libellé solde",
+          "default": "solde après pose :"
+        }
+      ]
+    },
+    {
+      "type": "clarte_installation",
+      "name": "Clarté · Délai de pose",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Standard inclus / Express payant avec demande expresse obligatoire. Produit express, délais et texte légal : réglages du thème → Clarté. [appel] et [pose] sont remplacés par les délais."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Délai de pose"
+        },
+        {
+          "type": "text",
+          "id": "standard_title",
+          "label": "Option standard — titre",
+          "default": "Standard"
+        },
+        {
+          "type": "text",
+          "id": "included_text",
+          "label": "Option standard — mention",
+          "default": "Inclus"
+        },
+        {
+          "type": "text",
+          "id": "standard_text",
+          "label": "Option standard — texte",
+          "default": "Appel technique sous [appel] h, vérification et pose le même jour sous [pose] jours."
+        },
+        {
+          "type": "text",
+          "id": "express_title",
+          "label": "Option express — titre",
+          "default": "Express"
+        },
+        {
+          "type": "text",
+          "id": "express_text",
+          "label": "Option express — texte",
+          "default": "Appel sous [appel] h, pose sous [pose] h. Demande expresse requise."
+        },
+        {
+          "type": "text",
+          "id": "error_text",
+          "label": "Message si la case n'est pas cochée",
+          "default": "Pour une pose express, cochez la demande expresse ci-dessus."
+        },
+        {
+          "type": "richtext",
+          "id": "aided_text",
+          "label": "Texte pour les produits aidés",
+          "default": "<p>Produit éligible aux aides de l'État : l'accord de l'Anah doit précéder les travaux, la pose express n'est pas proposée. Nous constituons le dossier avec vous lors de l'appel technique.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_timeline",
+          "label": "Afficher le mini-calendrier",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "timeline_call_label",
+          "label": "Calendrier — libellé 1",
+          "default": "Appel technique"
+        },
+        {
+          "type": "text",
+          "id": "timeline_call_value",
+          "label": "Calendrier — valeur 1",
+          "default": "Sous [appel] h, offert"
+        },
+        {
+          "type": "text",
+          "id": "timeline_install_label",
+          "label": "Calendrier — libellé 2",
+          "default": "Vérification + pose"
+        },
+        {
+          "type": "text",
+          "id": "timeline_install_value",
+          "label": "Calendrier — valeur 2",
+          "default": "Sous [pose] jours, 1 journée"
+        }
+      ]
+    },
+    {
+      "type": "clarte_includes",
+      "name": "Clarté · Ce que comprend le prix",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Ce que comprend le prix"
+        },
+        {
+          "type": "textarea",
+          "id": "items",
+          "label": "Éléments (un par ligne)",
+          "default": "Fourniture du matériel et livraison sur site\nPose par installateur certifié RGE\nMise en service et paramétrage\nDéclaration préalable et demande de raccordement\nGarantie décennale installation"
+        }
+      ]
+    },
+    {
       "type": "payment_terms",
       "name": "Payment installments",
       "limit": 1,

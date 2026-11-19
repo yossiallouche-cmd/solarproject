@@ -1,0 +1,107 @@
+{%- comment -%}
+  CLARTÉ — Comment ça marche (3 étapes) + note « pose express »
+  Les délais par défaut viennent des réglages du thème (Clarté — Marque & parcours).
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign call_hours = settings.clarte_call_hours | default: 48
+  assign install_days = settings.clarte_install_days | default: 14
+  assign express_hours = settings.clarte_express_hours | default: 72
+  assign express_price = 0
+  if settings.clarte_express_product != blank
+    assign express_price = settings.clarte_express_product.price
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} .cl-stepsec { background: {{ s.background | default: '#F6F4EE' }}; color: {{ s.text_color | default: '#0E1A2B' }}; }
+</style>
+
+<section class="cl-stepsec cl-section" aria-labelledby="cl-steps-{{ section.id }}">
+  <div class="cl-container">
+    <div class="cl-head cl-head--split">
+      <div>
+        {%- if s.eyebrow != blank -%}<p class="cl-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h2 id="cl-steps-{{ section.id }}" class="cl-h2">{{ s.title | remove: '<p>' | remove: '</p>' }}</h2>
+      </div>
+      {%- if s.text != blank -%}<div class="cl-lead">{{ s.text }}</div>{%- endif -%}
+    </div>
+
+    <ol class="cl-steps">
+      {%- for block in section.blocks -%}
+        {%- assign when = block.settings.when | replace: '[appel]', call_hours | replace: '[pose]', install_days -%}
+        {%- assign text = block.settings.text | replace: '[appel]', call_hours | replace: '[pose]', install_days -%}
+        <li class="cl-step {% if block.settings.accent %}cl-step--accent{% endif %}" {{ block.shopify_attributes }}>
+          <span class="cl-step__num" aria-hidden="true">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          {%- if when != blank -%}<span class="cl-step__when">{{ when | escape }}</span>{%- endif -%}
+          <h3 class="cl-step__title">{{ block.settings.title | escape }}</h3>
+          <div class="cl-step__text">{{ text }}</div>
+        </li>
+      {%- endfor -%}
+    </ol>
+
+    {%- if s.show_express and settings.clarte_express_enabled -%}
+      {%- assign express_text = s.express_text | replace: '[express]', express_hours -%}
+      {%- if express_price > 0 -%}
+        {%- assign express_price_text = express_price | money_without_trailing_zeros -%}
+        {%- assign express_text = express_text | replace: '[prix]', express_price_text -%}
+      {%- else -%}
+        {%- assign express_text = express_text | replace: '[prix]', s.express_price_fallback -%}
+      {%- endif -%}
+      <div class="cl-steps__note">
+        {%- render 'clarte-icon', icon: 'bolt' -%}
+        <span>{{ express_text }}</span>
+        {%- if s.express_link_text != blank -%}<a class="cl-link" href="{{ s.express_link_url }}">{{ s.express_link_text | escape }}{%- render 'clarte-icon', icon: 'arrow' -%}</a>{%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Clarté · Comment ça marche",
+  "tag": "section",
+  "class": "shopify-section--clarte-steps",
+  "disabled_on": { "groups": ["header", "footer", "custom.overlay"] },
+  "max_blocks": 4,
+  "settings": [
+    { "type": "paragraph", "content": "Dans les textes, [appel] = heures de l'appel technique, [pose] = jours de pose, [express] = heures de l'express, [prix] = prix du produit Pose express (réglages du thème → Clarté)." },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Comment ça marche" },
+    { "type": "richtext", "id": "title", "label": "Titre", "default": "<p>Trois étapes. <em>Une seule visite.</em></p>" },
+    { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Pas de pré-visite : un technicien vous appelle, puis l'équipe vérifie et pose le même jour. Vous ne bloquez qu'une journée.</p>" },
+    { "type": "header", "content": "Pose express" },
+    { "type": "checkbox", "id": "show_express", "label": "Afficher la note pose express", "default": true },
+    { "type": "richtext", "id": "express_text", "label": "Texte", "default": "<p><strong>Pressé ?</strong> Pose express sous [express] h pour [prix], au choix sur la fiche produit.</p>" },
+    { "type": "text", "id": "express_price_fallback", "label": "Prix si aucun produit express", "default": "99 €" },
+    { "type": "text", "id": "express_link_text", "label": "Lien", "default": "Comment ça marche" },
+    { "type": "url", "id": "express_link_url", "label": "URL du lien" },
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background", "label": "Fond", "default": "#F6F4EE" },
+    { "type": "color", "id": "text_color", "label": "Texte", "default": "#0E1A2B" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Étape",
+      "settings": [
+        { "type": "text", "id": "when", "label": "Quand", "default": "Aujourd'hui" },
+        { "type": "text", "id": "title", "label": "Titre", "default": "Vous configurez" },
+        { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Choisissez votre produit, voyez le prix posé, commandez avec 30 % d'acompte.</p>" },
+        { "type": "checkbox", "id": "accent", "label": "Badge ambre", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Clarté · Comment ça marche",
+      "category": "Clarté",
+      "blocks": [
+        { "type": "step", "settings": { "when": "Aujourd'hui", "title": "Vous configurez et commandez", "text": "<p>Choisissez votre produit, les options, voyez le prix posé et validez avec 30 % d'acompte. Le solde est réglé après la pose.</p>" } },
+        { "type": "step", "settings": { "when": "Sous [appel] h", "title": "Un technicien vous appelle", "text": "<p>Appel technique offert : toiture, tableau électrique, accès, photos. On confirme la faisabilité et on fixe la date de pose.</p>", "accent": true } },
+        { "type": "step", "settings": { "when": "Sous [pose] jours", "title": "Vérification et pose le même jour", "text": "<p>L'équipe arrive, vérifie sur place, installe et met en service. Une seule journée chez vous, aucun supplément.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

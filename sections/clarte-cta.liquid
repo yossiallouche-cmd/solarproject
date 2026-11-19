@@ -1,0 +1,52 @@
+{%- comment -%}
+  CLARTÉ — Appel à l'action final (boîte sombre arrondie)
+{%- endcomment -%}
+
+{%- assign s = section.settings -%}
+
+<style>
+  #shopify-section-{{ section.id }} .cl-cta { background: {{ s.background | default: '#F6F4EE' }}; }
+  #shopify-section-{{ section.id }} .cl-cta__box { background: {{ s.box_background | default: '#0E1A2B' }}; color: {{ s.box_text_color | default: '#F6F4EE' }}; }
+</style>
+
+<section class="cl-cta cl-section cl-section--tight" aria-labelledby="cl-cta-{{ section.id }}">
+  <div class="cl-container">
+    <div class="cl-cta__box cl-ink">
+      <div class="cl-cta__glow"></div>
+      <div class="cl-cta__copy">
+        {%- if s.eyebrow != blank -%}<p class="cl-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h2 id="cl-cta-{{ section.id }}" class="cl-h2">{{ s.title | remove: '<p>' | remove: '</p>' }}</h2>
+        {%- if s.text != blank -%}<div class="cl-lead">{{ s.text }}</div>{%- endif -%}
+      </div>
+      <div class="cl-cta__actions">
+        {%- if s.button_text != blank -%}<a href="{{ s.button_url }}" class="button button--xl cl-btn-amber">{{ s.button_text | escape }}</a>{%- endif -%}
+        {%- if s.button_2_text != blank -%}<a href="{{ s.button_2_url }}" class="button button--xl cl-btn-ghost">{{ s.button_2_text | escape }}</a>{%- endif -%}
+        {%- if s.note != blank -%}<p class="cl-small">{{ s.note | escape }}</p>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Clarté · Appel à l'action",
+  "tag": "section",
+  "class": "shopify-section--clarte-cta",
+  "disabled_on": { "groups": ["header", "footer", "custom.overlay"] },
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Prêt à passer au prix affiché ?" },
+    { "type": "richtext", "id": "title", "label": "Titre", "default": "<p>Configurez votre installation. <em>Le prix s'affiche, vous décidez.</em></p>" },
+    { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>Sans devis, sans visite préalable, sans engagement avant la commande. Un technicien vous appelle sous 48 h.</p>" },
+    { "type": "text", "id": "button_text", "label": "Bouton principal", "default": "Estimer mon projet" },
+    { "type": "url", "id": "button_url", "label": "Lien" },
+    { "type": "text", "id": "button_2_text", "label": "Bouton secondaire", "default": "Poser une question" },
+    { "type": "url", "id": "button_2_url", "label": "Lien secondaire" },
+    { "type": "text", "id": "note", "label": "Note", "default": "Réponse sous 24 h ouvrées · du lundi au samedi" },
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background", "label": "Fond de section", "default": "#F6F4EE" },
+    { "type": "color", "id": "box_background", "label": "Fond de la boîte", "default": "#0E1A2B" },
+    { "type": "color", "id": "box_text_color", "label": "Texte de la boîte", "default": "#F6F4EE" }
+  ],
+  "presets": [ { "name": "Clarté · Appel à l'action", "category": "Clarté" } ]
+}
+{% endschema %}
