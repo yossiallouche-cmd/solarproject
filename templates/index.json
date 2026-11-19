@@ -48,7 +48,8 @@
         "label_total": "Total posé",
         "card_note": "TTC · acompte 30 % à la commande",
         "card_link_text": "Configurer ce kit →",
-        "image_alt": "Maison avec panneaux solaires posés en toiture"
+        "image_alt": "Maison avec panneaux solaires posés en toiture",
+        "image": "shopify://shop_images/clarte-hero-toiture-solaire.jpg"
       }
     },
     "trust": {
@@ -168,7 +169,8 @@
         "link_text": "Voir tous les carports",
         "link_url": "/collections/carports-solaires",
         "background": "#0E1A2B",
-        "text_color": "#F6F4EE"
+        "text_color": "#F6F4EE",
+        "image": "shopify://shop_images/clarte-carport-solaire.jpg"
       }
     },
     "needs": {
@@ -567,7 +569,8 @@
         "note": "Réponse sous 24 h ouvrées · du lundi au samedi",
         "background": "#F6F4EE",
         "box_background": "#0E1A2B",
-        "box_text_color": "#F6F4EE"
+        "box_text_color": "#F6F4EE",
+        "image": "shopify://shop_images/clarte-famille-maison.jpg"
       }
     },
     "zones": {
@@ -602,7 +605,8 @@
         "title": "<p>Installé chez vous, <em>partout en Île-de-France.</em></p>",
         "text": "<p>Nos équipes certifiées RGE interviennent dans toute l'Île-de-France. Le prix affiché est le même quel que soit votre département : aucun frais de déplacement.</p>",
         "background": "#FFFFFF",
-        "text_color": "#0E1A2B"
+        "text_color": "#0E1A2B",
+        "image": "shopify://shop_images/clarte-technicien-pose.jpg"
       }
     }
   },
