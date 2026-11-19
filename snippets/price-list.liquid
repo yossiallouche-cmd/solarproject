@@ -51,9 +51,9 @@
       <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
 
       {%- if settings.currency_code_enabled -%}
-        {{- variant.price | money_with_currency -}}
+        {{- variant.price | money_without_trailing_zeros -}}
       {%- else -%}
-        {{- variant.price | money -}}
+        {{- variant.price | money_without_trailing_zeros -}}
       {%- endif -%}
     </sale-price>
 
@@ -62,9 +62,9 @@
         <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
 
         {%- if settings.currency_code_enabled -%}
-          {{- variant.compare_at_price | money_with_currency -}}
+          {{- variant.compare_at_price | money_without_trailing_zeros -}}
         {%- else -%}
-          {{- variant.compare_at_price | money -}}
+          {{- variant.compare_at_price | money_without_trailing_zeros -}}
         {%- endif -%}
       </compare-at-price>
     {%- endif -%}
@@ -78,9 +78,9 @@
       <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
 
       {%- if settings.currency_code_enabled -%}
-        {{- line_item.final_line_price | money_with_currency -}}
+        {{- line_item.final_line_price | money_without_trailing_zeros -}}
       {%- else -%}
-        {{- line_item.final_line_price | money -}}
+        {{- line_item.final_line_price | money_without_trailing_zeros -}}
       {%- endif -%}
     </sale-price>
 
@@ -89,9 +89,9 @@
         <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
 
         {%- if settings.currency_code_enabled -%}
-          {{- line_item.original_line_price | money_with_currency -}}
+          {{- line_item.original_line_price | money_without_trailing_zeros -}}
         {%- else -%}
-          {{- line_item.original_line_price | money -}}
+          {{- line_item.original_line_price | money_without_trailing_zeros -}}
         {%- endif -%}
       </compare-at-price>
     {%- endif -%}
@@ -106,9 +106,9 @@
 
       {%- capture price_min -%}
         {%- if settings.currency_code_enabled -%}
-          {{- cheapest_variant.price | money_with_currency -}}
+          {{- cheapest_variant.price | money_without_trailing_zeros -}}
         {%- else -%}
-          {{- cheapest_variant.price | money -}}
+          {{- cheapest_variant.price | money_without_trailing_zeros -}}
         {%- endif -%}
       {%- endcapture -%}
 
@@ -122,9 +122,9 @@
           <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
 
           {%- if settings.currency_code_enabled -%}
-            {{- cheapest_variant.compare_at_price | money_with_currency -}}
+            {{- cheapest_variant.compare_at_price | money_without_trailing_zeros -}}
           {%- else -%}
-            {{- cheapest_variant.compare_at_price | money -}}
+            {{- cheapest_variant.compare_at_price | money_without_trailing_zeros -}}
           {%- endif -%}
         </compare-at-price>
       {%- else -%}
@@ -138,9 +138,9 @@
         <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
 
         {%- if settings.currency_code_enabled -%}
-          {{- product.price | money_with_currency -}}
+          {{- product.price | money_without_trailing_zeros -}}
         {%- else -%}
-          {{- product.price | money -}}
+          {{- product.price | money_without_trailing_zeros -}}
         {%- endif -%}
       </sale-price>
 
@@ -148,9 +148,9 @@
         <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
 
         {%- if settings.currency_code_enabled -%}
-          {{- product.compare_at_price | money_with_currency -}}
+          {{- product.compare_at_price | money_without_trailing_zeros -}}
         {%- else -%}
-          {{- product.compare_at_price | money -}}
+          {{- product.compare_at_price | money_without_trailing_zeros -}}
         {%- endif -%}
       </compare-at-price>
     {%- elsif product.price_varies -%}
@@ -164,9 +164,9 @@
 
       {%- capture price_max -%}
         {%- if settings.currency_code_enabled -%}
-          {{- product.price_max | money_with_currency -}}
+          {{- product.price_max | money_without_trailing_zeros -}}
         {%- else -%}
-          {{- product.price_max | money -}}
+          {{- product.price_max | money_without_trailing_zeros -}}
         {%- endif -%}
       {%- endcapture -%}
 
@@ -179,9 +179,9 @@
         <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
 
         {%- if settings.currency_code_enabled -%}
-          {{- product.price | money_with_currency -}}
+          {{- product.price | money_without_trailing_zeros -}}
         {%- else -%}
-          {{- product.price | money -}}
+          {{- product.price | money_without_trailing_zeros -}}
         {%- endif -%}
       </sale-price>
     {%- endif -%}
