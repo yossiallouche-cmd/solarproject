@@ -163,9 +163,9 @@
   color: inherit; text-decoration: none; transition: background .25s, transform .25s;
 }
 .cl-option:hover { background: rgb(var(--cl-paper) / .11); transform: translateX(4px); }
-.cl-option__title { font-weight: 700; }
-.cl-option__desc { grid-column: 1; font-size: .85rem; color: rgb(var(--cl-paper) / .7); }
-.cl-option__price { grid-row: 1 / span 2; text-align: right; font-family: var(--heading-font-family); font-weight: 700; font-size: 1.35rem; letter-spacing: -0.02em; }
+.cl-option__title { grid-column: 1; grid-row: 1; font-weight: 700; }
+.cl-option__desc { grid-column: 1; grid-row: 2; font-size: .85rem; color: rgb(var(--cl-paper) / .7); }
+.cl-option__price { grid-column: 2; grid-row: 1 / span 2; align-self: center; text-align: right; font-family: var(--heading-font-family); font-weight: 700; font-size: 1.35rem; letter-spacing: -0.02em; }
 .cl-option__price small { display: block; font: 600 .7rem/1.2 var(--text-font-family); letter-spacing: .08em; text-transform: uppercase; color: rgb(var(--cl-accent)); }
 .cl-feature__facts { display: flex; flex-wrap: wrap; gap: .6rem; padding: 0; margin: 0; list-style: none; }
 
