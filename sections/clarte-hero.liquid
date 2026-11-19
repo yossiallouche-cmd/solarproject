@@ -13,11 +13,18 @@
 
   if product != blank
     assign v = product.selected_or_first_available_variant
-    if v.metafields.custom.fourniture.value != blank
-      assign fourniture = v.metafields.custom.fourniture.value | times: 100 | round
+    assign g = product.metafields.custom.prix_pose.value[v.sku]
+    assign mf = v.metafields.custom.fourniture.value | default: g.f
+    assign mp = v.metafields.custom.pose.value | default: g.p
+    if mf != blank
+      assign fourniture = mf | times: 100 | round
+    else
+      assign fourniture = fourniture | times: 100
     endif
-    if v.metafields.custom.pose.value != blank
-      assign pose = v.metafields.custom.pose.value | times: 100 | round
+    if mp != blank
+      assign pose = mp | times: 100 | round
+    else
+      assign pose = pose | times: 100
     endif
     if card_title == blank
       assign card_title = product.title
@@ -28,7 +35,7 @@
   endif
 
   assign total = fourniture | plus: pose
-  if product != blank and fourniture == 0 and pose == 0
+  if product != blank
     assign total = v.price
   endif
 -%}
