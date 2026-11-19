@@ -114,6 +114,7 @@
 .cl-trust__item { display: flex; gap: .9rem; align-items: flex-start; padding: 1.35rem 1.25rem; border-right: var(--cl-hair); }
 .cl-trust__item:last-child { border-right: 0; }
 @media (max-width: 899px) { .cl-trust__item:nth-child(2n) { border-right: 0; } .cl-trust__item { border-bottom: var(--cl-hair); } }
+@media (max-width: 599px) { .cl-trust__list { grid-template-columns: 1fr; } .cl-trust__item { border-right: 0; padding: .9rem 1rem; align-items: center; } .cl-trust__item:last-child { border-bottom: 0; } .cl-trust__item strong { font-size: .88rem; } .cl-trust__item span { font-size: .78rem; } }
 .cl-trust__icon { flex: none; width: 2.25rem; height: 2.25rem; display: grid; place-items: center; border-radius: 50%; border: var(--cl-hair); color: rgb(var(--cl-accent-text)); }
 .cl-trust__icon svg { width: 1.1rem; height: 1.1rem; }
 .cl-trust__item strong { display: block; font-size: .92rem; font-weight: 600; }

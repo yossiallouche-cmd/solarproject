@@ -498,14 +498,14 @@
         "type": "text",
         "id": "clarte_heading_font",
         "label": "Police de titres (Google Fonts)",
-        "default": "Bricolage Grotesque",
+        "default": "Fraunces",
         "info": "Nom exact de la police sur fonts.google.com. Laisser vide pour utiliser la police de titres Shopify ci-dessus."
       },
       {
         "type": "text",
         "id": "clarte_heading_font_weights",
         "label": "Graisses à charger",
-        "default": "500;600;700;800",
+        "default": "500;600",
         "info": "Séparées par des points-virgules, ex. 500;700"
       },
       {
