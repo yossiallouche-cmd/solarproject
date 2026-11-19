@@ -139,7 +139,9 @@
         "c3",
         "disclosures"
       ],
-      "settings": {}
+      "settings": {
+        "show_fixed_add_to_cart": false
+      }
     },
     "related-products": {
       "type": "related-products",
