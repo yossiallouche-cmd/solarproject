@@ -1,0 +1,53 @@
+{%- comment -%}
+  CLARTÉ — Résolution des prix fourniture / pose d'une variante
+  ----------------------------------------------------------------------------------------------------------------------
+  Source 1 : métachamps de variante custom.fourniture / custom.pose / custom.panneaux / custom.kwc (saisie manuelle).
+  Source 2 : métachamp produit custom.grille_pose (texte multiligne, importable par CSV), une ligne par SKU :
+             SKU|fourniture|pose|panneaux|kWc   (montants en euros, champs vides autorisés)
+
+  Rend une chaîne "fourniture_cents|pose_cents|panneaux|kwc" à découper par l'appelant :
+    {%- capture vp -%}{%- render 'clarte-variant-prices', product: product, variant: v -%}{%- endcapture -%}
+    {%- assign vp = vp | split: '|' -%}   → vp[0] fourniture (centimes), vp[1] pose (centimes), vp[2] panneaux, vp[3] kWc
+{%- endcomment -%}
+
+{%- liquid
+  assign f = variant.metafields.custom.fourniture.value
+  assign p = variant.metafields.custom.pose.value
+  assign n = variant.metafields.custom.panneaux.value
+  assign k = variant.metafields.custom.kwc.value
+
+  if f == blank or p == blank
+    assign grille = product.metafields.custom.grille_pose.value
+    if grille != blank and variant.sku != blank
+      assign lines = grille | newline_to_br | split: '<br />'
+      assign needle = variant.sku | append: '|'
+      for line in lines
+        assign l = line | strip
+        if l contains needle
+          assign parts = l | split: '|'
+          if parts[0] == variant.sku
+            if f == blank
+              assign f = parts[1]
+            endif
+            if p == blank
+              assign p = parts[2]
+            endif
+            if n == blank
+              assign n = parts[3]
+            endif
+            if k == blank
+              assign k = parts[4]
+            endif
+            break
+          endif
+        endif
+      endfor
+    endif
+  endif
+
+  assign f_cents = f | default: 0 | times: 100 | round
+  assign p_cents = p | default: 0 | times: 100 | round
+  assign n = n | default: 0
+  assign k = k | default: 0
+-%}
+{{- f_cents }}|{{ p_cents }}|{{ n | strip }}|{{ k | strip -}}

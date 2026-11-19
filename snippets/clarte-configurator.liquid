@@ -4,13 +4,12 @@
   deviennent des cartes. Un aperçu SVG (vue de dessus) et un récapitulatif (panneaux, kWc, surface) se mettent à
   jour en direct. La sélection pilote le sélecteur de variantes d'Impact, qui reste présent mais masqué.
 
-  Prix lus dans le métachamp produit custom.prix_pose (JSON par SKU : f, p, n, kwc) ou, s'ils existent, dans les métachamps de variante.
+  Prix, panneaux et kWc lus via le snippet clarte-variant-prices (grille produit custom.grille_pose ou métachamps de variante).
 
   * product, product_form_id, block
 {%- endcomment -%}
 
 {%- assign b = block.settings -%}
-{%- assign grid = product.metafields.custom.prix_pose.value -%}
 
 <style>
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="variant-picker"] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -26,12 +25,10 @@
       ],
       "variants": [
         {%- for v in product.variants -%}
-          {%- assign gv = grid[v.sku] -%}
+          {%- capture vpv -%}{%- render 'clarte-variant-prices', product: product, variant: v -%}{%- endcapture -%}
+          {%- assign vpv = vpv | split: '|' -%}
           { "id": {{ v.id }}, "options": {{ v.options | json }}, "price": {{ v.price }}, "available": {{ v.available }},
-            "f": {{ v.metafields.custom.fourniture.value | default: gv.f | default: 0 | times: 100 | round }},
-            "p": {{ v.metafields.custom.pose.value | default: gv.p | default: 0 | times: 100 | round }},
-            "panels": {{ v.metafields.custom.panneaux.value | default: gv.n | default: 0 }},
-            "kwc": {{ v.metafields.custom.kwc.value | default: gv.kwc | default: 0 }} }{% unless forloop.last %},{% endunless %}
+            "f": {{ vpv[0] | plus: 0 }}, "p": {{ vpv[1] | plus: 0 }}, "panels": {{ vpv[2] | default: 0 | plus: 0 }}, "kwc": {{ vpv[3] | default: 0 | plus: 0.0 }} }{% unless forloop.last %},{% endunless %}
         {%- endfor -%}
       ],
       "selected": {{ product.selected_or_first_available_variant.options | json }}

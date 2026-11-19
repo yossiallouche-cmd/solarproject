@@ -13,16 +13,19 @@
 
   if product != blank
     assign v = product.selected_or_first_available_variant
-    assign g = product.metafields.custom.prix_pose.value[v.sku]
-    assign mf = v.metafields.custom.fourniture.value | default: g.f
-    assign mp = v.metafields.custom.pose.value | default: g.p
-    if mf != blank
-      assign fourniture = mf | times: 100 | round
+    capture vp
+      render 'clarte-variant-prices', product: product, variant: v
+    endcapture
+    assign vp = vp | split: '|'
+    assign mf = vp[0] | plus: 0
+    assign mp = vp[1] | plus: 0
+    if mf > 0
+      assign fourniture = mf
     else
       assign fourniture = fourniture | times: 100
     endif
-    if mp != blank
-      assign pose = mp | times: 100 | round
+    if mp > 0
+      assign pose = mp
     else
       assign pose = pose | times: 100
     endif
