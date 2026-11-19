@@ -83,36 +83,7 @@
         {%- endif -%}
       </div>
 
-      {%- assign cats = section.blocks | where: 'type', 'category' -%}
-      {%- if cats.size > 0 -%}
-        <nav class="cl-hero__cats" aria-label="Nos univers">
-          {%- for block in cats -%}
-            {%- liquid
-              assign b = block.settings
-              assign url = b.url
-              if url == blank and b.collection != blank
-                assign url = b.collection.url
-              endif
-              assign label = b.title
-              if label == blank and b.collection != blank
-                assign label = b.collection.title
-              endif
-              assign price = nil
-              if b.collection != blank
-                assign cheapest = b.collection.products | sort: 'price_min' | first
-                if cheapest
-                  assign price = cheapest.price_min
-                endif
-              endif
-            -%}
-            <a class="cl-hero__cat" href="{{ url | default: '#' }}" {{ block.shopify_attributes }}>
-              <span class="cl-hero__cat-icon">{%- render 'clarte-icon', icon: b.icon -%}</span>
-              <span class="cl-hero__cat-label">{{ label | escape }}</span>
-              {%- if price -%}<span class="cl-hero__cat-price">dès {{ price | money_without_trailing_zeros }}</span>{%- endif -%}
-            </a>
-          {%- endfor -%}
-        </nav>
-      {%- endif -%}
+
 
       <div class="cl-hero__side">
 
@@ -134,6 +105,36 @@
         {%- endif -%}
       </div>
     </div>
+    {%- assign cats = section.blocks | where: 'type', 'category' -%}
+    {%- if cats.size > 0 -%}
+      <nav class="cl-hero__cats" aria-label="Nos univers">
+        {%- for block in cats -%}
+          {%- liquid
+            assign b = block.settings
+            assign url = b.url
+            if url == blank and b.collection != blank
+              assign url = b.collection.url
+            endif
+            assign label = b.title
+            if label == blank and b.collection != blank
+              assign label = b.collection.title
+            endif
+            assign price = nil
+            if b.collection != blank
+              assign cheapest = b.collection.products | sort: 'price_min' | first
+              if cheapest
+                assign price = cheapest.price_min
+              endif
+            endif
+          -%}
+          <a class="cl-hero__cat" href="{{ url | default: '#' }}" {{ block.shopify_attributes }}>
+            <span class="cl-hero__cat-icon">{%- render 'clarte-icon', icon: b.icon -%}</span>
+            <span class="cl-hero__cat-label">{{ label | escape }}</span>
+            {%- if price -%}<span class="cl-hero__cat-price">dès {{ price | money_without_trailing_zeros }}</span>{%- endif -%}
+          </a>
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
   </div>
 </section>
 

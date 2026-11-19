@@ -357,7 +357,7 @@ clarte-configurator, clarte-rdv, clarte-installation, clarte-projection, clarte-
 .cl-hero__cat-icon svg { width: 1rem; height: 1rem; }
 .cl-hero__cat-label { font-weight: 600; font-size: .9rem; line-height: 1.15; }
 .cl-hero__cat-price { font-size: .72rem; opacity: .75; }
-.cl-hero__grid > .cl-hero__cats { grid-column: 1 / -1; margin-top: 0; }
+.cl-hero__cats { margin-top: 2.5rem; }
 
 /* Comparatif */
 .cl-compare .cl-eyebrow { color: rgb(var(--cl-accent)); }
