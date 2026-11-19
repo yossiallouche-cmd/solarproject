@@ -417,6 +417,11 @@
             {%- render 'clarte-installation', product: product, product_form_id: product_form_id, block: block -%}
           {%- endif -%}
 
+        {%- when 'clarte_configurator' -%}
+          {%- if product.has_only_default_variant == false -%}
+            {%- render 'clarte-configurator', product: product, product_form_id: product_form_id, block: block -%}
+          {%- endif -%}
+
         {%- when 'clarte_includes' -%}
           {%- if block.settings.items != blank -%}
             <div class="product-info__text v-stack gap-3">

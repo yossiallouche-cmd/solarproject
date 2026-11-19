@@ -337,3 +337,22 @@
   .cl-reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
   .cl-reveal.is-visible { opacity: 1; transform: none; }
 }
+
+/* ---------- Fiche produit : configurateur visuel ------------------------ */
+.cl-config { display: grid; gap: 1rem; }
+.cl-config__title { font-weight: 600; font-size: .95rem; margin: 0; }
+.cl-config__preview { display: grid; gap: .75rem; padding: 1rem; border-radius: var(--cl-radius); background: rgb(var(--cl-paper)); border: 1px solid rgb(var(--cl-line)); }
+.cl-config__preview svg { width: 100%; height: auto; display: block; }
+.cl-config__facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; }
+.cl-config__facts span { display: grid; gap: .1rem; text-align: center; }
+.cl-config__facts strong { font-family: var(--heading-font-family); font-size: 1.05rem; letter-spacing: -0.01em; white-space: nowrap; }
+.cl-config__facts small { font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; color: rgb(var(--cl-muted)); }
+.cl-config__options { display: grid; gap: 1rem; }
+.cl-config__opt-label { margin: 0 0 .5rem; font-size: .9rem; font-weight: 600; }
+.cl-config__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: .5rem; }
+.cl-config__card { position: relative; cursor: pointer; }
+.cl-config__card input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.cl-config__card span { display: block; padding: .75rem .9rem; border-radius: var(--cl-radius-sm); border: 1.5px solid rgb(var(--cl-line)); background: #fff; font-size: .9rem; font-weight: 600; text-align: center; transition: border-color .2s, box-shadow .2s; }
+.cl-config__card input:checked + span { border-color: rgb(var(--cl-ink)); box-shadow: 0 0 0 1.5px rgb(var(--cl-ink)); }
+.cl-config__card input:focus-visible + span { outline: 2px solid rgb(var(--cl-accent)); outline-offset: 2px; }
+.cl-config__note { margin: 0; font-size: .82rem; color: rgb(var(--cl-muted)); }
