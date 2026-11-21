@@ -557,7 +557,11 @@ class ClarteClimAdvisor extends HTMLElement {
 
   answer(name, value) {
     this.answers[name] = value;
-    if (name === 'rooms') delete this.answers.surface;
+    if (name === 'rooms') {
+      delete this.answers.surface;
+      // Le nombre de pièces est appliqué tout de suite au produit, la puissance suit à l'étape suivante
+      if (value !== '__more' && this.roomsIdx >= 0) { const values = []; values[this.roomsIdx] = value; clarteSelectOptions(this.form, values); }
+    }
     this.render(true);
   }
 
