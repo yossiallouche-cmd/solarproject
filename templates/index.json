@@ -137,7 +137,7 @@
             "collection": "carports-solaires",
             "image": "shopify://shop_images/pexels-photo-9800008.jpg",
             "title": "Carports solaires",
-            "heading_tag": "h3",
+            "heading_tag": "h4",
             "text_position": "place-self-end-start text-start",
             "overlay_opacity": 30
           }
@@ -148,7 +148,7 @@
             "collection": "panneaux-solaires",
             "image": "shopify://shop_images/guide-aides-etat-solaire.jpg",
             "title": "Panneaux solaires",
-            "heading_tag": "h3",
+            "heading_tag": "h4",
             "text_position": "place-self-end-start text-start",
             "overlay_opacity": 30
           }
@@ -159,7 +159,7 @@
             "collection": "solaire-batterie",
             "image": "shopify://shop_images/pexels-photo-39057090.jpg",
             "title": "Solaire + batterie",
-            "heading_tag": "h3",
+            "heading_tag": "h4",
             "text_position": "place-self-end-start text-start",
             "overlay_opacity": 30
           }
@@ -170,7 +170,7 @@
             "collection": "pompes-a-chaleur",
             "image": "shopify://shop_images/pexels-photo-20046692.jpg",
             "title": "Pompes à chaleur",
-            "heading_tag": "h3",
+            "heading_tag": "h4",
             "text_position": "place-self-end-start text-start",
             "overlay_opacity": 30
           }
@@ -181,7 +181,7 @@
             "collection": "climatisation",
             "image": "shopify://shop_images/pexels-photo-39318564.jpg",
             "title": "Climatisation",
-            "heading_tag": "h3",
+            "heading_tag": "h4",
             "text_position": "place-self-end-start text-start",
             "overlay_opacity": 30
           }
@@ -192,7 +192,7 @@
             "collection": "pergolas-solaires",
             "image": "shopify://shop_images/pexels-photo-18861439.jpg",
             "title": "Pergolas solaires",
-            "heading_tag": "h3",
+            "heading_tag": "h4",
             "text_position": "place-self-end-start text-start",
             "overlay_opacity": 30
           }
