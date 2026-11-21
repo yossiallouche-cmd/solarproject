@@ -1,167 +1,104 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
       "type": "main-page",
       "settings": {}
     },
-    "steps": {
-      "type": "clarte-steps",
+    "parcours": {
+      "type": "timeline",
+      "settings": {
+        "full_width": true
+      },
       "blocks": {
-        "e1": {
-          "type": "step",
+        "t1": {
+          "type": "slide",
           "settings": {
-            "when": "Aujourd'hui",
-            "title": "Vous configurez et commandez",
-            "text": "<p>Choisissez votre produit, les options, voyez le prix posé et validez avec 30 % d'acompte. Le solde est réglé après la pose.</p>"
+            "image": "shopify://shop_images/clarte-famille-maison.jpg",
+            "navigation_label": "Commande",
+            "subheading": "Étape 1",
+            "title": "Vous commandez en ligne",
+            "content": "<p>Vous choisissez votre installation et ses options. Le prix posé est affiché, vous réglez un acompte de 30 %.</p>"
           }
         },
-        "e2": {
-          "type": "step",
+        "t2": {
+          "type": "slide",
           "settings": {
-            "when": "Sous [appel] h",
-            "title": "Un technicien vous appelle",
-            "text": "<p>Appel technique offert : toiture, tableau électrique, accès, photos. On confirme la faisabilité et on fixe la date de pose.</p>",
-            "accent": true
+            "image": "shopify://shop_images/pexels-photo-9875405.jpg",
+            "navigation_label": "Appel technique",
+            "subheading": "Étape 2",
+            "title": "Un technicien vous appelle sous 48 h",
+            "content": "<p>Toiture, tableau électrique, accès : il valide la faisabilité avec vous et fixe la date de pose.</p>"
           }
         },
-        "e3": {
-          "type": "step",
+        "t3": {
+          "type": "slide",
           "settings": {
-            "when": "Sous [pose] jours",
-            "title": "Vérification et pose le même jour",
-            "text": "<p>L'équipe arrive, vérifie sur place, installe et met en service. Une seule journée chez vous, aucun supplément.</p>"
+            "image": "shopify://shop_images/clarte-technicien-pose.jpg",
+            "navigation_label": "Pose",
+            "subheading": "Étape 3",
+            "title": "Installation en une journée",
+            "content": "<p>Sous 14 jours, l’équipe vérifie sur place puis installe. Une seule visite, pas de supplément.</p>"
+          }
+        },
+        "t4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/clarte-hero-toiture-solaire.jpg",
+            "navigation_label": "Mise en service",
+            "subheading": "Étape 4",
+            "title": "Démarches et mise en service",
+            "content": "<p>Consuel, Enedis, déclaration en mairie : nous nous en occupons. Vous réglez le solde une fois l’installation en service.</p>"
           }
         }
       },
       "block_order": [
-        "e1",
-        "e2",
-        "e3"
-      ],
-      "settings": {
-        "eyebrow": "Comment ça marche",
-        "title": "<p>Trois étapes. <em>Une seule visite.</em></p>",
-        "text": "<p>Pas de pré-visite : un technicien vous appelle, puis l'équipe vérifie et pose le même jour. Vous ne bloquez qu'une journée.</p>",
-        "show_express": true,
-        "express_text": "<p><strong>Pressé ?</strong> Pose express sous [express] h pour [prix], au choix sur la fiche produit.</p>",
-        "express_price_fallback": "99 €",
-        "express_link_text": "Comment ça marche",
-        "express_link_url": "/pages/comment-ca-marche",
-        "background": "#F6F4EE",
-        "text_color": "#0E1A2B"
-      }
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
     },
-    "transparency": {
-      "type": "clarte-transparency",
+    "chiffres": {
+      "type": "impact-text",
+      "settings": {
+        "full_width": true,
+        "stack_mobile": true,
+        "text_alignment": "center",
+        "impact_text_style": "fill",
+        "text_divider": "line",
+        "impact_text_size_ratio": 1
+      },
       "blocks": {
-        "s1": {
-          "type": "stat",
+        "n1": {
+          "type": "item",
           "settings": {
-            "value": "0 €",
-            "label": "de frais cachés le jour de la pose"
+            "title": "48 h",
+            "content": "<p>pour être rappelé par un technicien</p>",
+            "animate_impact_text": false
           }
         },
-        "s2": {
-          "type": "stat",
+        "n2": {
+          "type": "item",
           "settings": {
-            "value": "48 h",
-            "label": "pour votre appel technique offert"
+            "title": "14 jours",
+            "content": "<p>entre la commande et la pose</p>",
+            "animate_impact_text": false
           }
         },
-        "s3": {
-          "type": "stat",
+        "n3": {
+          "type": "item",
           "settings": {
-            "value": "14 j",
-            "label": "entre la commande et la pose"
-          }
-        },
-        "l1": {
-          "type": "line",
-          "settings": {
-            "label": "Connaître le prix",
-            "before": "Après devis, 1 à 3 semaines",
-            "after": "Affiché sur la fiche produit"
-          }
-        },
-        "l2": {
-          "type": "line",
-          "settings": {
-            "label": "Visite technique",
-            "before": "1 à 2 déplacements",
-            "after": "Appel offert sous 48 h"
-          }
-        },
-        "l3": {
-          "type": "line",
-          "settings": {
-            "label": "Immobilisation",
-            "before": "Visite puis pose, 2 journées",
-            "after": "Vérification + pose, 1 journée"
-          }
-        },
-        "l4": {
-          "type": "line",
-          "settings": {
-            "label": "Suppléments le jour J",
-            "before": "Fréquents",
-            "after": "Aucun"
+            "title": "0 €",
+            "content": "<p>de supplément le jour de l’installation</p>",
+            "animate_impact_text": false
           }
         }
       },
       "block_order": [
-        "s1",
-        "s2",
-        "s3",
-        "l1",
-        "l2",
-        "l3",
-        "l4"
-      ],
-      "settings": {
-        "eyebrow": "Notre différence",
-        "title": "<p>Le prix que vous voyez <em>est le prix que vous payez.</em></p>",
-        "text": "<p>Ailleurs, le prix arrive après trois devis et deux visites. Ici, il est affiché avant même que vous nous parliez. Fourniture, pose, mise en service : tout est compris, et rien n'est ajouté le jour J.</p>",
-        "compare_before_title": "Devis classique",
-        "compare_after_title": "Ici",
-        "total_label": "Délai avant un prix ferme",
-        "before_total": "3 à 6 semaines",
-        "after_total": "Immédiat",
-        "background": "#0E1A2B",
-        "text_color": "#F6F4EE"
-      }
-    },
-    "projection": {
-      "type": "clarte-projection",
-      "settings": {
-        "eyebrow": "Projetez-vous",
-        "title": "<p>Combien vous <em>économisez</em> vraiment ?</p>",
-        "text": "<p>Réglez votre facture actuelle : on estime vos économies année après année avec un kit solaire 6 panneaux posé. Une estimation prudente, affinée lors de votre appel technique.</p>",
-        "button_text": "Voir les kits solaires",
-        "button_url": "/collections/panneaux-solaires",
-        "saving_rate": 45,
-        "inflation": 4,
-        "reference_price": 3300,
-        "years": 20,
-        "bill_label": "Ma facture d'électricité par mois",
-        "bill_min": 50,
-        "bill_max": 400,
-        "bill_default": 150,
-        "kpi_year_label": "Économie la 1re année",
-        "kpi_total_label": "Sur [ans] ans",
-        "kpi_roi_label": "Rentabilisé en",
-        "legend": "Économies annuelles estimées sur [ans] ans, pour un kit posé à [prix] €. Barre ambre : première année.",
-        "background": "#FFFFFF",
-        "text_color": "#0E1A2B"
-      }
+        "n1",
+        "n2",
+        "n3"
+      ]
     },
     "faq": {
       "type": "faq",
@@ -218,45 +155,22 @@
         "q6"
       ],
       "settings": {
-        "full_width": true,
-        "subheading": "Questions fréquentes",
-        "title": "Tout ce qu'on nous demande avant de commander",
+        "full_width": false,
+        "subheading": "",
+        "title": "Questions fréquentes",
         "content": "<p>Une autre question ? Appelez-nous ou écrivez-nous, on répond vite.</p>",
         "support_hours": "Du lundi au samedi, 9 h – 19 h.",
         "answer_time": "Réponse en moins de 24 h",
         "button_text": "Nous écrire",
         "button_url": "/pages/contact",
-        "text_position": "start",
-        "background": "#F6F4EE",
-        "text_color": "#0E1A2B",
-        "accordion_background": "#FFFFFF",
-        "accordion_text_color": "#0E1A2B"
-      }
-    },
-    "cta": {
-      "type": "clarte-cta",
-      "settings": {
-        "eyebrow": "Prêt à passer au prix affiché ?",
-        "title": "<p>Configurez votre installation. <em>Le prix s'affiche, vous décidez.</em></p>",
-        "text": "<p>Sans devis, sans visite préalable, sans engagement avant la commande. Un technicien vous appelle sous 48 h.</p>",
-        "button_text": "Estimer mon projet",
-        "button_url": "/collections/all",
-        "button_2_text": "Poser une question",
-        "button_2_url": "/pages/contact",
-        "note": "Réponse sous 24 h ouvrées · du lundi au samedi",
-        "background": "#F6F4EE",
-        "box_background": "#0E1A2B",
-        "box_text_color": "#F6F4EE",
-        "image": "shopify://shop_images/clarte-famille-maison.jpg"
+        "text_position": "start"
       }
     }
   },
   "order": [
     "main",
-    "steps",
-    "transparency",
-    "projection",
-    "faq",
-    "cta"
+    "parcours",
+    "chiffres",
+    "faq"
   ]
 }

@@ -1,72 +1,198 @@
 {
   "sections": {
-    "hero": {
-      "type": "clarte-hero",
+    "slideshow": {
+      "type": "slideshow",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": true,
+        "show_initial_transition": false,
+        "image_size": "lg",
+        "controls_type": "numbers",
+        "transition_type": "fade_with_text",
+        "autoplay": true,
+        "cycle_speed": 6
+      },
+      "blocks": {
+        "s1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/clarte-hero-toiture-solaire.jpg",
+            "content_max_width": 780,
+            "mobile_text_position": "place-self-end-start text-start",
+            "desktop_text_position": "sm:place-self-end-start sm:text-start",
+            "subheading": "Panneaux solaires",
+            "title": "Le solaire posé chez vous, au prix affiché",
+            "heading_tag": "h0",
+            "button_text": "Voir les kits solaires",
+            "button_link": "shopify://collections/panneaux-solaires",
+            "overlay_opacity": 35
+          }
+        },
+        "s2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/clarte-carport-solaire.jpg",
+            "content_max_width": 780,
+            "mobile_text_position": "place-self-end-start text-start",
+            "desktop_text_position": "sm:place-self-end-start sm:text-start",
+            "subheading": "Carports solaires",
+            "title": "Un abri pour la voiture, de l’électricité pour la maison",
+            "heading_tag": "h0",
+            "button_text": "Configurer mon carport",
+            "button_link": "shopify://products/carport-solaire-metal",
+            "overlay_opacity": 35
+          }
+        },
+        "s3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-38067323.jpg",
+            "content_max_width": 780,
+            "mobile_text_position": "place-self-end-start text-start",
+            "desktop_text_position": "sm:place-self-end-start sm:text-start",
+            "subheading": "Chauffage et climatisation",
+            "title": "Pompes à chaleur et climatisation, pose incluse",
+            "heading_tag": "h0",
+            "button_text": "Découvrir",
+            "button_link": "shopify://collections/pompes-a-chaleur",
+            "overlay_opacity": 35
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "reassurance": {
+      "type": "text-with-icons",
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "text_alignment": "center",
+        "icon_spacing": "medium"
+      },
+      "blocks": {
+        "i1": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-money",
+            "icon_background_type": "none",
+            "title": "Prix affiché, pose incluse",
+            "content": "<p>Fourniture, pose et mise en service comprises.</p>"
+          }
+        },
+        "i2": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-phone",
+            "icon_background_type": "none",
+            "title": "Appel technique offert",
+            "content": "<p>Un technicien vous rappelle sous 48 h.</p>"
+          }
+        },
+        "i3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-timer",
+            "icon_background_type": "none",
+            "title": "Pose sous 14 jours",
+            "content": "<p>Vérification et installation le même jour.</p>"
+          }
+        },
+        "i4": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-shield",
+            "icon_background_type": "none",
+            "title": "Garantie décennale",
+            "content": "<p>Installateurs certifiés RGE.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ]
+    },
+    "univers": {
+      "type": "collection-list",
+      "settings": {
+        "full_width": true,
+        "stack_collections": true,
+        "collections_per_row_mobile": "2",
+        "collections_per_row": 3,
+        "show_progress_bar": false,
+        "title": "Nos univers"
+      },
       "blocks": {
         "c1": {
-          "type": "chip",
+          "type": "collection",
           "settings": {
-            "text": "Prix affichés, pose incluse"
+            "collection": "carports-solaires",
+            "image": "shopify://shop_images/pexels-photo-9800008.jpg",
+            "title": "Carports solaires",
+            "heading_tag": "h3",
+            "text_position": "place-self-end-start text-start",
+            "overlay_opacity": 30
           }
         },
         "c2": {
-          "type": "chip",
+          "type": "collection",
           "settings": {
-            "text": "Appel technique offert sous 48 h"
+            "collection": "panneaux-solaires",
+            "image": "shopify://shop_images/guide-aides-etat-solaire.jpg",
+            "title": "Panneaux solaires",
+            "heading_tag": "h3",
+            "text_position": "place-self-end-start text-start",
+            "overlay_opacity": 30
           }
         },
         "c3": {
-          "type": "chip",
-          "settings": {
-            "text": "Pose sous 14 jours, une seule visite"
-          }
-        },
-        "k1": {
-          "type": "category",
-          "settings": {
-            "collection": "carports-solaires",
-            "title": "Carports solaires",
-            "icon": "carport"
-          }
-        },
-        "k2": {
-          "type": "category",
-          "settings": {
-            "collection": "panneaux-solaires",
-            "title": "Panneaux solaires",
-            "icon": "sun"
-          }
-        },
-        "k3": {
-          "type": "category",
+          "type": "collection",
           "settings": {
             "collection": "solaire-batterie",
+            "image": "shopify://shop_images/pexels-photo-39057090.jpg",
             "title": "Solaire + batterie",
-            "icon": "battery"
+            "heading_tag": "h3",
+            "text_position": "place-self-end-start text-start",
+            "overlay_opacity": 30
           }
         },
-        "k4": {
-          "type": "category",
+        "c4": {
+          "type": "collection",
           "settings": {
             "collection": "pompes-a-chaleur",
+            "image": "shopify://shop_images/pexels-photo-20046692.jpg",
             "title": "Pompes à chaleur",
-            "icon": "flame"
+            "heading_tag": "h3",
+            "text_position": "place-self-end-start text-start",
+            "overlay_opacity": 30
           }
         },
-        "k5": {
-          "type": "category",
+        "c5": {
+          "type": "collection",
           "settings": {
             "collection": "climatisation",
+            "image": "shopify://shop_images/pexels-photo-39318564.jpg",
             "title": "Climatisation",
-            "icon": "snow"
+            "heading_tag": "h3",
+            "text_position": "place-self-end-start text-start",
+            "overlay_opacity": 30
           }
         },
-        "k6": {
-          "type": "category",
+        "c6": {
+          "type": "collection",
           "settings": {
             "collection": "pergolas-solaires",
+            "image": "shopify://shop_images/pexels-photo-33287940.jpg",
             "title": "Pergolas solaires",
-            "icon": "umbrella"
+            "heading_tag": "h3",
+            "text_position": "place-self-end-start text-start",
+            "overlay_opacity": 30
           }
         }
       },
@@ -74,71 +200,186 @@
         "c1",
         "c2",
         "c3",
-        "k1",
-        "k2",
-        "k3",
-        "k4",
-        "k5",
-        "k6"
-      ],
+        "c4",
+        "c5",
+        "c6"
+      ]
+    },
+    "bestsellers": {
+      "type": "featured-collection",
       "settings": {
-        "eyebrow": "Solaire · Batteries · Carports · Pompes à chaleur · Climatisation",
-        "title": "<p>L’énergie de votre maison, <em>posée au prix affiché.</em></p>",
-        "lead": "<p>Des panneaux au carport, de la pompe à chaleur à la clim : chaque prix comprend la fourniture et la pose par des installateurs certifiés. Vous commandez en ligne, on pose sous 14 jours.</p>",
-        "button_1_text": "Découvrir les best-sellers",
-        "button_1_url": "/collections/meilleures-ventes",
-        "button_2_text": "Configurer un carport",
-        "button_2_url": "/products/carport-solaire-metal",
-        "image": "shopify://shop_images/clarte-hero-toiture-solaire.jpg",
-        "image_alt": "Maison avec panneaux solaires en toiture",
-        "show_card": true,
-        "price_product": "kit-solaire-toiture",
-        "card_title": "Kit 6 panneaux · 3 kWc",
-        "card_badge": "Prix posé",
-        "manual_fourniture": 1500,
-        "manual_pose": 1800,
-        "label_fourniture": "Fourniture",
-        "label_pose": "Pose par installateur certifié",
-        "label_call": "Appel technique",
-        "label_free": "Offert",
-        "label_total": "Total posé",
-        "card_note": "TTC · acompte 30 % à la commande",
-        "card_link_text": "Configurer ce kit →"
+        "collection": "meilleures-ventes",
+        "full_width": true,
+        "stack_products": false,
+        "show_progress_bar": false,
+        "products_count": 8,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "title": "Meilleures ventes",
+        "link_url": "shopify://collections/meilleures-ventes",
+        "link_text": "Tout voir"
       }
     },
-    "trust": {
-      "type": "clarte-trust-bar",
+    "focus": {
+      "type": "media-with-text",
+      "settings": {
+        "full_width": false,
+        "alternate_media_position": true,
+        "spacing": "small"
+      },
       "blocks": {
-        "t1": {
+        "m1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/pexels-photo-33652618.jpg",
+            "media_width": 50,
+            "media_position": "start",
+            "text_position": "place-self-center-start text-start",
+            "icon": "none",
+            "subheading": "Produit phare",
+            "title": "Le carport solaire",
+            "content": "<p>Structure métal pour une ou deux voitures, ou bois sur mesure. Panneaux, onduleur, raccordement et déclaration en mairie compris. Vous choisissez les dimensions, le prix posé s’affiche.</p>",
+            "link_text": "Configurer mon carport",
+            "link_url": "shopify://products/carport-solaire-metal"
+          }
+        },
+        "m2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/clarte-technicien-pose.jpg",
+            "media_width": 50,
+            "media_position": "start",
+            "text_position": "place-self-center-start text-start",
+            "icon": "none",
+            "subheading": "Notre engagement",
+            "title": "Le prix affiché est le prix posé",
+            "content": "<p>Matériel, pose par un installateur certifié RGE, raccordement électrique, démarches (mairie, Consuel, Enedis) et mise en service. Rien n’est ajouté le jour de l’installation.</p>",
+            "link_text": "Comment ça marche",
+            "link_url": "/pages/comment-ca-marche"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2"
+      ]
+    },
+    "chiffres": {
+      "type": "impact-text",
+      "settings": {
+        "full_width": true,
+        "stack_mobile": true,
+        "text_alignment": "center",
+        "impact_text_style": "fill",
+        "text_divider": "line",
+        "impact_text_size_ratio": 1
+      },
+      "blocks": {
+        "n1": {
           "type": "item",
           "settings": {
-            "icon": "euro",
-            "title": "Prix affichés, pose incluse",
-            "text": "Fourniture + pose, TTC, sans devis"
+            "title": "48 h",
+            "content": "<p>pour être rappelé par un technicien</p>",
+            "animate_impact_text": false
+          }
+        },
+        "n2": {
+          "type": "item",
+          "settings": {
+            "title": "14 jours",
+            "content": "<p>entre la commande et la pose</p>",
+            "animate_impact_text": false
+          }
+        },
+        "n3": {
+          "type": "item",
+          "settings": {
+            "title": "0 €",
+            "content": "<p>de supplément le jour de l’installation</p>",
+            "animate_impact_text": false
+          }
+        }
+      },
+      "block_order": [
+        "n1",
+        "n2",
+        "n3"
+      ]
+    },
+    "solaire": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "panneaux-solaires",
+        "full_width": true,
+        "stack_products": false,
+        "show_progress_bar": false,
+        "products_count": 8,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "title": "Panneaux solaires",
+        "link_url": "shopify://collections/panneaux-solaires",
+        "link_text": "Tout voir"
+      }
+    },
+    "clim": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "climatisation",
+        "full_width": true,
+        "stack_products": false,
+        "show_progress_bar": false,
+        "products_count": 8,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "title": "Climatisation",
+        "link_url": "shopify://collections/climatisation",
+        "link_text": "Tout voir"
+      }
+    },
+    "parcours": {
+      "type": "timeline",
+      "settings": {
+        "full_width": true
+      },
+      "blocks": {
+        "t1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/clarte-famille-maison.jpg",
+            "navigation_label": "Commande",
+            "subheading": "Étape 1",
+            "title": "Vous commandez en ligne",
+            "content": "<p>Vous choisissez votre installation et ses options. Le prix posé est affiché, vous réglez un acompte de 30 %.</p>"
           }
         },
         "t2": {
-          "type": "item",
+          "type": "slide",
           "settings": {
-            "icon": "phone",
-            "title": "Appel technique offert",
-            "text": "Sous 48 h, avec un technicien"
+            "image": "shopify://shop_images/pexels-photo-9875405.jpg",
+            "navigation_label": "Appel technique",
+            "subheading": "Étape 2",
+            "title": "Un technicien vous appelle sous 48 h",
+            "content": "<p>Toiture, tableau électrique, accès : il valide la faisabilité avec vous et fixe la date de pose.</p>"
           }
         },
         "t3": {
-          "type": "item",
+          "type": "slide",
           "settings": {
-            "icon": "calendar",
-            "title": "Posé sous 14 jours",
-            "text": "Vérification et pose le même jour"
+            "image": "shopify://shop_images/clarte-technicien-pose.jpg",
+            "navigation_label": "Pose",
+            "subheading": "Étape 3",
+            "title": "Installation en une journée",
+            "content": "<p>Sous 14 jours, l’équipe vérifie sur place puis installe. Une seule visite, pas de supplément.</p>"
           }
         },
         "t4": {
-          "type": "item",
+          "type": "slide",
           "settings": {
-            "icon": "shield",
-            "title": "Garantie décennale",
-            "text": "Installateurs certifiés RGE"
+            "image": "shopify://shop_images/clarte-hero-toiture-solaire.jpg",
+            "navigation_label": "Mise en service",
+            "subheading": "Étape 4",
+            "title": "Démarches et mise en service",
+            "content": "<p>Consuel, Enedis, déclaration en mairie : nous nous en occupons. Vous réglez le solde une fois l’installation en service.</p>"
           }
         }
       },
@@ -147,383 +388,58 @@
         "t2",
         "t3",
         "t4"
-      ],
-      "settings": {
-        "background": "#FFFFFF",
-        "text_color": "#0E1A2B"
-      }
+      ]
     },
-    "feature": {
-      "type": "clarte-feature",
-      "blocks": {
-        "o1": {
-          "type": "option",
-          "settings": {
-            "title": "Carport métal 1 voiture",
-            "text": "3 × 5 m · 6 panneaux · 2,7 kWc",
-            "price_prefix": "dès",
-            "price_text": "5 999 €",
-            "url": "/collections/carports-solaires"
-          }
-        },
-        "o2": {
-          "type": "option",
-          "settings": {
-            "title": "Carport métal 2 voitures",
-            "text": "6 × 5 m · 12 panneaux · 5,4 kWc",
-            "price_prefix": "",
-            "price_text": "Prix dans le configurateur",
-            "url": "/collections/carports-solaires"
-          }
-        },
-        "o3": {
-          "type": "option",
-          "settings": {
-            "title": "Carport bois sur mesure",
-            "text": "Dimensions libres, prix instantané",
-            "price_prefix": "",
-            "price_text": "Sur mesure",
-            "url": "/collections/carports-solaires"
-          }
-        },
-        "f1": {
-          "type": "fact",
-          "settings": {
-            "text": "Plots béton, sans fondation"
-          }
-        },
-        "f2": {
-          "type": "fact",
-          "settings": {
-            "text": "Déclaration mairie fournie"
-          }
-        },
-        "f3": {
-          "type": "fact",
-          "settings": {
-            "text": "Borne de recharge en option"
-          }
-        }
-      },
-      "block_order": [
-        "o1",
-        "o2",
-        "o3",
-        "f1",
-        "f2",
-        "f3"
-      ],
+    "zone": {
+      "type": "image-with-text-overlay",
       "settings": {
-        "eyebrow": "Produit phare",
-        "title": "<p>Le carport solaire : abritez votre voiture, <em>produisez votre électricité.</em></p>",
-        "text": "<p>Structure métal pour 1 ou 2 voitures, ou bois sur mesure. Posé sur plots béton, sans fondation lourde, avec déclaration préalable en mairie fournie. Prix affiché, pose incluse.</p>",
-        "image": "shopify://shop_images/clarte-carport-solaire.jpg",
-        "badge": "À partir de 5 999 € posé",
-        "button_text": "Configurer mon carport",
-        "button_url": "/collections/carports-solaires",
-        "link_text": "Voir tous les carports",
-        "link_url": "/collections/carports-solaires",
-        "background": "#0E1A2B",
-        "text_color": "#F6F4EE"
-      }
-    },
-    "needs": {
-      "type": "clarte-needs",
-      "blocks": {
-        "n1": {
-          "type": "need",
-          "settings": {
-            "icon": "carport",
-            "kicker": "Carports solaires",
-            "title": "Abritez la voiture, produisez l’électricité",
-            "text": "Métal 1 ou 2 voitures, ou bois sur mesure. Borne de recharge en option.",
-            "collection": "carports-solaires"
-          }
-        },
-        "n2": {
-          "type": "need",
-          "settings": {
-            "icon": "sun",
-            "kicker": "Panneaux solaires",
-            "title": "Produire sur votre toit",
-            "text": "Kits complets de 3 à 9 kWc, posés en une journée.",
-            "collection": "panneaux-solaires"
-          }
-        },
-        "n3": {
-          "type": "need",
-          "settings": {
-            "icon": "battery",
-            "kicker": "Solaire + batterie",
-            "title": "Stocker pour le soir",
-            "text": "Autoconsommation maximale, mono ou triphasé.",
-            "collection": "solaire-batterie"
-          }
-        },
-        "n4": {
-          "type": "need",
-          "settings": {
-            "icon": "flame",
-            "kicker": "Pompes à chaleur",
-            "title": "Chauffer pour moins cher",
-            "text": "PAC air-eau Atlantic et Chappée, aides déduites.",
-            "collection": "pompes-a-chaleur"
-          }
-        },
-        "n5": {
-          "type": "need",
-          "settings": {
-            "icon": "snow",
-            "kicker": "Climatisation",
-            "title": "Rafraîchir l’été, chauffer l’hiver",
-            "text": "Murale ou console, posée et mise en service.",
-            "collection": "climatisation"
-          }
-        },
-        "n6": {
-          "type": "need",
-          "settings": {
-            "kicker": "Pergolas solaires",
-            "title": "Vivre dehors, produire dedans",
-            "text": "Bois, aluminium ou bioclimatique, à votre mesure.",
-            "collection": "pergolas-solaires",
-            "icon": "umbrella"
-          }
-        }
-      },
-      "block_order": [
-        "n1",
-        "n2",
-        "n3",
-        "n4",
-        "n5",
-        "n6"
-      ],
-      "settings": {
-        "eyebrow": "Nos univers",
-        "title": "<p>Tout ce qui fait baisser la facture, <em>posé chez vous.</em></p>",
-        "text": "<p>Six familles de produits, un seul principe : le prix que vous voyez est le prix posé.</p>",
-        "price_prefix": "à partir de",
-        "background": "#F6F4EE",
-        "text_color": "#0E1A2B"
-      }
-    },
-    "transparency": {
-      "type": "clarte-transparency",
-      "blocks": {
-        "s1": {
-          "type": "stat",
-          "settings": {
-            "value": "0 €",
-            "label": "de frais cachés le jour de la pose"
-          }
-        },
-        "s2": {
-          "type": "stat",
-          "settings": {
-            "value": "48 h",
-            "label": "pour votre appel technique offert"
-          }
-        },
-        "s3": {
-          "type": "stat",
-          "settings": {
-            "value": "14 j",
-            "label": "entre la commande et la pose"
-          }
-        },
-        "l1": {
-          "type": "line",
-          "settings": {
-            "label": "Connaître le prix",
-            "before": "Après devis, 1 à 3 semaines",
-            "after": "Affiché sur la fiche produit"
-          }
-        },
-        "l2": {
-          "type": "line",
-          "settings": {
-            "label": "Visite technique",
-            "before": "1 à 2 déplacements",
-            "after": "Appel offert sous 48 h"
-          }
-        },
-        "l3": {
-          "type": "line",
-          "settings": {
-            "label": "Immobilisation",
-            "before": "Visite puis pose, 2 journées",
-            "after": "Vérification + pose, 1 journée"
-          }
-        },
-        "l4": {
-          "type": "line",
-          "settings": {
-            "label": "Suppléments le jour J",
-            "before": "Fréquents",
-            "after": "Aucun"
-          }
-        }
-      },
-      "block_order": [
-        "s1",
-        "s2",
-        "s3",
-        "l1",
-        "l2",
-        "l3",
-        "l4"
-      ],
-      "settings": {
-        "eyebrow": "La promesse Clarté",
-        "title": "<p>Des chiffres, <em>pas des promesses.</em></p>",
-        "text": "<p>Ailleurs, le prix arrive après trois devis et deux visites. Ici, il est affiché avant même que vous nous parliez. Fourniture, pose, mise en service : tout est compris, et rien n'est ajouté le jour J.</p>",
-        "compare_before_title": "Devis classique",
-        "compare_after_title": "Ici",
-        "total_label": "Délai avant un prix ferme",
-        "before_total": "3 à 6 semaines",
-        "after_total": "Immédiat",
-        "background": "#0E1A2B",
-        "text_color": "#F6F4EE"
-      }
-    },
-    "bestsellers": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "meilleures-ventes",
         "full_width": true,
-        "stack_products": true,
-        "show_progress_bar": false,
-        "products_count": 8,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "subheading": "Nos best-sellers",
-        "title": "Les plus commandés ce mois-ci",
-        "content": "<p>Prix TTC, fourniture et pose comprises. Sans devis, sans surprise.</p>",
-        "link_url": "/collections/meilleures-ventes",
-        "link_text": "Tout voir"
-      }
-    },
-    "steps": {
-      "type": "clarte-steps",
+        "allow_transparent_header": false,
+        "enable_parallax": false,
+        "image_size": "md",
+        "image": "shopify://shop_images/guide-dimensionnement-panneaux.jpg",
+        "mobile_text_position": "place-self-center text-center",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 45
+      },
       "blocks": {
-        "e1": {
-          "type": "step",
+        "z1": {
+          "type": "subheading",
           "settings": {
-            "when": "Aujourd'hui",
-            "title": "Vous configurez et commandez",
-            "text": "<p>Choisissez votre produit, les options, voyez le prix posé et validez avec 30 % d'acompte. Le solde est réglé après la pose.</p>"
+            "text": "Île-de-France"
           }
         },
-        "e2": {
-          "type": "step",
+        "z2": {
+          "type": "heading",
           "settings": {
-            "when": "Sous [appel] h",
-            "title": "Un technicien vous appelle",
-            "text": "<p>Appel technique offert : toiture, tableau électrique, accès, photos. On confirme la faisabilité et on fixe la date de pose.</p>",
-            "accent": true
+            "text": "Des équipes locales, certifiées RGE",
+            "heading_tag": "h2"
           }
         },
-        "e3": {
-          "type": "step",
+        "z3": {
+          "type": "richtext",
           "settings": {
-            "when": "Sous [pose] jours",
-            "title": "Vérification et pose le même jour",
-            "text": "<p>L'équipe arrive, vérifie sur place, installe et met en service. Une seule journée chez vous, aucun supplément.</p>"
+            "content": "<p>Paris, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne, Yvelines, Essonne, Val-d’Oise et Seine-et-Marne.</p>"
+          }
+        },
+        "z4": {
+          "type": "button",
+          "settings": {
+            "style": "fill",
+            "size": "lg",
+            "text": "Nous contacter",
+            "url": "/pages/contact"
           }
         }
       },
       "block_order": [
-        "e1",
-        "e2",
-        "e3"
-      ],
-      "settings": {
-        "eyebrow": "Comment ça marche",
-        "title": "<p>Trois étapes. <em>Une seule visite.</em></p>",
-        "text": "<p>Pas de pré-visite : un technicien vous appelle, puis l'équipe vérifie et pose le même jour. Vous ne bloquez qu'une journée.</p>",
-        "show_express": true,
-        "express_text": "<p><strong>Pressé ?</strong> Pose express sous [express] h pour [prix], au choix sur la fiche produit.</p>",
-        "express_price_fallback": "99 €",
-        "express_link_text": "Comment ça marche",
-        "express_link_url": "/pages/comment-ca-marche",
-        "background": "#F6F4EE",
-        "text_color": "#0E1A2B"
-      }
-    },
-    "projection": {
-      "type": "clarte-projection",
-      "settings": {
-        "eyebrow": "Projetez-vous",
-        "title": "<p>Combien vous <em>économisez</em> vraiment ?</p>",
-        "text": "<p>Réglez votre facture actuelle : on estime vos économies année après année avec un kit solaire 6 panneaux posé. Une estimation prudente, affinée lors de votre appel technique.</p>",
-        "button_text": "Voir les kits solaires",
-        "button_url": "/collections/panneaux-solaires",
-        "saving_rate": 45,
-        "inflation": 4,
-        "reference_price": 3300,
-        "years": 20,
-        "bill_label": "Ma facture d'électricité par mois",
-        "bill_min": 50,
-        "bill_max": 400,
-        "bill_default": 150,
-        "kpi_year_label": "Économie la 1re année",
-        "kpi_total_label": "Sur [ans] ans",
-        "kpi_roi_label": "Rentabilisé en",
-        "legend": "Économies annuelles estimées sur [ans] ans, pour un kit posé à [prix] €. Barre ambre : première année.",
-        "background": "#FFFFFF",
-        "text_color": "#0E1A2B"
-      }
-    },
-    "guarantees": {
-      "type": "clarte-guarantees",
-      "blocks": {
-        "g1": {
-          "type": "item",
-          "settings": {
-            "icon": "shield",
-            "title": "Garantie décennale",
-            "text": "<p>L'installation est couverte 10 ans par notre assurance décennale, en plus des garanties fabricants (25 ans sur les panneaux).</p>"
-          }
-        },
-        "g2": {
-          "type": "item",
-          "settings": {
-            "icon": "tool",
-            "title": "Installateurs certifiés RGE",
-            "text": "<p>Chaque chantier est réalisé par une équipe certifiée RGE QualiPV / QualiPAC, sélectionnée et suivie par nous.</p>"
-          }
-        },
-        "g3": {
-          "type": "item",
-          "settings": {
-            "icon": "euro",
-            "title": "Prix ferme, solde après pose",
-            "text": "<p>30 % à la commande, le reste une fois l'installation mise en service. Aucun supplément le jour J.</p>"
-          }
-        },
-        "g4": {
-          "type": "item",
-          "settings": {
-            "icon": "phone",
-            "title": "Un seul interlocuteur",
-            "text": "<p>Avant, pendant et après : la même équipe répond, au téléphone comme par e-mail, pendant toute la vie de l'installation.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "g1",
-        "g2",
-        "g3",
-        "g4"
-      ],
-      "settings": {
-        "eyebrow": "Vous êtes couvert",
-        "title": "<p>Des garanties écrites, <em>pas des promesses.</em></p>",
-        "text": "<p>Nous sommes votre interlocuteur unique, de la commande au service après-vente. Nos installateurs sont certifiés et assurés, et nous le sommes aussi.</p>",
-        "background": "#0E1A2B",
-        "text_color": "#F6F4EE"
-      }
+        "z1",
+        "z2",
+        "z3",
+        "z4"
+      ]
     },
     "testimonials": {
       "type": "testimonials",
@@ -533,10 +449,37 @@
         "stack_testimonials": true,
         "subheading": "Ils ont choisi le prix affiché",
         "title": "Avis clients",
-        "content": "<p>Ajoutez ici vos premiers avis vérifiés.</p>",
-        "background": "#FFFFFF",
-        "text_color": "#0E1A2B"
+        "content": "<p>Ajoutez ici vos premiers avis vérifiés.</p>"
       }
+    },
+    "guides": {
+      "type": "blog-posts",
+      "settings": {
+        "full_width": true,
+        "show_excerpt": true,
+        "show_date": false,
+        "show_author": false,
+        "show_comments_count": false,
+        "show_category": true,
+        "subheading": "",
+        "title": "Guides et conseils",
+        "content": "",
+        "link_url": "/blogs/guides",
+        "link_text": "Tous les guides"
+      },
+      "blocks": {
+        "b1": {
+          "type": "blog",
+          "settings": {
+            "blog": "guides",
+            "posts_count": 3,
+            "stack_items": true
+          }
+        }
+      },
+      "block_order": [
+        "b1"
+      ]
     },
     "faq": {
       "type": "faq",
@@ -593,298 +536,42 @@
         "q6"
       ],
       "settings": {
-        "full_width": true,
-        "subheading": "Questions fréquentes",
-        "title": "Tout ce qu'on nous demande avant de commander",
+        "full_width": false,
+        "subheading": "",
+        "title": "Questions fréquentes",
         "content": "<p>Une autre question ? Appelez-nous ou écrivez-nous, on répond vite.</p>",
         "support_hours": "Du lundi au samedi, 9 h – 19 h.",
         "answer_time": "Réponse en moins de 24 h",
         "button_text": "Nous écrire",
         "button_url": "/pages/contact",
-        "text_position": "start",
-        "background": "#F6F4EE",
-        "text_color": "#0E1A2B",
-        "accordion_background": "#FFFFFF",
-        "accordion_text_color": "#0E1A2B"
+        "text_position": "start"
       }
-    },
-    "cta": {
-      "type": "clarte-cta",
-      "settings": {
-        "eyebrow": "Prêt à passer au prix affiché ?",
-        "title": "<p>Configurez votre installation. <em>Le prix s'affiche, vous décidez.</em></p>",
-        "text": "<p>Sans devis, sans visite préalable, sans engagement avant la commande. Un technicien vous appelle sous 48 h.</p>",
-        "button_text": "Estimer mon projet",
-        "button_url": "/collections/all",
-        "button_2_text": "Poser une question",
-        "button_2_url": "/pages/contact",
-        "note": "Réponse sous 24 h ouvrées · du lundi au samedi",
-        "image": "shopify://shop_images/clarte-famille-maison.jpg",
-        "background": "#F6F4EE",
-        "box_background": "#0E1A2B",
-        "box_text_color": "#F6F4EE"
-      }
-    },
-    "zones": {
-      "type": "clarte-zones",
-      "blocks": {
-        "z1": {
-          "type": "fact",
-          "settings": {
-            "text": "Aucun frais de déplacement, prix identique dans tous les départements"
-          }
-        },
-        "z2": {
-          "type": "fact",
-          "settings": {
-            "text": "Installateurs RGE QualiPV et QualiPAC basés en Île-de-France"
-          }
-        },
-        "z3": {
-          "type": "fact",
-          "settings": {
-            "text": "Déclaration préalable en mairie et demande de raccordement Enedis incluses"
-          }
-        }
-      },
-      "block_order": [
-        "z1",
-        "z2",
-        "z3"
-      ],
-      "settings": {
-        "eyebrow": "Où nous intervenons",
-        "title": "<p>Installé chez vous, <em>partout en Île-de-France.</em></p>",
-        "text": "<p>Nos équipes certifiées RGE interviennent dans toute l'Île-de-France. Le prix affiché est le même quel que soit votre département : aucun frais de déplacement.</p>",
-        "image": "shopify://shop_images/clarte-technicien-pose.jpg",
-        "background": "#FFFFFF",
-        "text_color": "#0E1A2B"
-      }
-    },
-    "u_solaire": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "panneaux-solaires",
-        "full_width": true,
-        "stack_products": true,
-        "products_count": 4,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "subheading": "Étape 01 · Produire",
-        "title": "Vos panneaux posés, dès 3 300 €",
-        "content": "<p>Toiture tuiles, intégration au bâti ou toit plat. Kits complets de 6 à 20 panneaux, raccordement et démarches compris.</p>",
-        "link_url": "/collections/panneaux-solaires",
-        "link_text": "Voir tous les kits solaires"
-      }
-    },
-    "u_stock": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "solaire-batterie",
-        "full_width": true,
-        "stack_products": true,
-        "products_count": 3,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 3,
-        "subheading": "Étape 02 · Stocker",
-        "title": "Le soleil, même la nuit",
-        "content": "<p>Kits solaire + batterie et batteries seules : consommez votre production le soir, posé et mis en service.</p>",
-        "link_url": "/collections/solaire-batterie",
-        "link_text": "Voir le stockage",
-        "background": "#0E1A2B",
-        "text_color": "#F6F4EE",
-        "heading_color": "#F6F4EE",
-        "product_card_background": "#15243A",
-        "product_card_text_color": "#F6F4EE"
-      }
-    },
-    "u_chauffage": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "pompes-a-chaleur",
-        "full_width": true,
-        "stack_products": true,
-        "products_count": 4,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "subheading": "Étape 03 · Chauffer & rafraîchir",
-        "title": "Pompes à chaleur et climatisation, posées",
-        "content": "<p>PAC air-eau Atlantic et Chappée, clim réversible Atlantic, Thermor et Airwell. Prix posé affiché, aides de l’État déduites quand vous y avez droit.</p>",
-        "link_url": "/collections/pompes-a-chaleur",
-        "link_text": "Voir le chauffage"
-      }
-    },
-    "u_clim": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "climatisation",
-        "full_width": true,
-        "stack_products": true,
-        "products_count": 4,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "subheading": "Confort d’été",
-        "title": "Climatisation réversible posée, dès 1 440 €",
-        "content": "<p>Murale ou console, liaison frigorifique jusqu’à 10 m et mise en service comprises.</p>",
-        "link_url": "/collections/climatisation",
-        "link_text": "Voir la climatisation"
-      }
-    },
-    "compare": {
-      "type": "clarte-compare",
-      "settings": {
-        "button_url": "/collections/meilleures-ventes"
-      },
-      "blocks": {
-        "r1": {
-          "type": "row",
-          "settings": {
-            "label": "Prix posé connu avant tout engagement",
-            "value_1": "oui",
-            "value_2": "non",
-            "value_3": "Matériel seul"
-          }
-        },
-        "r2": {
-          "type": "row",
-          "settings": {
-            "label": "Délai pour obtenir un prix",
-            "value_1": "Immédiat",
-            "value_2": "2 à 6 semaines",
-            "value_3": "Immédiat"
-          }
-        },
-        "r3": {
-          "type": "row",
-          "settings": {
-            "label": "Visite technique",
-            "value_1": "Appel offert sous 48 h",
-            "value_2": "Rendez-vous à planifier",
-            "value_3": "non"
-          }
-        },
-        "r4": {
-          "type": "row",
-          "settings": {
-            "label": "Pose par installateur certifié RGE",
-            "value_1": "oui",
-            "value_2": "oui",
-            "value_3": "non"
-          }
-        },
-        "r5": {
-          "type": "row",
-          "settings": {
-            "label": "Délai de pose",
-            "value_1": "Sous 14 jours",
-            "value_2": "1 à 3 mois",
-            "value_3": "Vous-même"
-          }
-        },
-        "r6": {
-          "type": "row",
-          "settings": {
-            "label": "Démarches (mairie, Consuel, Enedis)",
-            "value_1": "Incluses",
-            "value_2": "Variable",
-            "value_3": "non"
-          }
-        },
-        "r7": {
-          "type": "row",
-          "settings": {
-            "label": "Garantie décennale sur la pose",
-            "value_1": "oui",
-            "value_2": "oui",
-            "value_3": "non"
-          }
-        },
-        "r8": {
-          "type": "row",
-          "settings": {
-            "label": "Paiement en ligne, acompte 30 %",
-            "value_1": "oui",
-            "value_2": "non",
-            "value_3": "100 % à la commande"
-          }
-        }
-      },
-      "block_order": [
-        "r1",
-        "r2",
-        "r3",
-        "r4",
-        "r5",
-        "r6",
-        "r7",
-        "r8"
-      ]
-    },
-    "guides": {
-      "type": "blog-posts",
-      "settings": {
-        "full_width": true,
-        "show_excerpt": true,
-        "show_date": false,
-        "show_author": false,
-        "show_comments_count": false,
-        "show_category": true,
-        "subheading": "Guides & conseils",
-        "title": "Bien choisir, sans jargon",
-        "content": "<p>Aides de l’État, autoconsommation, dimensionnement : nos guides pour décider en connaissance de cause.</p>",
-        "link_url": "/blogs/guides",
-        "link_text": "Tous les guides"
-      },
-      "blocks": {
-        "b1": {
-          "type": "blog",
-          "settings": {
-            "blog": "guides",
-            "posts_count": 3,
-            "stack_items": true
-          }
-        }
-      },
-      "block_order": [
-        "b1"
-      ]
     },
     "newsletter": {
       "type": "newsletter",
       "settings": {
         "full_width": true,
-        "show_icon": false,
+        "show_icon": true,
         "title": "Recevez nos conseils énergie",
-        "content": "<p>Aides, autoconsommation, nouveautés : un e-mail par mois, pas plus.</p>",
-        "button_text": "S’inscrire",
-        "subtext": "Désinscription en un clic.",
-        "background": "#F0A52A",
-        "text_color": "#0E1A2B",
-        "button_background": "#0E1A2B",
-        "button_text_color": "#F6F4EE"
+        "content": "<p>Aides, autoconsommation, nouveautés : un e-mail par mois.</p>",
+        "button_text": "S’inscrire"
       }
     }
   },
   "order": [
-    "hero",
-    "trust",
-    "needs",
+    "slideshow",
+    "reassurance",
+    "univers",
     "bestsellers",
-    "transparency",
-    "feature",
-    "u_solaire",
-    "u_stock",
-    "u_chauffage",
-    "u_clim",
-    "compare",
-    "projection",
-    "steps",
-    "guarantees",
+    "focus",
+    "chiffres",
+    "solaire",
+    "clim",
+    "parcours",
+    "zone",
     "testimonials",
     "guides",
-    "zones",
     "faq",
-    "cta",
     "newsletter"
   ]
 }

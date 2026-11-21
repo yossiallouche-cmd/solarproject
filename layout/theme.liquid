@@ -48,23 +48,6 @@
       <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
     {%- endunless -%}
 
-    {%- if settings.clarte_heading_font != blank or settings.clarte_text_font != blank -%}
-      {%- assign gf = '' -%}
-      {%- if settings.clarte_heading_font != blank -%}
-        {%- assign hf = settings.clarte_heading_font | strip | replace: ' ', '+' -%}
-        {%- assign hw = settings.clarte_heading_font_weights | default: '500;600;700' | remove: ' ' -%}
-        {%- assign gf = gf | append: '&family=' | append: hf | append: ':ital,wght@0,' | append: hw | replace: ';', ';0,' | append: ';1,500;1,600' -%}
-      {%- endif -%}
-      {%- if settings.clarte_text_font != blank -%}
-        {%- assign tf = settings.clarte_text_font | strip | replace: ' ', '+' -%}
-        {%- assign tw = settings.clarte_text_font_weights | default: '400;500;600;700' | remove: ' ' -%}
-        {%- assign gf = gf | append: '&family=' | append: tf | append: ':wght@' | append: tw -%}
-      {%- endif -%}
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ gf | remove_first: '&' }}&display=swap">
-    {%- endif -%}
-
     {%- render 'clarte-schema' -%}
 
     {%- render 'social-meta-tags' -%}
