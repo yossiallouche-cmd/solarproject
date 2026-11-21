@@ -38,7 +38,7 @@
       "description": {{ shop.description | default: "Panneaux solaires, batteries, pompes à chaleur, climatisation et carports solaires vendus et posés au prix affiché, fourniture et pose incluses." | json }},
       "priceRange": "€€",
       "currenciesAccepted": "EUR",
-      "paymentAccepted": "Carte bancaire, virement, financement",
+      "paymentAccepted": "Carte bancaire",
       {%- if settings.clarte_hours != blank -%}"openingHours": {{ settings.clarte_hours | json }},{%- endif -%}
       {%- if settings.clarte_founding_year != blank -%}"foundingDate": {{ settings.clarte_founding_year | json }},{%- endif -%}
       "address": {

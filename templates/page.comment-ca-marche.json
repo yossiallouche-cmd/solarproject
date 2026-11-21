@@ -17,7 +17,7 @@
             "navigation_label": "Commande",
             "subheading": "Étape 1",
             "title": "Vous commandez en ligne",
-            "content": "<p>Vous choisissez votre installation et ses options. Le prix posé est affiché, vous réglez un acompte de 30 %.</p>"
+            "content": "<p>Vous choisissez votre installation et ses options. Le prix posé est affiché : c’est celui que vous payez.</p>"
           }
         },
         "t2": {
@@ -47,7 +47,7 @@
             "navigation_label": "Mise en service",
             "subheading": "Étape 4",
             "title": "Démarches et mise en service",
-            "content": "<p>Consuel, Enedis, déclaration en mairie : nous nous en occupons. Vous réglez le solde une fois l’installation en service.</p>"
+            "content": "<p>Consuel, Enedis, déclaration en mairie : nous nous en occupons jusqu’à la mise en service.</p>"
           }
         }
       },
@@ -131,7 +131,7 @@
           "type": "item",
           "settings": {
             "title": "Comment se passe le paiement ?",
-            "content": "<p>30 % à la commande, le solde après la mise en service. Paiement en 3 ou 4 fois sans frais possible, et financement sur 12 à 60 mois via notre partenaire (sous réserve d'acceptation).</p>"
+            "content": "<p>Vous réglez votre commande en ligne, par carte bancaire, sur une page de paiement sécurisée. Si l'appel technique montre que l'installation n'est pas réalisable chez vous, la commande est annulée et vous êtes intégralement remboursé.</p>"
           }
         },
         "q5": {
@@ -145,7 +145,7 @@
           "type": "item",
           "settings": {
             "title": "Et les aides de l'État ?",
-            "content": "<p>Prime à l'autoconsommation, TVA réduite, MaPrimeRénov' pour les pompes à chaleur : nous indiquons sur chaque fiche les aides applicables et constituons le dossier avec vous lors de l'appel technique.</p>"
+            "content": "<p>Pour le solaire, la prime à l'autoconsommation n'existe plus depuis juin 2026 : l'économie vient de l'électricité que vous produisez et consommez vous-même, et le surplus est racheté à tarif garanti. Pour les pompes à chaleur, MaPrimeRénov' et les primes CEE restent possibles : nous indiquons sur chaque fiche les aides applicables et montons le dossier avec vous lors de l'appel technique.</p>"
           }
         }
       },

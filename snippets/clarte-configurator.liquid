@@ -1,5 +1,5 @@
 {%- comment -%}
-  CLARTÉ — Configurateur visuel (fiche produit)
+  Configurateur carport (fiche produit)
   Remplace le sélecteur de variantes : chaque option numérique (ex. « 3,5 m ») devient un curseur, les autres
   deviennent des cartes. Un aperçu SVG (vue de dessus) et un récapitulatif (panneaux, kWc, surface) se mettent à
   jour en direct. La sélection pilote le sélecteur de variantes d'Impact, qui reste présent mais masqué.
@@ -9,13 +9,42 @@
   * product, product_form_id, block
 {%- endcomment -%}
 
-{%- assign b = block.settings -%}
+{%- liquid
+  assign b = block.settings
+  assign custom_tag = b.custom_tag | strip | downcase
+  assign is_custom = false
+  if custom_tag != blank
+    for tag in product.tags
+      assign tag_down = tag | downcase
+      if tag_down == custom_tag
+        assign is_custom = true
+      endif
+    endfor
+  endif
+  assign panel_product = b.panel_product
+  assign panel_variant = panel_product.selected_or_first_available_variant
+-%}
 
 <style>
   #shopify-section-{{ section.id }} .product-info__block-item[data-block-type="variant-picker"] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 </style>
 
-<clarte-configurator class="cl-config" form="{{ product_form_id }}" data-preview="{{ b.show_preview }}">
+<clarte-configurator
+  class="cl-config"
+  form="{{ product_form_id }}"
+  data-preview="{{ b.show_preview }}"
+  data-product-title="{{ product.title | escape }}"
+  {% if is_custom %}
+    data-custom
+    data-width-min="{{ b.width_min }}" data-width-max="{{ b.width_max }}"
+    data-depth-min="{{ b.depth_min }}" data-depth-max="{{ b.depth_max }}"
+    data-step="{{ b.step }}"
+    data-panel-width="{{ b.panel_width | default: 114 }}" data-panel-height="{{ b.panel_height | default: 180 }}"
+    data-panel-wc="{{ b.panel_wc | default: 450 }}" data-panel-min="{{ b.panel_min }}"
+    data-panel-label="{{ b.panel_label | escape }}"
+    {% if panel_product != blank and panel_variant.available %}data-panel-variant="{{ panel_variant.id }}" data-panel-price="{{ panel_variant.price }}"{% endif %}
+  {% endif %}
+>
   <script type="application/json" data-product>
     {
       "options": [
@@ -45,6 +74,13 @@
   {%- endif -%}
 
   <div class="cl-config__options" data-options></div>
+
+  {%- if is_custom -%}
+    <input type="hidden" form="{{ product_form_id }}" name="properties[Largeur]" data-prop="width">
+    <input type="hidden" form="{{ product_form_id }}" name="properties[Profondeur]" data-prop="depth">
+    <input type="hidden" form="{{ product_form_id }}" name="properties[Surface]" data-prop="surface">
+    <input type="hidden" form="{{ product_form_id }}" name="properties[Panneaux solaires]" data-prop="panels">
+  {%- endif -%}
 
   {%- if b.note != blank -%}<p class="cl-config__note">{{ b.note }}</p>{%- endif -%}
 </clarte-configurator>

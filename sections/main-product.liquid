@@ -203,12 +203,12 @@
     },
     {
       "type": "clarte_price",
-      "name": "Clarté · Prix posé",
+      "name": "Prix posé",
       "limit": 1,
       "settings": [
         {
           "type": "paragraph",
-          "content": "Affiche fourniture, pose et total posé à partir des métachamps de variante custom.fourniture et custom.pose. Mensualité et acompte : réglages du thème → Clarté."
+          "content": "Affiche fourniture, pose et total posé. Les montants viennent du métachamp produit custom.grille_pose (une ligne par variante : SKU|fourniture|pose)."
         },
         {
           "type": "text",
@@ -254,56 +254,20 @@
         },
         {
           "type": "text",
-          "id": "label_express",
-          "label": "Libellé pose express",
-          "default": "Pose express"
-        },
-        {
-          "type": "text",
           "id": "label_total",
           "label": "Libellé total",
           "default": "Total posé"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_monthly",
-          "label": "Afficher la mensualité indicative",
-          "default": true
-        },
-        {
-          "type": "text",
-          "id": "label_monthly",
-          "label": "Libellé mensualité",
-          "default": "ou [mois] mensualités de"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_deposit",
-          "label": "Afficher acompte et solde",
-          "default": true
-        },
-        {
-          "type": "text",
-          "id": "label_deposit",
-          "label": "Libellé acompte",
-          "default": "Acompte [acompte] % à la commande :"
-        },
-        {
-          "type": "text",
-          "id": "label_balance",
-          "label": "Libellé solde",
-          "default": "solde après pose :"
         }
       ]
     },
     {
       "type": "clarte_installation",
-      "name": "Clarté · Délai de pose",
+      "name": "Délai de pose",
       "limit": 1,
       "settings": [
         {
           "type": "paragraph",
-          "content": "Standard inclus / Express payant avec demande expresse obligatoire. Produit express, délais et texte légal : réglages du thème → Clarté. [appel] et [pose] sont remplacés par les délais."
+          "content": "Standard inclus / Express payant avec demande expresse obligatoire. Produit express, délais et texte légal : réglages du thème → Parcours de commande. [appel] et [pose] sont remplacés par les délais."
         },
         {
           "type": "text",
@@ -387,7 +351,7 @@
     },
     {
       "type": "clarte_includes",
-      "name": "Clarté · Prix comprend",
+      "name": "Ce que comprend le prix",
       "settings": [
         {
           "type": "text",
@@ -405,19 +369,18 @@
     },
     {
       "type": "clarte_configurator",
-      "name": "Clarté · Configurateur",
+      "name": "Configurateur carport",
       "limit": 1,
       "settings": [
         {
           "type": "paragraph",
-          "content": "Transforme les options du produit en curseurs (valeurs numériques, ex. « 3,5 m ») ou en cartes, avec aperçu vue de dessus. Le bloc « Sélecteur de variantes » doit rester dans la liste (il est masqué automatiquement)."
+          "content": "Deux modes. Produit standard : les options deviennent des curseurs ou des boutons. Produit sur mesure (tag ci-dessous) : le client choisit largeur, profondeur et nombre de panneaux ; la variante est choisie selon la surface (option « Surface » du produit, une variante par m²) et les panneaux sont ajoutés au panier comme une ligne séparée. Le bloc « Sélecteur de variantes » doit rester dans la liste (il est masqué)."
         },
         {
           "type": "text",
           "id": "only_tag",
           "label": "Afficher seulement si le produit a le tag",
-          "default": "carport",
-          "info": "Laisser vide pour l'afficher sur tous les produits à options."
+          "default": "carport"
         },
         {
           "type": "text",
@@ -435,7 +398,124 @@
           "type": "richtext",
           "id": "note",
           "label": "Note",
-          "default": "<p>Le nombre de panneaux et la puissance sont calculés pour vos dimensions. Confirmés lors de l'appel technique.</p>"
+          "default": "<p>Dimensions et nombre de panneaux sont confirmés lors de l'appel technique.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Mode sur mesure"
+        },
+        {
+          "type": "text",
+          "id": "custom_tag",
+          "label": "Tag des produits sur mesure",
+          "default": "sur mesure"
+        },
+        {
+          "type": "range",
+          "id": "width_min",
+          "label": "Largeur minimale",
+          "min": 200,
+          "max": 500,
+          "step": 10,
+          "unit": "cm",
+          "default": 250
+        },
+        {
+          "type": "range",
+          "id": "width_max",
+          "label": "Largeur maximale",
+          "min": 500,
+          "max": 1000,
+          "step": 10,
+          "unit": "cm",
+          "default": 750
+        },
+        {
+          "type": "range",
+          "id": "depth_min",
+          "label": "Profondeur minimale",
+          "min": 300,
+          "max": 600,
+          "step": 10,
+          "unit": "cm",
+          "default": 450
+        },
+        {
+          "type": "range",
+          "id": "depth_max",
+          "label": "Profondeur maximale",
+          "min": 500,
+          "max": 1000,
+          "step": 10,
+          "unit": "cm",
+          "default": 700
+        },
+        {
+          "type": "select",
+          "id": "step",
+          "label": "Pas",
+          "default": "10",
+          "options": [
+            {
+              "value": "5",
+              "label": "5 cm"
+            },
+            {
+              "value": "10",
+              "label": "10 cm"
+            },
+            {
+              "value": "25",
+              "label": "25 cm"
+            },
+            {
+              "value": "50",
+              "label": "50 cm"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Panneaux (mode sur mesure)"
+        },
+        {
+          "type": "product",
+          "id": "panel_product",
+          "label": "Produit « panneau posé »",
+          "info": "Ajouté au panier en quantité égale au nombre de panneaux choisi."
+        },
+        {
+          "type": "range",
+          "id": "panel_min",
+          "label": "Nombre minimum de panneaux",
+          "min": 0,
+          "max": 8,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "type": "number",
+          "id": "panel_width",
+          "label": "Largeur d'un panneau (cm)",
+          "default": 114
+        },
+        {
+          "type": "number",
+          "id": "panel_height",
+          "label": "Hauteur d'un panneau (cm)",
+          "default": 180
+        },
+        {
+          "type": "number",
+          "id": "panel_wc",
+          "label": "Puissance d'un panneau (Wc)",
+          "default": 450
+        },
+        {
+          "type": "text",
+          "id": "panel_label",
+          "label": "Libellé de la ligne de prix",
+          "default": "Panneaux solaires posés"
         }
       ]
     },
@@ -2203,6 +2283,71 @@
             }
           ],
           "default": "start"
+        }
+      ]
+    },
+    {
+      "type": "clarte_clim_advisor",
+      "name": "Conseil climatisation",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Deux questions (nombre de pièces, surface de la plus grande pièce) qui s'enchaînent automatiquement, puis la configuration conseillée est sélectionnée dans les options du produit."
+        },
+        {
+          "type": "text",
+          "id": "only_tag",
+          "label": "Afficher seulement si le produit a le tag",
+          "default": "clim"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre",
+          "default": "Quelle puissance pour votre logement ?"
+        },
+        {
+          "type": "text",
+          "id": "q_rooms",
+          "label": "Question 1",
+          "default": "Combien de pièces à climatiser ?"
+        },
+        {
+          "type": "text",
+          "id": "q_surface",
+          "label": "Question 2",
+          "default": "Surface de la plus grande pièce ?"
+        },
+        {
+          "type": "range",
+          "id": "watts_per_m2",
+          "label": "Puissance nécessaire par m²",
+          "min": 60,
+          "max": 160,
+          "step": 10,
+          "unit": "W",
+          "default": 100,
+          "info": "100 W/m² pour un logement correctement isolé avec 2,50 m sous plafond."
+        },
+        {
+          "type": "text",
+          "id": "surfaces",
+          "label": "Paliers de surface (m²)",
+          "default": "20, 25, 35, 50, 70",
+          "info": "Bornes hautes séparées par des virgules."
+        },
+        {
+          "type": "richtext",
+          "id": "note",
+          "label": "Note sous le résultat",
+          "default": "<p>Conseil indicatif, confirmé par le technicien lors de l'appel offert.</p>"
+        },
+        {
+          "type": "text",
+          "id": "more_text",
+          "label": "Message au-delà du nombre de pièces proposé",
+          "default": "Au-delà, nous étudions votre projet par téléphone."
         }
       ]
     }

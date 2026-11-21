@@ -33,6 +33,7 @@
   class="cl-install"
   form="{{ product_form_id }}"
   data-product-title="{{ product.title | escape }}"
+  data-express-label="Pose {{ b.express_title | downcase | escape }}"
   {% if express_available %}data-express-variant="{{ express_variant.id }}" data-express-price="{{ express_variant.price }}"{% endif %}
 >
   <p class="cl-install__label">{{ b.title | escape }}</p>

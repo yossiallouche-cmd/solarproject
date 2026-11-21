@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -36,7 +27,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "content": "<p>Acompte de 30 % à la commande, solde après la pose. Le prix comprend la fourniture et la pose.</p>"
+            "content": "<p>Le prix comprend la fourniture et la pose. Un technicien vous appelle sous 48 h pour préparer l'installation.</p>"
           }
         },
         "checkout_button": {

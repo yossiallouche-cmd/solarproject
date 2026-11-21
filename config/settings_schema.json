@@ -571,36 +571,6 @@
       },
       {
         "type": "header",
-        "content": "Paiement"
-      },
-      {
-        "type": "range",
-        "id": "clarte_deposit_percent",
-        "label": "Acompte à la commande",
-        "min": 0,
-        "max": 100,
-        "step": 5,
-        "unit": "%",
-        "default": 30
-      },
-      {
-        "type": "range",
-        "id": "clarte_months",
-        "label": "Mensualités affichées (mois)",
-        "min": 0,
-        "max": 60,
-        "step": 6,
-        "default": 36,
-        "info": "0 pour masquer la mensualité indicative."
-      },
-      {
-        "type": "text",
-        "id": "clarte_financing_note",
-        "label": "Mention financement",
-        "default": "Mensualité indicative, sous réserve d'acceptation du dossier de financement."
-      },
-      {
-        "type": "header",
         "content": "Entreprise (SEO, données structurées)",
         "info": "Utilisé pour les balises schema.org Organisation / entreprise locale et le pied de page."
       },
@@ -665,6 +635,81 @@
         "type": "text",
         "id": "clarte_founding_year",
         "label": "Année de création"
+      }
+    ]
+  },
+  {
+    "name": "Simulateur solaire",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Hypothèses utilisées par la section « Simulateur d'économies » (accueil et fiches produit). À mettre à jour quand les tarifs changent."
+      },
+      {
+        "type": "text",
+        "id": "sim_kwh_price",
+        "label": "Prix du kWh acheté au réseau (€ TTC)",
+        "default": "0.20",
+        "info": "Tarif réglementé option Base, abonnement non compris."
+      },
+      {
+        "type": "text",
+        "id": "sim_surplus_price",
+        "label": "Prix de revente du surplus (€ par kWh)",
+        "default": "0.011",
+        "info": "1,1 centime depuis l'arrêté du 1er juin 2026."
+      },
+      {
+        "type": "range",
+        "id": "sim_yield",
+        "label": "Production annuelle par kWc installé",
+        "min": 800,
+        "max": 1500,
+        "step": 50,
+        "unit": "kWh",
+        "default": 1000,
+        "info": "Environ 1 000 kWh en Île-de-France pour une toiture bien orientée."
+      },
+      {
+        "type": "range",
+        "id": "sim_rate",
+        "label": "Part de la production consommée sur place, sans batterie",
+        "min": 20,
+        "max": 80,
+        "step": 5,
+        "unit": "%",
+        "default": 45
+      },
+      {
+        "type": "range",
+        "id": "sim_rate_battery",
+        "label": "Part de la production consommée sur place, avec batterie",
+        "min": 40,
+        "max": 95,
+        "step": 5,
+        "unit": "%",
+        "default": 75
+      },
+      {
+        "type": "range",
+        "id": "sim_inflation",
+        "label": "Hausse annuelle du prix de l'électricité",
+        "min": 0,
+        "max": 6,
+        "step": 1,
+        "unit": "%",
+        "default": 3,
+        "info": "Utilisée pour le cumul sur 25 ans et la durée d'amortissement."
+      },
+      {
+        "type": "range",
+        "id": "sim_panel_wc",
+        "label": "Puissance d'un panneau (simulateur de l'accueil)",
+        "min": 375,
+        "max": 550,
+        "step": 25,
+        "unit": "Wc",
+        "default": 500
       }
     ]
   },

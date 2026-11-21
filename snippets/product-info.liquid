@@ -423,6 +423,12 @@
             {%- render 'clarte-configurator', product: product, product_form_id: product_form_id, block: block -%}
           {%- endif -%}
 
+        {%- when 'clarte_clim_advisor' -%}
+          {%- assign only_tag = block.settings.only_tag | strip | downcase -%}
+          {%- if product.has_only_default_variant == false and only_tag == blank or product.has_only_default_variant == false and product.tags contains only_tag -%}
+            {%- render 'clarte-clim-advisor', product: product, product_form_id: product_form_id, block: block -%}
+          {%- endif -%}
+
         {%- when 'clarte_includes' -%}
           {%- if block.settings.items != blank -%}
             <div class="product-info__text v-stack gap-3">

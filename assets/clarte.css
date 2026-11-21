@@ -3,7 +3,7 @@
    Tout s'appuie sur les variables du thème : couleurs, arrondis, typographie.
    ====================================================================== */
 
-.cl-pricebox, .cl-install, .cl-rdv, .cl-includes, .cl-config {
+.cl-pricebox, .cl-install, .cl-rdv, .cl-includes, .cl-config, .cl-advisor, .cl-sim {
   --cl-ink: var(--text-color);
   --cl-paper: var(--background);
   --cl-accent: var(--button-background-secondary);
@@ -22,14 +22,12 @@
 .cl-price-line--total .cl-amount { font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); font-size: var(--text-h2); letter-spacing: var(--heading-letter-spacing); line-height: 1; }
 
 /* ---------- Fiche produit : bloc prix ----------------------------------- */
-clarte-configurator, clarte-rdv, clarte-installation, clarte-projection, clarte-pricebox { display: block; }
+clarte-configurator, clarte-rdv, clarte-installation, clarte-pricebox, clarte-clim-advisor { display: block; }
 .cl-pricebox { padding: 1.35rem 1.5rem 1.4rem; border-radius: var(--cl-radius); background: rgb(var(--cl-ink)); color: rgb(var(--cl-paper)); }
 .cl-pricebox__head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .5rem; }
 .cl-pricebox__head strong { font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); font-size: 1.15rem; }
 .cl-pricebox__head .cl-chip { font-size: .68rem; font-weight: bold; color: rgb(var(--cl-accent)); }
 .cl-pricebox .cl-price-line { border-bottom: var(--cl-hair-light); font-size: .95rem; }
-.cl-pricebox__sub { display: grid; gap: .3rem; margin-top: 1rem; padding-top: 1rem; border-top: var(--cl-hair-light); font-size: .85rem; color: rgb(var(--cl-paper) / .72); }
-.cl-pricebox__sub strong { color: rgb(var(--cl-paper)); font-weight: bold; }
 .cl-pricebox__note { margin: .6rem 0 0; font-size: .72rem; color: rgb(var(--cl-paper) / .5); }
 
 /* ---------- Fiche produit : délai de pose ------------------------------- */
@@ -112,6 +110,48 @@ clarte-configurator, clarte-rdv, clarte-installation, clarte-projection, clarte-
 .cl-range__head output { font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); font-size: var(--text-h4); }
 .cl-range input[type=range] { width: 100%; accent-color: rgb(var(--text-color)); }
 .cl-range__scale { display: flex; justify-content: space-between; font-size: .75rem; color: rgb(var(--text-color) / .65); }
+
+.cl-stepper { display: inline-flex; align-items: center; gap: .75rem; }
+.cl-stepper button { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: var(--rounded-full); border: var(--cl-hair); background: rgb(var(--dialog-background)); font-size: 1.1rem; line-height: 1; cursor: pointer; transition: border-color .2s; }
+.cl-stepper button:hover { border-color: rgb(var(--text-color)); }
+.cl-stepper output { min-width: 4.5rem; text-align: center; white-space: nowrap; }
+.cl-range[data-row="n"] .cl-stepper output { min-width: 7.5rem; }
+
+/* ---------- Fiche produit : conseil climatisation ------------------------ */
+.cl-advisor { display: grid; gap: 1rem; padding: 1.25rem; border-radius: var(--cl-radius); border: var(--cl-hair); background: rgb(var(--dialog-background)); }
+.cl-advisor > .h6 { margin: 0; }
+.cl-advisor__steps { display: grid; gap: 1.1rem; }
+.cl-advisor__step { border: 0; padding: 0; margin: 0; min-width: 0; }
+.cl-advisor__step legend { padding: 0; margin-bottom: .6rem; font-size: .9rem; font-weight: bold; }
+.cl-advisor__step.is-entering { animation: cl-advisor-in .35s ease-out; }
+.cl-advisor__choices { display: flex; flex-wrap: wrap; gap: .5rem; }
+.cl-advisor__choices .block-swatch { cursor: pointer; font-size: .88rem; white-space: nowrap; }
+.cl-advisor__result { display: grid; gap: .4rem; padding-top: 1rem; border-top: var(--cl-hair); font-size: .88rem; animation: cl-advisor-in .35s ease-out; }
+.cl-advisor__result p { margin: 0; }
+.cl-advisor__reco { display: grid; gap: .15rem; }
+.cl-advisor__reco span { font-size: .8rem; color: rgb(var(--text-color) / .65); }
+.cl-advisor__reco strong { font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); font-size: var(--text-h5); }
+@keyframes cl-advisor-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .cl-advisor__step.is-entering, .cl-advisor__result { animation: none; } }
+
+/* ---------- Simulateur d'économies ---------------------------------------- */
+clarte-simulator { display: grid; gap: var(--spacing-8); align-items: stretch; }
+@media screen and (min-width: 1000px) { clarte-simulator { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--spacing-12); } }
+.cl-sim__controls { align-content: center; padding-block: var(--spacing-2); }
+.cl-sim__config { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: var(--spacing-4); border-block: var(--cl-hair); }
+.cl-sim__config strong { font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); font-size: var(--text-h4); white-space: nowrap; }
+.cl-sim__switch { display: flex; align-items: center; gap: var(--spacing-3); cursor: pointer; }
+.cl-sim__result { display: grid; align-content: center; gap: var(--spacing-2); padding: var(--spacing-8); border-radius: var(--rounded); background: rgb(var(--text-color)); color: rgb(var(--background)); }
+@media screen and (min-width: 700px) { .cl-sim__result { padding: var(--spacing-12); } }
+.cl-sim__result p { margin: 0; }
+.cl-sim__lead, .cl-sim__sub { color: rgb(var(--background) / .72); }
+.cl-sim__sub strong { color: rgb(var(--background)); }
+.cl-sim__figure { color: rgb(var(--button-background-secondary)); line-height: 1; font-variant-numeric: tabular-nums; }
+.cl-sim__list { display: grid; margin: var(--spacing-6) 0 0; }
+.cl-sim__list > div { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: var(--spacing-3); border-top: 1px solid rgb(var(--background) / .18); }
+.cl-sim__list dt { color: rgb(var(--background) / .72); }
+.cl-sim__list dd { margin: 0; font-weight: bold; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cl-sim__note p { margin: 0; }
 
 /* header : navigation sur une ligne */
 .header__link-list.wrap { flex-wrap: nowrap; white-space: nowrap; }

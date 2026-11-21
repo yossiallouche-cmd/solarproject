@@ -37,14 +37,18 @@
     "clarte_express_call_hours": 24,
     "clarte_aided_tag": "aide-etat",
     "clarte_express_consent": "<p>Je demande expressément que l'installation commence avant la fin du délai de rétractation de 14 jours et je reconnais qu'une fois l'installation entièrement réalisée, je perds mon droit de rétractation (art. L221-25 et L221-28 du Code de la consommation).</p>",
-    "clarte_deposit_percent": 30,
-    "clarte_months": 36,
-    "clarte_financing_note": "Mensualité indicative, sous réserve d'acceptation du dossier de financement.",
     "cart_type": "page",
     "show_quick_buy": false,
     "product_image_aspect_ratio": "square_crop",
     "product_card_background": "#ffffff",
-    "content_for_index": []
+    "content_for_index": [],
+    "sim_kwh_price": "0.20",
+    "sim_surplus_price": "0.011",
+    "sim_yield": 1000,
+    "sim_rate": 45,
+    "sim_rate_battery": 75,
+    "sim_inflation": 3,
+    "sim_panel_wc": 500
   },
   "installed_preset_name": "Impact",
   "presets": {

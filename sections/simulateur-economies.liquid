@@ -1,0 +1,156 @@
+{%- comment -%}
+  Simulateur d'économies solaires.
+  - Accueil et pages : le visiteur règle sa facture, le nombre de panneaux et la batterie.
+  - Fiche produit : la puissance et le prix suivent la configuration choisie (variante, carport sur mesure).
+  Les hypothèses de calcul sont dans Réglages du thème → Simulateur solaire.
+{%- endcomment -%}
+
+{%- liquid
+  assign product_mode = false
+  assign show = true
+  if template.name == 'product'
+    assign product_mode = true
+    assign show = false
+    assign wanted = section.settings.only_tags | downcase | split: ','
+    for tag in product.tags
+      assign tag_down = tag | downcase | strip
+      for w in wanted
+        assign w_clean = w | strip
+        if w_clean == tag_down
+          assign show = true
+        endif
+      endfor
+    endfor
+    assign variant = product.selected_or_first_available_variant
+  endif
+  assign with_battery = false
+  if product_mode and product.tags contains 'batterie'
+    assign with_battery = true
+  endif
+-%}
+
+{%- if show -%}
+  <div {% render 'section-properties' %}>
+    <div class="section-stack">
+      {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content -%}
+
+      <clarte-simulator
+        class="cl-sim"
+        {% if product_mode %}data-product-mode data-cost="{{ variant.price }}"{% endif %}
+        {% if with_battery %}data-with-battery{% endif %}
+        data-kwh-price="{{ settings.sim_kwh_price | default: '0.20' | escape }}"
+        data-yield="{{ settings.sim_yield | default: 1000 }}"
+        data-surplus="{{ settings.sim_surplus_price | default: '0.011' | escape }}"
+        data-inflation="{{ settings.sim_inflation | default: 3 }}"
+        data-rate="{{ settings.sim_rate | default: 45 }}"
+        data-rate-battery="{{ settings.sim_rate_battery | default: 75 }}"
+        data-panel-wc="{{ settings.sim_panel_wc | default: 500 }}"
+      >
+        {%- if product_mode -%}
+          <script type="application/json" data-variants>
+            {
+              {%- for v in product.variants -%}
+                {%- capture vpv -%}{%- render 'clarte-variant-prices', product: product, variant: v -%}{%- endcapture -%}
+                {%- assign vpv = vpv | split: '|' -%}
+                "{{ v.id }}": { "price": {{ v.price }}, "kwc": {{ vpv[3] | default: 0 | plus: 0.0 }}, "title": {{ v.title | json }}{% if v.id == variant.id %}, "selected": true{% endif %} }{% unless forloop.last %},{% endunless %}
+              {%- endfor -%}
+            }
+          </script>
+        {%- endif -%}
+
+        <div class="cl-sim__controls v-stack gap-8">
+          <div class="cl-range">
+            <div class="cl-range__head"><label for="sim-bill-{{ section.id }}">{{ section.settings.label_bill | escape }}</label><output data-out="bill"></output></div>
+            <input id="sim-bill-{{ section.id }}" class="range" type="range" data-bill min="40" max="400" step="10" value="{{ section.settings.bill_default }}">
+            <div class="cl-range__scale"><span>40 €</span><span>400 €</span></div>
+          </div>
+
+          {%- if product_mode -%}
+            <div class="cl-sim__config">
+              <span class="text-subdued">{{ section.settings.label_config | escape }}</span>
+              <strong data-out="kwc"></strong>
+            </div>
+          {%- else -%}
+            <div class="cl-range">
+              <div class="cl-range__head"><label for="sim-panels-{{ section.id }}">{{ section.settings.label_panels | escape }}</label><output data-out="panels"></output></div>
+              <input id="sim-panels-{{ section.id }}" class="range" type="range" data-panels min="{{ section.settings.panels_min }}" max="{{ section.settings.panels_max }}" step="1" value="{{ section.settings.panels_default }}">
+              <div class="cl-range__scale"><span>{{ section.settings.panels_min }}</span><span>{{ section.settings.panels_max }}</span></div>
+            </div>
+          {%- endif -%}
+
+          {%- unless with_battery -%}
+            <label class="cl-sim__switch" for="sim-battery-{{ section.id }}">
+              <input id="sim-battery-{{ section.id }}" class="switch" type="checkbox" data-battery>
+              <span>{{ section.settings.label_battery | escape }}</span>
+            </label>
+          {%- endunless -%}
+
+          {%- if section.settings.button_text != blank and section.settings.button_link != blank and product_mode == false -%}
+            <div>
+              {%- render 'button', content: section.settings.button_text, href: section.settings.button_link -%}
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="cl-sim__result" aria-live="polite">
+          <p class="cl-sim__lead">{{ section.settings.label_first | escape }}</p>
+          <p class="cl-sim__figure h1" data-out="first"></p>
+          <p class="cl-sim__sub">{{ section.settings.label_monthly | escape }} <strong data-out="monthly"></strong></p>
+
+          <dl class="cl-sim__list">
+            <div><dt>{{ section.settings.label_production | escape }}</dt><dd data-out="production"></dd></div>
+            <div><dt>{{ section.settings.label_coverage | escape }}</dt><dd data-out="coverage"></dd></div>
+            <div><dt>{{ section.settings.label_total | escape }}</dt><dd data-out="total"></dd></div>
+            <div data-payback-row hidden><dt>{{ section.settings.label_payback | escape }}</dt><dd data-out="payback"></dd></div>
+          </dl>
+        </div>
+      </clarte-simulator>
+
+      {%- if section.settings.disclaimer != blank -%}
+        <div class="cl-sim__note text-subdued text-sm">{{ section.settings.disclaimer }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Simulateur d'économies",
+  "class": "shopify-section--simulator",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "custom.overlay"] },
+  "settings": [
+    { "type": "paragraph", "content": "Les hypothèses de calcul (prix du kWh, production, revente du surplus) se règlent dans Réglages du thème → Simulateur solaire." },
+    { "type": "checkbox", "id": "full_width", "label": "Pleine largeur", "default": true },
+    { "type": "text", "id": "subheading", "label": "Sous-titre" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Combien allez-vous économiser ?" },
+    { "type": "richtext", "id": "content", "label": "Texte", "default": "<p>Indiquez votre facture d'électricité : l'estimation se met à jour immédiatement.</p>" },
+    { "type": "range", "id": "bill_default", "label": "Facture mensuelle par défaut", "min": 40, "max": 400, "step": 10, "unit": "€", "default": 150 },
+    { "type": "header", "content": "Accueil et pages" },
+    { "type": "range", "id": "panels_min", "label": "Panneaux : minimum", "min": 2, "max": 8, "step": 1, "default": 4 },
+    { "type": "range", "id": "panels_max", "label": "Panneaux : maximum", "min": 8, "max": 40, "step": 1, "default": 24 },
+    { "type": "range", "id": "panels_default", "label": "Panneaux : valeur par défaut", "min": 2, "max": 40, "step": 1, "default": 8 },
+    { "type": "text", "id": "button_text", "label": "Texte du bouton", "default": "Voir les kits solaires" },
+    { "type": "url", "id": "button_link", "label": "Lien du bouton" },
+    { "type": "header", "content": "Fiche produit" },
+    { "type": "text", "id": "only_tags", "label": "Afficher pour les produits ayant l'un de ces tags", "default": "solaire, carport", "info": "Séparés par des virgules." },
+    { "type": "header", "content": "Libellés" },
+    { "type": "text", "id": "label_bill", "label": "Facture", "default": "Votre facture d'électricité par mois" },
+    { "type": "text", "id": "label_panels", "label": "Panneaux", "default": "Nombre de panneaux" },
+    { "type": "text", "id": "label_config", "label": "Configuration (fiche produit)", "default": "Puissance de la configuration choisie" },
+    { "type": "text", "id": "label_battery", "label": "Batterie", "default": "Avec une batterie de stockage" },
+    { "type": "text", "id": "label_first", "label": "Résultat principal", "default": "Économie estimée la première année" },
+    { "type": "text", "id": "label_monthly", "label": "Par mois", "default": "soit par mois environ" },
+    { "type": "text", "id": "label_production", "label": "Production", "default": "Production annuelle" },
+    { "type": "text", "id": "label_coverage", "label": "Couverture", "default": "Part de votre consommation couverte" },
+    { "type": "text", "id": "label_total", "label": "Cumul", "default": "Économies cumulées sur 25 ans" },
+    { "type": "text", "id": "label_payback", "label": "Amortissement", "default": "Installation amortie en" },
+    { "type": "richtext", "id": "disclaimer", "label": "Mention", "default": "<p>Estimation indicative, non contractuelle. Elle dépend de l'orientation, de l'ombrage et de vos habitudes de consommation, et sera affinée lors de l'appel technique.</p>" },
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background", "label": "Arrière-plan", "default": "rgba(0,0,0,0)" },
+    { "type": "color_background", "id": "background_gradient", "label": "Dégradé d'arrière-plan" },
+    { "type": "color", "id": "text_color", "label": "Texte", "default": "rgba(0,0,0,0)" }
+  ],
+  "presets": [ { "name": "Simulateur d'économies" } ]
+}
+{% endschema %}

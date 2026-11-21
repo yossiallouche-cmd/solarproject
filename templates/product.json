@@ -33,13 +33,7 @@
             "show_call_line": true,
             "label_call": "Appel technique sous [appel] h",
             "label_free": "Offert",
-            "label_express": "Pose express",
-            "label_total": "Total posé",
-            "show_monthly": true,
-            "label_monthly": "ou [mois] mensualités de",
-            "show_deposit": true,
-            "label_deposit": "Acompte [acompte] % à la commande :",
-            "label_balance": "solde après pose :"
+            "label_total": "Total posé"
           }
         },
         "clarte_installation": {
@@ -104,7 +98,7 @@
           "settings": {
             "title": "Paiement & rétractation",
             "icon": "picto-credit-card",
-            "content": "<p>30 % à la commande, solde après pose. Vous disposez de 14 jours pour vous rétracter après la commande ; en pose express, vous demandez expressément l'exécution anticipée et perdez ce droit une fois l'installation entièrement réalisée.</p>"
+            "content": "<p>Paiement en ligne sécurisé à la commande. Vous disposez de 14 jours pour vous rétracter ; en pose express, vous demandez expressément l'exécution anticipée et perdez ce droit une fois l'installation entièrement réalisée.</p>"
           }
         },
         "disclosures": {
@@ -117,7 +111,32 @@
             "title": "Composez votre carport",
             "only_tag": "carport",
             "show_preview": true,
-            "note": "<p>Le nombre de panneaux et la puissance sont calculés pour vos dimensions. Confirmés lors de l'appel technique.</p>"
+            "note": "<p>Dimensions et nombre de panneaux sont confirmés lors de l'appel technique.</p>",
+            "custom_tag": "sur mesure",
+            "width_min": 250,
+            "width_max": 750,
+            "depth_min": 450,
+            "depth_max": 700,
+            "step": "10",
+            "panel_product": "panneau-solaire-carport",
+            "panel_min": 2,
+            "panel_width": 114,
+            "panel_height": 180,
+            "panel_wc": 450,
+            "panel_label": "Panneaux solaires posés"
+          }
+        },
+        "clim_advisor": {
+          "type": "clarte_clim_advisor",
+          "settings": {
+            "only_tag": "clim",
+            "title": "Quelle puissance pour votre logement ?",
+            "q_rooms": "Combien de pièces à climatiser ?",
+            "q_surface": "Surface de la plus grande pièce ?",
+            "watts_per_m2": 100,
+            "surfaces": "20, 25, 35, 50, 70",
+            "note": "<p>Conseil indicatif, confirmé par le technicien lors de l'appel offert.</p>",
+            "more_text": "Au-delà, nous étudions votre projet par téléphone."
           }
         }
       },
@@ -126,6 +145,7 @@
         "title",
         "badges",
         "rating",
+        "clim_advisor",
         "variant_picker",
         "configurator",
         "clarte_price",
@@ -151,10 +171,22 @@
         "products_per_row_mobile": "2",
         "stack_products": false
       }
+    },
+    "simulateur": {
+      "type": "simulateur-economies",
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "Ce que cette installation vous fait économiser",
+        "content": "<p>L'estimation suit la configuration choisie plus haut. Indiquez votre facture pour l'ajuster.</p>",
+        "bill_default": 150,
+        "only_tags": "solaire, carport"
+      }
     }
   },
   "order": [
     "main",
+    "simulateur",
     "related-products"
   ]
 }

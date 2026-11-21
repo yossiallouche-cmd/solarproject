@@ -1,9 +1,11 @@
 /* ======================================================================
-   CLARTÉ — scripts des sections sur mesure
-   - <clarte-projection>   simulateur d'économies (accueil)
-   - <clarte-pricebox>     bloc prix fourniture / pose / total (fiche produit)
-   - <clarte-installation> délai de pose standard / express + demande expresse
-   - <clarte-rdv>          créneau d'appel technique + date de pose (panier)
+   Composants du parcours de commande
+   - <clarte-pricebox>      prix fourniture / pose / total (fiche produit)
+   - <clarte-installation>  délai de pose standard / express
+   - <clarte-configurator>  configurateur carport (variantes ou sur mesure)
+   - <clarte-clim-advisor>  conseil de dimensionnement climatisation
+   - <clarte-simulator>     simulateur d'économies solaires
+   - <clarte-rdv>           créneau d'appel technique + date de pose (panier)
    ====================================================================== */
 
 const fmtMoney = (cents, { withDecimals = false } = {}) => {
@@ -19,89 +21,110 @@ const fmtMoney = (cents, { withDecimals = false } = {}) => {
 
 const fmtInt = (n) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(n);
 
-/* ---------- Apparition douce des blocs .cl-reveal ----------------------- */
-if ('IntersectionObserver' in window) {
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
-  }, { rootMargin: '0px 0px -10% 0px' });
-  const observeAll = () => document.querySelectorAll('.cl-reveal:not(.is-visible)').forEach((el) => io.observe(el));
-  observeAll();
-  document.addEventListener('shopify:section:load', observeAll);
-}
+/* ---------- Ajouts au panier liés au produit principal -------------------
+   Les composants (pose express, panneaux du carport sur mesure…) s'enregistrent ici.
+   Au clic sur « Ajouter au panier », on valide, on ajoute d'abord leurs lignes, puis on laisse le thème
+   ajouter le produit principal. */
+/* Dernier état connu (puissance, prix), pour les composants initialisés après coup */
+const ClarteLast = { solar: null, price: null };
+document.addEventListener('clarte:solar:change', (e) => { ClarteLast.solar = e.detail; });
+document.addEventListener('clarte:price:change', (e) => { ClarteLast.price = e.detail; });
 
-/* ---------- Simulateur d'économies -------------------------------------- */
-class ClarteProjection extends HTMLElement {
-  connectedCallback() {
-    this.rate = parseFloat(this.dataset.rate || '0.45');
-    this.inflation = parseFloat(this.dataset.inflation || '0.04');
-    this.price = parseFloat(this.dataset.price || '3300');
-    this.years = parseInt(this.dataset.years || '20', 10);
-    this.input = this.querySelector('[data-input="bill"]');
-    this.out = {};
-    this.querySelectorAll('[data-out]').forEach((el) => { this.out[el.dataset.out] = el; });
-    this.input?.addEventListener('input', () => this.update());
-    this.update();
+const ClarteAddons = {
+  providers: new Set(),
+  register(p) { this.providers.add(p); },
+  unregister(p) { this.providers.delete(p); }
+};
+document.addEventListener('submit', async (event) => {
+  const form = event.target;
+  if (!(form instanceof HTMLFormElement)) return;
+  const provs = [...ClarteAddons.providers].filter((p) => p.form === form);
+  if (!provs.length) return;
+  if (form.dataset.clarteBypass === '1') { delete form.dataset.clarteBypass; return; }
+  for (const p of provs) {
+    if (p.validate && p.validate() === false) { event.preventDefault(); event.stopImmediatePropagation(); return; }
   }
+  const items = provs.flatMap((p) => (p.items ? p.items() : []));
+  if (!items.length) return;
+  event.preventDefault(); event.stopImmediatePropagation();
+  const buttons = Array.from(form.elements).filter((el) => el.type === 'submit');
+  buttons.forEach((el) => el.setAttribute('aria-busy', 'true'));
+  try {
+    await fetch(`${window.Shopify?.routes?.root || '/'}cart/add.js`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+      body: JSON.stringify({ items })
+    });
+  } catch (e) { /* le produit principal doit être ajouté quoi qu'il arrive */ }
+  buttons.forEach((el) => el.removeAttribute('aria-busy'));
+  form.dataset.clarteBypass = '1';
+  form.requestSubmit();
+}, true);
 
-  update() {
-    const bill = parseFloat(this.input?.value || '0');
-    const yearOne = bill * 12 * this.rate;
-    let total = 0; const series = [];
-    for (let y = 0; y < this.years; y++) { const s = yearOne * Math.pow(1 + this.inflation, y); series.push(s); total += s; }
-    let cum = 0, roi = null;
-    for (let y = 0; y < series.length; y++) { cum += series[y]; if (cum >= this.price) { roi = y + 1 - (cum - this.price) / series[y]; break; } }
-
-    if (this.out.bill) this.out.bill.textContent = `${fmtInt(bill)} €`;
-    if (this.out.year) this.out.year.textContent = `${fmtInt(yearOne)} €`;
-    if (this.out.total) this.out.total.textContent = `${fmtInt(total)} €`;
-    if (this.out.roi) this.out.roi.textContent = roi ? `${roi < 1.5 ? '1 an' : fmtInt(Math.round(roi)) + ' ans'}` : `> ${this.years} ans`;
-    if (this.out.bars) {
-      const max = Math.max(...series, 1);
-      this.out.bars.innerHTML = series.map((s) => `<span style="height:${Math.max(4, (s / max) * 100)}%"></span>`).join('');
-    }
-  }
-}
-if (!customElements.get('clarte-projection')) customElements.define('clarte-projection', ClarteProjection);
+/* Sélectionne des valeurs d'option dans le sélecteur de variantes du thème (retrouvées par le texte du label). */
+const clarteSelectOptions = (form, values) => {
+  if (!form) return;
+  const norm = (s) => String(s).replace(/\s+/g, ' ').trim();
+  values.forEach((value, i) => {
+    if (value == null) return;
+    const inputs = Array.from(document.querySelectorAll(`input[data-option-position="${i + 1}"][form="${form.getAttribute('id')}"]`));
+    const input = inputs.find((el) => el.value === value)
+      || inputs.find((el) => { const l = el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`); return l && norm(l.textContent) === norm(value); });
+    if (input && !input.checked) { input.checked = true; input.dispatchEvent(new Event('change', { bubbles: true })); }
+  });
+};
 
 /* ---------- Bloc prix produit ------------------------------------------- */
 class ClartePricebox extends HTMLElement {
   connectedCallback() {
     this.form = document.forms[this.getAttribute('form')];
     try { this.map = JSON.parse(this.querySelector('script[data-variants]')?.textContent || '{}'); } catch (e) { this.map = {}; }
-    this.months = parseInt(this.dataset.months || '0', 10);
-    this.deposit = parseFloat(this.dataset.deposit || '0');
-    this.extra = 0; // supplément (pose express) en centimes
+    this.extras = new Map(); // suppléments : pose express, panneaux… { label, cents }
+    this.extrasBox = this.querySelector('[data-extras]');
     this.out = {};
     this.querySelectorAll('[data-out]').forEach((el) => { this.out[el.dataset.out] = el; });
 
     this._onVariant = (e) => { if (e.detail?.variant?.id) this.render(e.detail.variant.id); };
     this.form?.addEventListener('variant:change', this._onVariant);
-    this._onInstall = (e) => { this.extra = e.detail?.extraCents || 0; this.render(this.currentId); };
-    document.addEventListener('clarte:installation:change', this._onInstall);
+    this._onExtra = (e) => {
+      const d = e.detail || {};
+      if (d.form && d.form !== this.form) return;
+      if (d.cents > 0) this.extras.set(d.key, { label: d.label, cents: d.cents }); else this.extras.delete(d.key);
+      this.render(this.currentId);
+    };
+    document.addEventListener('clarte:extra:change', this._onExtra);
 
     this.currentId = this.form?.id?.value || this.dataset.variant;
     this.render(this.currentId);
+    document.dispatchEvent(new CustomEvent('clarte:pricebox:ready', { detail: { form: this.form } }));
   }
 
   disconnectedCallback() {
     this.form?.removeEventListener('variant:change', this._onVariant);
-    document.removeEventListener('clarte:installation:change', this._onInstall);
+    document.removeEventListener('clarte:extra:change', this._onExtra);
   }
 
   render(variantId) {
     const v = this.map[variantId];
     if (!v) return;
     this.currentId = variantId;
-    const f = v.f, p = v.p;
-    const total = v.t + this.extra;
-
-    if (this.out.fourniture) this.out.fourniture.textContent = fmtMoney(f);
-    if (this.out.pose) this.out.pose.textContent = fmtMoney(p);
-    if (this.out.extra) { this.out.extra.textContent = `+ ${fmtMoney(this.extra)}`; this.out.extra.closest('[data-extra-line]').hidden = this.extra === 0; }
+    let total = v.t;
+    if (this.out.fourniture) this.out.fourniture.textContent = fmtMoney(v.f);
+    if (this.out.pose) this.out.pose.textContent = fmtMoney(v.p);
+    if (this.extrasBox) {
+      this.extrasBox.innerHTML = '';
+      this.extras.forEach((x) => {
+        total += x.cents;
+        const line = document.createElement('div');
+        line.className = 'cl-price-line';
+        const label = document.createElement('span'); label.textContent = x.label;
+        const amount = document.createElement('span'); amount.className = 'cl-amount'; amount.textContent = fmtMoney(x.cents);
+        line.append(label, amount);
+        this.extrasBox.appendChild(line);
+      });
+    }
     if (this.out.total) this.out.total.textContent = fmtMoney(total);
-    if (this.out.monthly && this.months > 0) this.out.monthly.textContent = fmtMoney(Math.round(total / this.months));
-    if (this.out.deposit && this.deposit > 0) this.out.deposit.textContent = fmtMoney(Math.round(total * this.deposit / 100));
-    if (this.out.balance && this.deposit > 0) this.out.balance.textContent = fmtMoney(total - Math.round(total * this.deposit / 100));
+    document.dispatchEvent(new CustomEvent('clarte:price:change', { detail: { form: this.form, totalCents: total } }));
   }
 }
 if (!customElements.get('clarte-pricebox')) customElements.define('clarte-pricebox', ClartePricebox);
@@ -123,14 +146,26 @@ class ClarteInstallation extends HTMLElement {
     this.radios.forEach((r) => r.addEventListener('change', () => this.update()));
     this.consent?.addEventListener('change', () => this.update());
 
-    // Interception de l'ajout au panier (phase de capture, avant le script du thème)
-    this._onSubmit = (event) => this.onSubmit(event);
-    document.addEventListener('submit', this._onSubmit, true);
-
+    this.expressLabel = this.dataset.expressLabel || 'Pose express';
+    ClarteAddons.register(this);
+    this._onReady = () => this.update();
+    document.addEventListener('clarte:pricebox:ready', this._onReady);
     this.update();
   }
 
-  disconnectedCallback() { document.removeEventListener('submit', this._onSubmit, true); }
+  disconnectedCallback() { ClarteAddons.unregister(this); document.removeEventListener('clarte:pricebox:ready', this._onReady); }
+
+  validate() {
+    if (!this.isExpress || this.consent?.checked) return true;
+    this.error?.setAttribute('data-visible', '');
+    this.consent?.focus();
+    return false;
+  }
+
+  items() {
+    if (!this.isExpress || !this.expressVariant) return [];
+    return [{ id: parseInt(this.expressVariant, 10), quantity: 1, properties: { 'Pour': this.dataset.productTitle || '' } }];
+  }
 
   get isExpress() { return this.radios.find((r) => r.checked)?.dataset.delay === 'express'; }
 
@@ -145,36 +180,7 @@ class ClarteInstallation extends HTMLElement {
       this.propertyConsent.value = express && this.consent?.checked ? (this.consent.dataset.label || 'Oui') : '';
       this.propertyConsent.disabled = !(express && this.consent?.checked);
     }
-    document.dispatchEvent(new CustomEvent('clarte:installation:change', { detail: { express, extraCents: express ? this.expressPrice : 0 } }));
-  }
-
-  async onSubmit(event) {
-    if (event.target !== this.form) return;
-    if (this.form.dataset.clarteBypass === '1') { delete this.form.dataset.clarteBypass; return; }
-    if (!this.isExpress) return;
-
-    if (!this.consent?.checked) {
-      event.preventDefault(); event.stopImmediatePropagation();
-      this.error?.setAttribute('data-visible', '');
-      this.consent?.focus();
-      return;
-    }
-    if (!this.expressVariant) return;
-
-    // On ajoute d'abord le service « Pose express » au panier, puis on laisse le thème ajouter le produit.
-    event.preventDefault(); event.stopImmediatePropagation();
-    const buttons = Array.from(this.form.elements).filter((b) => b.type === 'submit');
-    buttons.forEach((b) => b.setAttribute('aria-busy', 'true'));
-    try {
-      await fetch(`${window.Shopify?.routes?.root || '/'}cart/add.js`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-        body: JSON.stringify({ items: [{ id: parseInt(this.expressVariant, 10), quantity: 1, properties: { 'Pour': this.dataset.productTitle || '' } }] })
-      });
-    } catch (e) { /* on continue quand même : le produit principal doit être ajouté */ }
-    buttons.forEach((b) => b.removeAttribute('aria-busy'));
-    this.form.dataset.clarteBypass = '1';
-    this.form.requestSubmit();
+    document.dispatchEvent(new CustomEvent('clarte:extra:change', { detail: { form: this.form, key: 'express', label: this.expressLabel, cents: express ? this.expressPrice : 0 } }));
   }
 }
 if (!customElements.get('clarte-installation')) customElements.define('clarte-installation', ClarteInstallation);
@@ -259,8 +265,116 @@ class ClarteConfigurator extends HTMLElement {
     this.svg = this.querySelector('[data-svg]');
     this.facts = this.querySelector('[data-facts]');
     this.selection = [...(this.data.selected || [])];
+    this.custom = this.hasAttribute('data-custom');
+    if (this.custom) { this.initCustom(); return; }
     this.build();
     this.refresh(false);
+  }
+
+  disconnectedCallback() { ClarteAddons.unregister(this); document.removeEventListener('clarte:pricebox:ready', this._onReady); }
+
+  /* ----- Mode sur mesure : largeur, profondeur, nombre de panneaux ----- */
+  initCustom() {
+    const d = this.dataset;
+    const int = (v, f) => { const n = parseInt(v, 10); return isNaN(n) ? f : n; };
+    this.cfg = {
+      wMin: int(d.widthMin, 250), wMax: int(d.widthMax, 750), dMin: int(d.depthMin, 450), dMax: int(d.depthMax, 700),
+      step: int(d.step, 10), pw: int(d.panelWidth, 114), ph: int(d.panelHeight, 180), wc: int(d.panelWc, 450),
+      pMin: int(d.panelMin, 2), panelVariant: d.panelVariant, panelPrice: int(d.panelPrice, 0), panelLabel: d.panelLabel || 'Panneaux solaires posés'
+    };
+    // Variantes « Surface » triées par surface croissante
+    this.brackets = this.data.variants
+      .map((v) => ({ v, s: ClarteConfigurator.num(v.options[0]) }))
+      .filter((x) => !isNaN(x.s)).sort((a, b) => a.s - b.s);
+    const first = this.brackets.find((x) => x.v.options[0] === this.selection[0]);
+    this.state = { w: this.cfg.wMin + Math.round((300 - this.cfg.wMin) / this.cfg.step) * this.cfg.step, d: Math.max(this.cfg.dMin, 500), n: 0, auto: true };
+    if (this.state.w < this.cfg.wMin) this.state.w = this.cfg.wMin;
+
+    const m = (cm) => `${(cm / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} m`;
+    this.fmtM = m;
+    const row = (key, label, min, max, step) => `
+      <div class="cl-range" data-row="${key}">
+        <div class="cl-range__head"><label for="clc-${key}">${label}</label>
+          <span class="cl-stepper"><button type="button" data-dec aria-label="Diminuer">−</button><output></output><button type="button" data-inc aria-label="Augmenter">+</button></span>
+        </div>
+        <input id="clc-${key}" class="range" type="range" min="${min}" max="${max}" step="${step}">
+        <div class="cl-range__scale"><span data-min></span><span data-max></span></div>
+      </div>`;
+    this.box.innerHTML = row('w', 'Largeur', this.cfg.wMin, this.cfg.wMax, this.cfg.step)
+      + row('d', 'Profondeur', this.cfg.dMin, this.cfg.dMax, this.cfg.step)
+      + row('n', 'Panneaux solaires', 0, 1, 1);
+    this.rows = {};
+    this.box.querySelectorAll('[data-row]').forEach((el) => {
+      const key = el.dataset.row;
+      const input = el.querySelector('input');
+      this.rows[key] = { el, input, out: el.querySelector('output'), min: el.querySelector('[data-min]'), max: el.querySelector('[data-max]') };
+      const set = (value) => {
+        const lo = parseInt(input.min, 10), hi = parseInt(input.max, 10);
+        this.state[key] = Math.min(hi, Math.max(lo, value));
+        if (key === 'n') this.state.auto = this.state.n >= hi;
+        this.updateCustom(true);
+      };
+      input.addEventListener('input', () => set(parseInt(input.value, 10)));
+      el.querySelector('[data-dec]').addEventListener('click', () => set(this.state[key] - parseInt(input.step, 10)));
+      el.querySelector('[data-inc]').addEventListener('click', () => set(this.state[key] + parseInt(input.step, 10)));
+    });
+    this.props = {};
+    this.querySelectorAll('input[data-prop]').forEach((el) => { this.props[el.dataset.prop] = el; });
+
+    ClarteAddons.register(this);
+    this._onReady = () => this.updateCustom(false);
+    document.addEventListener('clarte:pricebox:ready', this._onReady);
+    this.updateCustom(true);
+  }
+
+  /* Calepinage : on retient l'orientation des panneaux (portrait ou paysage) qui en loge le plus */
+  layout() {
+    const { w, d } = this.state, { pw, ph } = this.cfg;
+    const a = { cols: Math.floor(w / pw), rows: Math.floor(d / ph) };
+    const b = { cols: Math.floor(w / ph), rows: Math.floor(d / pw) };
+    return b.cols * b.rows > a.cols * a.rows ? b : a;
+  }
+
+  maxPanels() { const l = this.layout(); return l.cols * l.rows; }
+
+  items() {
+    if (!this.custom || !this.cfg.panelVariant || this.state.n < 1) return [];
+    return [{ id: parseInt(this.cfg.panelVariant, 10), quantity: this.state.n,
+      properties: { 'Pour': this.dataset.productTitle || '', 'Dimensions': `${this.fmtM(this.state.w)} × ${this.fmtM(this.state.d)}` } }];
+  }
+
+  updateCustom(propagate) {
+    const { cfg, state, rows } = this;
+    const max = this.maxPanels();
+    const min = Math.min(cfg.pMin, max);
+    if (state.auto || state.n > max) state.n = max;
+    if (state.n < min) state.n = min;
+    rows.n.input.min = min; rows.n.input.max = max;
+    const surface = (state.w / 100) * (state.d / 100);
+    const kwc = Math.round(state.n * cfg.wc / 100) / 10;
+
+    rows.w.input.value = state.w; rows.d.input.value = state.d; rows.n.input.value = state.n;
+    rows.w.out.textContent = this.fmtM(state.w); rows.d.out.textContent = this.fmtM(state.d);
+    rows.n.out.textContent = `${state.n} · ${kwc.toLocaleString('fr-FR')} kWc`;
+    rows.w.min.textContent = this.fmtM(cfg.wMin); rows.w.max.textContent = this.fmtM(cfg.wMax);
+    rows.d.min.textContent = this.fmtM(cfg.dMin); rows.d.max.textContent = this.fmtM(cfg.dMax);
+    rows.n.min.textContent = `${min} panneaux`; rows.n.max.textContent = `${max} panneaux maximum`;
+
+    if (this.props.width) this.props.width.value = this.fmtM(state.w);
+    if (this.props.depth) this.props.depth.value = this.fmtM(state.d);
+    if (this.props.surface) this.props.surface.value = `${surface.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} m²`;
+    if (this.props.panels) this.props.panels.value = `${state.n} (${kwc.toLocaleString('fr-FR')} kWc)`;
+
+    // Variante = première tranche de surface qui couvre la surface demandée
+    const bracket = this.brackets.find((x) => x.s >= surface - 1e-6) || this.brackets[this.brackets.length - 1];
+    if (bracket && propagate) this.syncTheme(bracket.v);
+
+    const lay = this.layout();
+    const cols = Math.max(1, lay.cols), rws = Math.max(1, lay.rows);
+    this.drawScene({ width: state.w / 100, depth: state.d / 100, cars: state.w >= 500 ? 2 : 1, cols, rows: rws, panels: state.n, kwc });
+
+    document.dispatchEvent(new CustomEvent('clarte:extra:change', { detail: { form: this.form, key: 'panels', label: `${cfg.panelLabel} (${state.n})`, cents: state.n * cfg.panelPrice } }));
+    document.dispatchEvent(new CustomEvent('clarte:solar:change', { detail: { form: this.form, kwc, panels: state.n } }));
   }
 
   static num(value) {
@@ -280,7 +394,7 @@ class ClarteConfigurator extends HTMLElement {
         wrap.innerHTML = `
           <div class="cl-range">
             <div class="cl-range__head"><label>${opt.name}</label><output>${values[idx]}</output></div>
-            <input type="range" min="0" max="${values.length - 1}" step="1" value="${idx}" aria-label="${opt.name}">
+            <input class="range" type="range" min="0" max="${values.length - 1}" step="1" value="${idx}" aria-label="${opt.name}">
             <div class="cl-range__scale"><span>${values[0]}</span><span>${values[values.length - 1]}</span></div>
           </div>`;
         const input = wrap.querySelector('input');
@@ -313,18 +427,7 @@ class ClarteConfigurator extends HTMLElement {
     if (propagate && v) this.syncTheme(v);
   }
 
-  /* Coche l'option correspondante dans le sélecteur de variantes d'Impact (masqué) */
-  syncTheme(v) {
-    if (!this.form) return;
-    // Les inputs d'Impact portent l'ID de la valeur d'option ; on retrouve la bonne case par le texte de son label.
-    const norm = (s) => String(s).replace(/\s+/g, ' ').trim();
-    v.options.forEach((value, i) => {
-      const inputs = Array.from(document.querySelectorAll(`input[data-option-position="${i + 1}"][form="${this.form.getAttribute('id')}"]`));
-      const input = inputs.find((el) => el.value === value)
-        || inputs.find((el) => { const l = el.id && document.querySelector(`label[for="${CSS.escape(el.id)}"]`); return l && norm(l.textContent) === norm(value); });
-      if (input && !input.checked) { input.checked = true; input.dispatchEvent(new Event('change', { bubbles: true })); }
-    });
-  }
+  syncTheme(v) { clarteSelectOptions(this.form, v.options); }
 
   dims() {
     // Largeur / profondeur : premières options numériques en mètres ; places : option contenant « voiture »
@@ -348,6 +451,11 @@ class ClarteConfigurator extends HTMLElement {
     const rows = Math.max(1, Math.round(depth / 1.95));
     const panels = v && v.panels ? v.panels : cols * rows;
     const kwc = v && v.kwc ? v.kwc : Math.round(panels * 0.45 * 10) / 10;
+    this.drawScene({ width, depth, cars, cols, rows, panels, kwc });
+    document.dispatchEvent(new CustomEvent('clarte:solar:change', { detail: { form: this.form, kwc, panels } }));
+  }
+
+  drawScene({ width, depth, cars, cols, rows, panels, kwc }) {
 
     if (this.facts) {
       this.facts.innerHTML = `
@@ -367,21 +475,206 @@ class ClarteConfigurator extends HTMLElement {
     let n = 0;
     for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
       const on = n < panels; n++;
-      cells += `<rect x="${(x0 + gap + c * (pw + gap)).toFixed(1)}" y="${(y0 + gap + r * (ph + gap)).toFixed(1)}" width="${pw.toFixed(1)}" height="${ph.toFixed(1)}" rx="2" fill="${on ? 'rgb(var(--cl-ink))' : 'rgb(var(--cl-line))'}" />`;
+      cells += `<rect x="${(x0 + gap + c * (pw + gap)).toFixed(1)}" y="${(y0 + gap + r * (ph + gap)).toFixed(1)}" width="${pw.toFixed(1)}" height="${ph.toFixed(1)}" rx="2" fill="${on ? 'rgb(var(--text-color))' : 'rgb(var(--text-color) / .12)'}" />`;
     }
     let carsSvg = '';
     const carW = Math.min(W / cars - 14, 2.1 * scale), carH = Math.min(D - 30, 4.4 * scale);
     for (let i = 0; i < cars; i++) {
       const cx = x0 + (W / cars) * (i + 0.5) - carW / 2, cy = y0 + (D - carH) / 2;
       carsSvg += `<rect x="${cx.toFixed(1)}" y="${cy.toFixed(1)}" width="${carW.toFixed(1)}" height="${carH.toFixed(1)}" rx="${(carW / 4).toFixed(1)}" fill="rgb(var(--cl-accent))" opacity=".9"/>
-        <rect x="${(cx + carW * 0.15).toFixed(1)}" y="${(cy + carH * 0.22).toFixed(1)}" width="${(carW * 0.7).toFixed(1)}" height="${(carH * 0.28).toFixed(1)}" rx="3" fill="rgb(var(--cl-ink))" opacity=".25"/>`;
+        <rect x="${(cx + carW * 0.15).toFixed(1)}" y="${(cy + carH * 0.22).toFixed(1)}" width="${(carW * 0.7).toFixed(1)}" height="${(carH * 0.28).toFixed(1)}" rx="3" fill="rgb(var(--text-color))" opacity=".25"/>`;
     }
     this.svg.innerHTML = `
-      <rect x="${(x0 - 6).toFixed(1)}" y="${(y0 - 6).toFixed(1)}" width="${(W + 12).toFixed(1)}" height="${(D + 12).toFixed(1)}" rx="8" fill="#fff" stroke="rgb(var(--cl-line))"/>
+      <rect x="${(x0 - 6).toFixed(1)}" y="${(y0 - 6).toFixed(1)}" width="${(W + 12).toFixed(1)}" height="${(D + 12).toFixed(1)}" rx="8" fill="none" stroke="rgb(var(--text-color) / .2)"/>
       <g opacity=".35">${carsSvg}</g>
       <g>${cells}</g>
-      <text x="200" y="${(y0 - 12).toFixed(1)}" text-anchor="middle" font-size="11" fill="rgb(var(--cl-muted))">${width.toLocaleString('fr-FR')} m</text>
-      <text x="${(x0 - 14).toFixed(1)}" y="130" text-anchor="middle" font-size="11" fill="rgb(var(--cl-muted))" transform="rotate(-90 ${(x0 - 14).toFixed(1)} 130)">${depth.toLocaleString('fr-FR')} m</text>`;
+      <text x="200" y="${(y0 - 12).toFixed(1)}" text-anchor="middle" font-size="11" fill="currentColor" opacity=".65">${width.toLocaleString('fr-FR')} m</text>
+      <text x="${(x0 - 14).toFixed(1)}" y="130" text-anchor="middle" font-size="11" fill="currentColor" opacity=".65" transform="rotate(-90 ${(x0 - 14).toFixed(1)} 130)">${depth.toLocaleString('fr-FR')} m</text>`;
   }
 }
 if (!customElements.get('clarte-configurator')) customElements.define('clarte-configurator', ClarteConfigurator);
+
+
+/* ---------- Conseil climatisation ---------------------------------------
+   Deux questions qui s'enchaînent sans bouton « suivant » : chaque réponse affiche la question suivante,
+   puis la configuration conseillée est sélectionnée dans les options du produit. */
+class ClarteClimAdvisor extends HTMLElement {
+  connectedCallback() {
+    this.form = document.forms[this.getAttribute('form')];
+    try { this.data = JSON.parse(this.querySelector('script[data-product]')?.textContent || '{}'); } catch (e) { this.data = {}; }
+    const opts = this.data.options || [];
+    this.roomsIdx = opts.findIndex((o) => /pi[eè]ce|split/i.test(o.name) && !/puissance/i.test(o.name));
+    this.powerIdx = opts.findIndex((o) => /puissance|kw/i.test(o.name));
+    if (this.powerIdx < 0) { this.hidden = true; return; }
+    this.wpm = parseFloat(this.dataset.wattsPerM2 || '100');
+    this.surfaces = (this.dataset.surfaces || '20,25,35,50,70').split(',').map((s) => parseFloat(s)).filter((n) => n > 0).sort((a, b) => a - b);
+    this.stepsBox = this.querySelector('[data-steps]');
+    this.resultBox = this.querySelector('[data-result]');
+    this.answers = {};
+    this.render();
+  }
+
+  static num(value) { const m = String(value).replace(',', '.').match(/\d+(\.\d+)?/); return m ? parseFloat(m[0]) : NaN; }
+
+  choices(name, legend, items) {
+    const fs = document.createElement('fieldset');
+    fs.className = 'cl-advisor__step';
+    fs.innerHTML = `<legend>${legend}</legend><div class="cl-advisor__choices"></div>`;
+    const box = fs.querySelector('.cl-advisor__choices');
+    items.forEach((it, i) => {
+      const id = `${this.id || 'cla'}-${name}-${i}`;
+      const input = document.createElement('input');
+      input.type = 'radio'; input.name = `${this.id || 'cla'}-${name}`; input.id = id; input.className = 'sr-only';
+      input.checked = this.answers[name] === it.value;
+      const label = document.createElement('label');
+      label.className = 'block-swatch'; label.htmlFor = id; label.textContent = it.label;
+      input.addEventListener('change', () => this.answer(name, it.value));
+      box.append(input, label);
+    });
+    return fs;
+  }
+
+  answer(name, value) {
+    this.answers[name] = value;
+    if (name === 'rooms') delete this.answers.surface;
+    this.render(true);
+  }
+
+  render(scroll) {
+    const opts = this.data.options;
+    this.stepsBox.innerHTML = '';
+    this.resultBox.hidden = true;
+    const hasRooms = this.roomsIdx >= 0;
+
+    if (hasRooms) {
+      const items = opts[this.roomsIdx].values.map((v) => ({ value: v, label: String(ClarteClimAdvisor.num(v)) }));
+      items.push({ value: '__more', label: `${items.length + 1} et +` });
+      this.stepsBox.appendChild(this.choices('rooms', this.dataset.qRooms, items));
+      if (this.answers.rooms === '__more') {
+        this.resultBox.hidden = false;
+        this.resultBox.innerHTML = `<p>${this.dataset.moreText || ''}</p>`;
+        return;
+      }
+    }
+    if (!hasRooms || this.answers.rooms) {
+      let prev = 0;
+      const items = this.surfaces.map((s) => { const label = prev ? `${prev} à ${s} m²` : `Jusqu’à ${s} m²`; prev = s; return { value: s, label }; });
+      const step = this.choices('surface', this.dataset.qSurface, items);
+      this.stepsBox.appendChild(step);
+      if (scroll && this.answers.surface == null) step.classList.add('is-entering');
+    }
+    if (this.answers.surface != null) this.recommend();
+  }
+
+  recommend() {
+    const opts = this.data.options;
+    const need = this.answers.surface * this.wpm / 1000;
+    const rooms = this.roomsIdx >= 0 ? this.answers.rooms : null;
+    // Puissances réellement disponibles pour ce nombre de pièces
+    const powers = [...new Set(this.data.variants
+      .filter((v) => rooms == null || v.options[this.roomsIdx] === rooms)
+      .map((v) => v.options[this.powerIdx]))]
+      .map((label) => ({ label, kw: ClarteClimAdvisor.num(label) }))
+      .filter((x) => !isNaN(x.kw)).sort((a, b) => a.kw - b.kw);
+    if (!powers.length) return;
+    const pick = powers.find((x) => x.kw >= need - 0.05) || powers[powers.length - 1];
+    const enough = pick.kw >= need - 0.05;
+    const values = [];
+    if (rooms != null) values[this.roomsIdx] = rooms;
+    values[this.powerIdx] = pick.label;
+    clarteSelectOptions(this.form, values);
+
+    const roomsCount = rooms != null ? ClarteClimAdvisor.num(rooms) : 1;
+    const units = `${roomsCount} unité${roomsCount > 1 ? 's' : ''} intérieure${roomsCount > 1 ? 's' : ''}`;
+    this.resultBox.hidden = false;
+    this.resultBox.innerHTML = `
+      <p class="cl-advisor__reco"><span>Notre conseil</span><strong>${units} · ${pick.label}${roomsCount > 1 ? ' pour la pièce principale' : ''}</strong></p>
+      <p>${enough ? 'La configuration est sélectionnée, le prix posé est à jour ci-dessous.' : 'Cette pièce demande plus de puissance que ce modèle n’en propose : nous sélectionnons la plus élevée, à valider avec le technicien.'}</p>
+      ${this.dataset.note || ''}`;
+  }
+}
+if (!customElements.get('clarte-clim-advisor')) customElements.define('clarte-clim-advisor', ClarteClimAdvisor);
+
+/* ---------- Simulateur d'économies solaires ------------------------------ */
+class ClarteSimulator extends HTMLElement {
+  connectedCallback() {
+    const d = this.dataset;
+    const f = (v, fb) => { const n = parseFloat(String(v).replace(',', '.')); return isNaN(n) ? fb : n; };
+    this.p = {
+      price: f(d.kwhPrice, 0.2), yield: f(d.yield, 1050), surplus: f(d.surplus, 0.011), inflation: f(d.inflation, 3) / 100,
+      rate: f(d.rate, 50) / 100, rateBattery: f(d.rateBattery, 80) / 100, wc: f(d.panelWc, 500), years: 25
+    };
+    this.productMode = this.hasAttribute('data-product-mode');
+    try { this.variants = JSON.parse(this.querySelector('script[data-variants]')?.textContent || '{}'); } catch (e) { this.variants = {}; }
+    this.bill = this.querySelector('input[data-bill]');
+    this.panels = this.querySelector('input[data-panels]');
+    this.battery = this.querySelector('input[data-battery]');
+    this.out = {};
+    this.querySelectorAll('[data-out]').forEach((el) => { this.out[el.dataset.out] = el; });
+    this.kwc = 0;
+    this.cost = f(d.cost, 0); // centimes
+
+    [this.bill, this.panels, this.battery].forEach((el) => el?.addEventListener('input', () => this.update()));
+    if (this.productMode) {
+      const kwcOf = (v) => {
+        if (!v) return 0;
+        if (v.kwc) return v.kwc;
+        const m = String(v.title || '').replace(',', '.').match(/([\d.]+)\s*kWc/i);
+        return m ? parseFloat(m[1]) : 0;
+      };
+      const selected = Object.values(this.variants).find((v) => v.selected);
+      this.kwc = kwcOf(selected);
+      if (ClarteLast.solar?.kwc != null) this.kwc = ClarteLast.solar.kwc;
+      if (ClarteLast.price?.totalCents) this.cost = ClarteLast.price.totalCents;
+      this._onVariant = (e) => { const v = this.variants[e.detail?.variant?.id]; if (v) { const k = kwcOf(v); if (k) this.kwc = k; this.cost = v.price; this.update(); } };
+      this._onSolar = (e) => { if (e.detail?.kwc != null) { this.kwc = e.detail.kwc; this.update(); } };
+      this._onPrice = (e) => { if (e.detail?.totalCents) { this.cost = e.detail.totalCents; this.update(); } };
+      document.addEventListener('variant:change', this._onVariant);
+      document.addEventListener('clarte:solar:change', this._onSolar);
+      document.addEventListener('clarte:price:change', this._onPrice);
+    }
+    this.update();
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('variant:change', this._onVariant);
+    document.removeEventListener('clarte:solar:change', this._onSolar);
+    document.removeEventListener('clarte:price:change', this._onPrice);
+  }
+
+  update() {
+    const p = this.p;
+    const bill = parseFloat(this.bill?.value || '150');
+    const kwc = this.productMode ? this.kwc : Math.round(parseInt(this.panels?.value || '8', 10) * p.wc / 100) / 10;
+    const battery = this.battery ? this.battery.checked : this.hasAttribute('data-with-battery');
+    const section = this.closest('.shopify-section');
+    if (this.productMode && section) section.hidden = !(kwc > 0);
+    if (!(kwc > 0)) return;
+    const conso = bill * 12 / p.price;
+    const prod = kwc * p.yield;
+    const auto = Math.min(prod * (battery ? p.rateBattery : p.rate), conso * 0.9);
+    const surplus = Math.max(0, prod - auto);
+    const first = auto * p.price + surplus * p.surplus;
+    let total = 0, payback = null;
+    for (let y = 0; y < p.years; y++) {
+      const deg = Math.pow(0.995, y);
+      total += auto * deg * p.price * Math.pow(1 + p.inflation, y) + surplus * deg * p.surplus;
+      if (payback == null && this.cost > 0 && total * 100 >= this.cost) payback = y + 1;
+    }
+    const set = (k, v) => { if (this.out[k]) this.out[k].textContent = v; };
+    set('bill', `${fmtInt(bill)} €`);
+    if (this.panels) set('panels', `${this.panels.value} panneaux · ${kwc.toLocaleString('fr-FR')} kWc`);
+    set('kwc', `${kwc.toLocaleString('fr-FR')} kWc`);
+    set('first', `${fmtInt(Math.round(first / 10) * 10)} €`);
+    set('monthly', `${fmtInt(Math.round(first / 12))} €`);
+    set('production', `${fmtInt(Math.round(prod / 10) * 10)} kWh`);
+    set('coverage', `${Math.round(Math.min(1, auto / conso) * 100)} %`);
+    set('total', `${fmtInt(Math.round(total / 100) * 100)} €`);
+    if (this.out.payback) {
+      const row = this.out.payback.closest('[data-payback-row]');
+      if (row) row.hidden = payback == null;
+      if (payback != null) this.out.payback.textContent = `${payback} an${payback > 1 ? 's' : ''}`;
+    }
+  }
+}
+if (!customElements.get('clarte-simulator')) customElements.define('clarte-simulator', ClarteSimulator);
