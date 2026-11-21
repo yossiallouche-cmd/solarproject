@@ -23,6 +23,20 @@
     endfor
     assign variant = product.selected_or_first_available_variant
   endif
+  assign show_payback = false
+  if product_mode
+    assign show_payback = true
+    assign no_payback = section.settings.no_payback_tags | downcase | split: ','
+    for tag in product.tags
+      assign tag_down = tag | downcase | strip
+      for w in no_payback
+        assign w_clean = w | strip
+        if w_clean == tag_down
+          assign show_payback = false
+        endif
+      endfor
+    endfor
+  endif
   assign with_battery = false
   if product_mode and product.tags contains 'batterie'
     assign with_battery = true
@@ -101,7 +115,9 @@
             <div><dt>{{ section.settings.label_production | escape }}</dt><dd data-out="production"></dd></div>
             <div><dt>{{ section.settings.label_coverage | escape }}</dt><dd data-out="coverage"></dd></div>
             <div><dt>{{ section.settings.label_total | escape }}</dt><dd data-out="total"></dd></div>
-            <div data-payback-row hidden><dt>{{ section.settings.label_payback | escape }}</dt><dd data-out="payback"></dd></div>
+            {%- if show_payback -%}
+              <div data-payback-row hidden><dt>{{ section.settings.label_payback | escape }}</dt><dd data-out="payback"></dd></div>
+            {%- endif -%}
           </dl>
         </div>
       </clarte-simulator>
@@ -134,6 +150,7 @@
     { "type": "url", "id": "button_link", "label": "Lien du bouton" },
     { "type": "header", "content": "Fiche produit" },
     { "type": "text", "id": "only_tags", "label": "Afficher pour les produits ayant l'un de ces tags", "default": "solaire, carport", "info": "Séparés par des virgules." },
+    { "type": "text", "id": "no_payback_tags", "label": "Ne pas afficher la durée d'amortissement pour ces tags", "default": "carport, pergola", "info": "Pour un carport ou une pergola, le prix comprend aussi la structure : comparer ce prix aux seules économies d'électricité n'a pas de sens." },
     { "type": "header", "content": "Libellés" },
     { "type": "text", "id": "label_bill", "label": "Facture", "default": "Votre facture d'électricité par mois" },
     { "type": "text", "id": "label_panels", "label": "Panneaux", "default": "Nombre de panneaux" },

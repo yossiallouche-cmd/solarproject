@@ -286,9 +286,9 @@ class ClarteConfigurator extends HTMLElement {
     this.brackets = this.data.variants
       .map((v) => ({ v, s: ClarteConfigurator.num(v.options[0]) }))
       .filter((x) => !isNaN(x.s)).sort((a, b) => a.s - b.s);
-    const first = this.brackets.find((x) => x.v.options[0] === this.selection[0]);
-    this.state = { w: this.cfg.wMin + Math.round((300 - this.cfg.wMin) / this.cfg.step) * this.cfg.step, d: Math.max(this.cfg.dMin, 500), n: 0, auto: true };
-    if (this.state.w < this.cfg.wMin) this.state.w = this.cfg.wMin;
+    // Dimensions de départ : celles qui correspondent à la variante affichée (pas de changement de variante au chargement)
+    const current = this.brackets.find((x) => x.v.options[0] === this.selection[0]) || this.brackets[0];
+    this.state = { ...this.dimsFor(current ? current.s : 0), n: 0, auto: true };
 
     const m = (cm) => `${(cm / 100).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} m`;
     this.fmtM = m;
@@ -324,7 +324,20 @@ class ClarteConfigurator extends HTMLElement {
     ClarteAddons.register(this);
     this._onReady = () => this.updateCustom(false);
     document.addEventListener('clarte:pricebox:ready', this._onReady);
-    this.updateCustom(true);
+    this.updateCustom(false);
+  }
+
+  /* Dimensions (multiples du pas) dont la surface tombe dans la tranche demandée */
+  dimsFor(surface) {
+    const { wMin, wMax, dMin, dMax, step } = this.cfg;
+    const fits = (w, d) => Math.ceil(w * d / 10000 - 1e-6) === surface;
+    const depths = [500, dMin];
+    for (let d = dMin; d <= dMax; d += step) depths.push(d);
+    for (const d of depths) {
+      if (d < dMin || d > dMax) continue;
+      for (let w = wMax; w >= wMin; w -= step) if (fits(w, d)) return { w, d };
+    }
+    return { w: wMin, d: dMin };
   }
 
   /* Calepinage : on retient l'orientation des panneaux (portrait ou paysage) qui en loge le plus */
@@ -332,6 +345,7 @@ class ClarteConfigurator extends HTMLElement {
     const { w, d } = this.state, { pw, ph } = this.cfg;
     const a = { cols: Math.floor(w / pw), rows: Math.floor(d / ph) };
     const b = { cols: Math.floor(w / ph), rows: Math.floor(d / pw) };
+    this._portrait = a;
     return b.cols * b.rows > a.cols * a.rows ? b : a;
   }
 
@@ -371,7 +385,9 @@ class ClarteConfigurator extends HTMLElement {
 
     const lay = this.layout();
     const cols = Math.max(1, lay.cols), rws = Math.max(1, lay.rows);
-    this.drawScene({ width: state.w / 100, depth: state.d / 100, cars: state.w >= 500 ? 2 : 1, cols, rows: rws, panels: state.n, kwc });
+    const portrait = lay === this._portrait;
+    this.drawScene({ width: state.w / 100, depth: state.d / 100, cars: state.w >= 500 ? 2 : 1, cols, rows: rws, panels: state.n, kwc,
+      cellW: (portrait ? cfg.pw : cfg.ph) / 100, cellH: (portrait ? cfg.ph : cfg.pw) / 100 });
 
     document.dispatchEvent(new CustomEvent('clarte:extra:change', { detail: { form: this.form, key: 'panels', label: `${cfg.panelLabel} (${state.n})`, cents: state.n * cfg.panelPrice } }));
     document.dispatchEvent(new CustomEvent('clarte:solar:change', { detail: { form: this.form, kwc, panels: state.n } }));
@@ -455,7 +471,7 @@ class ClarteConfigurator extends HTMLElement {
     document.dispatchEvent(new CustomEvent('clarte:solar:change', { detail: { form: this.form, kwc, panels } }));
   }
 
-  drawScene({ width, depth, cars, cols, rows, panels, kwc }) {
+  drawScene({ width, depth, cars, cols, rows, panels, kwc, cellW, cellH }) {
 
     if (this.facts) {
       this.facts.innerHTML = `
@@ -470,12 +486,17 @@ class ClarteConfigurator extends HTMLElement {
     const W = width * scale, D = depth * scale;
     const x0 = (400 - W) / 2, y0 = (260 - D) / 2;
     const gap = 3;
-    const pw = (W - gap * (cols + 1)) / cols, ph = (D - gap * (rows + 1)) / rows;
+    // Panneaux à l'échelle (sur mesure) ou répartis sur toute la toiture (variantes)
+    const real = cellW > 0 && cellH > 0;
+    const pw = real ? cellW * scale - gap : (W - gap * (cols + 1)) / cols;
+    const ph = real ? cellH * scale - gap : (D - gap * (rows + 1)) / rows;
+    const ox = real ? x0 + (W - cols * (pw + gap) + gap) / 2 - gap : x0;
+    const oy = real ? y0 + (D - rows * (ph + gap) + gap) / 2 - gap : y0;
     let cells = '';
     let n = 0;
     for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
       const on = n < panels; n++;
-      cells += `<rect x="${(x0 + gap + c * (pw + gap)).toFixed(1)}" y="${(y0 + gap + r * (ph + gap)).toFixed(1)}" width="${pw.toFixed(1)}" height="${ph.toFixed(1)}" rx="2" fill="${on ? 'rgb(var(--text-color))' : 'rgb(var(--text-color) / .12)'}" />`;
+      cells += `<rect x="${(ox + gap + c * (pw + gap)).toFixed(1)}" y="${(oy + gap + r * (ph + gap)).toFixed(1)}" width="${pw.toFixed(1)}" height="${ph.toFixed(1)}" rx="2" fill="${on ? 'rgb(var(--text-color))' : 'rgb(var(--text-color) / .12)'}" />`;
     }
     let carsSvg = '';
     const carW = Math.min(W / cars - 14, 2.1 * scale), carH = Math.min(D - 30, 4.4 * scale);
