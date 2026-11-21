@@ -73,24 +73,27 @@
           "type": "item",
           "settings": {
             "title": "48 h",
-            "content": "<p>pour être rappelé par un technicien</p>",
-            "animate_impact_text": false
+            "content": "",
+            "animate_impact_text": false,
+            "subheading": "Pour être rappelé par un technicien"
           }
         },
         "n2": {
           "type": "item",
           "settings": {
             "title": "14 jours",
-            "content": "<p>entre la commande et la pose</p>",
-            "animate_impact_text": false
+            "content": "",
+            "animate_impact_text": false,
+            "subheading": "Entre la commande et la pose"
           }
         },
         "n3": {
           "type": "item",
           "settings": {
             "title": "0 €",
-            "content": "<p>de supplément le jour de l’installation</p>",
-            "animate_impact_text": false
+            "content": "",
+            "animate_impact_text": false,
+            "subheading": "De supplément le jour de l’installation"
           }
         }
       },

@@ -126,7 +126,9 @@
         "collections_per_row_mobile": "2",
         "collections_per_row": 3,
         "show_progress_bar": false,
-        "title": "Nos univers"
+        "title": "Nos univers",
+        "link_text": "",
+        "link_url": ""
       },
       "blocks": {
         "c1": {
@@ -188,7 +190,7 @@
           "type": "collection",
           "settings": {
             "collection": "pergolas-solaires",
-            "image": "shopify://shop_images/pexels-photo-33287940.jpg",
+            "image": "shopify://shop_images/pexels-photo-18861439.jpg",
             "title": "Pergolas solaires",
             "heading_tag": "h3",
             "text_position": "place-self-end-start text-start",
@@ -231,7 +233,7 @@
         "m1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/pexels-photo-33652618.jpg",
+            "image": "shopify://shop_images/clarte-carport-solaire.jpg",
             "media_width": 50,
             "media_position": "start",
             "text_position": "place-self-center-start text-start",
@@ -279,24 +281,27 @@
           "type": "item",
           "settings": {
             "title": "48 h",
-            "content": "<p>pour être rappelé par un technicien</p>",
-            "animate_impact_text": false
+            "content": "",
+            "animate_impact_text": false,
+            "subheading": "Pour être rappelé par un technicien"
           }
         },
         "n2": {
           "type": "item",
           "settings": {
             "title": "14 jours",
-            "content": "<p>entre la commande et la pose</p>",
-            "animate_impact_text": false
+            "content": "",
+            "animate_impact_text": false,
+            "subheading": "Entre la commande et la pose"
           }
         },
         "n3": {
           "type": "item",
           "settings": {
             "title": "0 €",
-            "content": "<p>de supplément le jour de l’installation</p>",
-            "animate_impact_text": false
+            "content": "",
+            "animate_impact_text": false,
+            "subheading": "De supplément le jour de l’installation"
           }
         }
       },
@@ -546,16 +551,6 @@
         "button_url": "/pages/contact",
         "text_position": "start"
       }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "full_width": true,
-        "show_icon": true,
-        "title": "Recevez nos conseils énergie",
-        "content": "<p>Aides, autoconsommation, nouveautés : un e-mail par mois.</p>",
-        "button_text": "S’inscrire"
-      }
     }
   },
   "order": [
@@ -571,7 +566,6 @@
     "zone",
     "testimonials",
     "guides",
-    "faq",
-    "newsletter"
+    "faq"
   ]
 }
