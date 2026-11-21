@@ -107,5 +107,11 @@ clarte-configurator, clarte-rdv, clarte-installation, clarte-projection, clarte-
 
 .cl-pricebox .cl-free { color: inherit; }
 
+.cl-range { display: grid; gap: .6rem; }
+.cl-range__head { display: flex; justify-content: space-between; align-items: baseline; font-size: .9rem; font-weight: bold; }
+.cl-range__head output { font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); font-size: var(--text-h4); }
+.cl-range input[type=range] { width: 100%; accent-color: rgb(var(--text-color)); }
+.cl-range__scale { display: flex; justify-content: space-between; font-size: .75rem; color: rgb(var(--text-color) / .65); }
+
 /* header : navigation sur une ligne */
 .header__link-list.wrap { flex-wrap: nowrap; white-space: nowrap; }
