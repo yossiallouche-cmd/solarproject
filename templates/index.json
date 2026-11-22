@@ -21,12 +21,12 @@
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
             "subheading": "Panneaux solaires posés",
-            "title": "Le solaire sans devis.",
+            "title": "Le prix du solaire, enfin affiché.",
             "heading_tag": "h0",
             "button_text": "Voir les prix",
             "button_link": "shopify://collections/panneaux-solaires",
             "overlay_opacity": 40,
-            "button_background": "#ffd21f",
+            "button_background": "#ffffff",
             "button_text_color": "#0a0f2c"
           }
         },
@@ -43,7 +43,7 @@
             "button_text": "Je configure le mien",
             "button_link": "shopify://products/carport-solaire-bois-sur-mesure",
             "overlay_opacity": 40,
-            "button_background": "#ffd21f",
+            "button_background": "#ffffff",
             "button_text_color": "#0a0f2c"
           }
         },
@@ -60,7 +60,7 @@
             "button_text": "Voir les prix",
             "button_link": "shopify://collections/climatisation",
             "overlay_opacity": 40,
-            "button_background": "#ffd21f",
+            "button_background": "#ffffff",
             "button_text_color": "#0a0f2c"
           }
         }
@@ -93,10 +93,10 @@
         "i2": {
           "type": "item",
           "settings": {
-            "icon": "picto-phone",
+            "icon": "picto-operator",
             "icon_background_type": "none",
-            "title": "Aucun commercial",
-            "content": "<p>Un technicien vous appelle sous 48 h. C’est tout.</p>",
+            "title": "Un conseiller si vous voulez",
+            "content": "<p>Par téléphone ou par écrit, devis sur demande.</p>",
             "icon_color": "#1e3ae6"
           }
         },
@@ -256,7 +256,7 @@
             "link_url": "shopify://products/carport-solaire-bois-sur-mesure",
             "background": "#0a0f2c",
             "text_color": "#ffffff",
-            "button_background": "#ffd21f",
+            "button_background": "#ffffff",
             "button_text_color": "#0a0f2c"
           }
         },
@@ -295,17 +295,17 @@
         "text_divider": "none",
         "impact_text_size_ratio": 1,
         "background": "#0a0f2c",
-        "heading_text_color": "#ffd21f",
+        "heading_text_color": "#ffffff",
         "text_color": "#ffffff"
       },
       "blocks": {
         "n1": {
           "type": "item",
           "settings": {
-            "title": "0 devis",
+            "title": "0 €",
             "content": "",
             "animate_impact_text": false,
-            "subheading": "Le prix posé est déjà sur la page"
+            "subheading": "De supplément le jour de la pose"
           }
         },
         "n2": {
@@ -314,7 +314,7 @@
             "title": "48 h",
             "content": "",
             "animate_impact_text": false,
-            "subheading": "Pour parler à un technicien, pas à un vendeur"
+            "subheading": "Pour avoir un technicien au téléphone"
           }
         },
         "n3": {
@@ -554,9 +554,17 @@
             "title": "Et les aides de l'État ?",
             "content": "<p>Pour le solaire, la prime à l'autoconsommation n'existe plus depuis juin 2026 : l'économie vient de l'électricité que vous produisez et consommez vous-même, et le surplus est racheté à tarif garanti. Pour les pompes à chaleur, MaPrimeRénov' et les primes CEE restent possibles : nous indiquons sur chaque fiche les aides applicables et montons le dossier avec vous lors de l'appel technique.</p>"
           }
+        },
+        "q0": {
+          "type": "item",
+          "settings": {
+            "title": "Puis-je parler à un conseiller ou recevoir un devis ?",
+            "content": "<p>Oui. Le prix est affiché pour que vous n'ayez pas à l'attendre, mais rien ne vous oblige à commander seul. Un conseiller répond à vos questions par téléphone ou par écrit et peut vous envoyer un devis détaillé, à étudier tranquillement.</p>"
+          }
         }
       },
       "block_order": [
+        "q0",
         "q1",
         "q2",
         "q3",
@@ -568,7 +576,7 @@
         "full_width": false,
         "subheading": "",
         "title": "Questions franches, réponses franches",
-        "content": "<p>Une autre question ? Appelez-nous ou écrivez-nous, on répond vite. Et sans vous rappeler dix fois.</p>",
+        "content": "<p>Une autre question ? Appelez-nous ou écrivez-nous : un conseiller vous répond et peut vous préparer un devis.</p>",
         "support_hours": "Du lundi au samedi, 9 h – 19 h.",
         "answer_time": "Réponse en moins de 24 h",
         "button_text": "Nous écrire",
@@ -591,19 +599,6 @@
         "button_link": "shopify://collections/panneaux-solaires"
       }
     },
-    "defile": {
-      "type": "scrolling-text",
-      "settings": {
-        "full_width": true,
-        "text": "Sans devis • Sans commercial • Sans surprise •",
-        "text_size": "small",
-        "text_style": "fill",
-        "scrolling_mode": "auto",
-        "scrolling_speed": 12,
-        "background": "#ffd21f",
-        "text_color": "#0a0f2c"
-      }
-    },
     "manifeste": {
       "type": "rich-text",
       "settings": {
@@ -623,14 +618,14 @@
         "b": {
           "type": "heading",
           "settings": {
-            "text": "On a supprimé le devis.",
+            "text": "Le prix d’abord.",
             "heading_tag": "h1"
           }
         },
         "c": {
           "type": "richtext",
           "settings": {
-            "content": "<p>Dans ce métier, on vous demande d’abord votre numéro. Viennent ensuite le commercial, la visite, puis un devis à négocier. Ici, le prix posé est écrit sur chaque page. Vous comparez tranquillement, vous commandez quand vous voulez, on pose.</p>"
+            "content": "<p>Dans ce métier, il faut souvent laisser son numéro et attendre un devis pour connaître un prix. Ici, il est écrit sur chaque page, pose comprise. Vous comparez tranquillement et vous commandez en ligne quand vous êtes prêt.</p><p>Envie d’en parler, ou d’un devis écrit pour réfléchir ? Un conseiller vous accompagne.</p>"
           }
         },
         "d": {
@@ -640,8 +635,19 @@
             "size": "xl",
             "text": "Voir comment ça marche",
             "url": "/pages/comment-ca-marche",
-            "background": "#ffd21f",
+            "background": "#ffffff",
             "text_color": "#0a0f2c"
+          }
+        },
+        "e": {
+          "type": "button",
+          "settings": {
+            "style": "outline",
+            "size": "xl",
+            "text": "Parler à un conseiller",
+            "url": "/pages/contact",
+            "background": "#ffffff",
+            "text_color": "#ffffff"
           }
         }
       },
@@ -649,7 +655,8 @@
         "a",
         "b",
         "c",
-        "d"
+        "d",
+        "e"
       ]
     },
     "final": {
@@ -658,8 +665,8 @@
         "full_width": true,
         "content_width": "medium",
         "text_position": "center",
-        "background": "#ffd21f",
-        "text_color": "#0a0f2c"
+        "background": "#1e3ae6",
+        "text_color": "#ffffff"
       },
       "blocks": {
         "a": {
@@ -672,7 +679,7 @@
         "b": {
           "type": "richtext",
           "settings": {
-            "content": "<p>Il ne vous reste qu’à choisir.</p>"
+            "content": "<p>Il ne vous reste qu’à choisir. Et si vous préférez en parler d’abord, un conseiller vous rappelle.</p>"
           }
         },
         "c": {
@@ -682,7 +689,18 @@
             "size": "xl",
             "text": "Voir les prix",
             "url": "shopify://collections/meilleures-ventes",
-            "background": "#0a0f2c",
+            "background": "#ffffff",
+            "text_color": "#0a0f2c"
+          }
+        },
+        "d": {
+          "type": "button",
+          "settings": {
+            "style": "outline",
+            "size": "xl",
+            "text": "Être rappelé",
+            "url": "/pages/contact",
+            "background": "#ffffff",
             "text_color": "#ffffff"
           }
         }
@@ -690,13 +708,13 @@
       "block_order": [
         "a",
         "b",
-        "c"
+        "c",
+        "d"
       ]
     }
   },
   "order": [
     "slideshow",
-    "defile",
     "reassurance",
     "univers",
     "manifeste",

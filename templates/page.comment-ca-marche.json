@@ -68,17 +68,17 @@
         "text_divider": "none",
         "impact_text_size_ratio": 1,
         "background": "#0a0f2c",
-        "heading_text_color": "#ffd21f",
+        "heading_text_color": "#ffffff",
         "text_color": "#ffffff"
       },
       "blocks": {
         "n1": {
           "type": "item",
           "settings": {
-            "title": "0 devis",
+            "title": "0 €",
             "content": "",
             "animate_impact_text": false,
-            "subheading": "Le prix posé est déjà sur la page"
+            "subheading": "De supplément le jour de la pose"
           }
         },
         "n2": {
@@ -87,7 +87,7 @@
             "title": "48 h",
             "content": "",
             "animate_impact_text": false,
-            "subheading": "Pour parler à un technicien, pas à un vendeur"
+            "subheading": "Pour avoir un technicien au téléphone"
           }
         },
         "n3": {
@@ -150,9 +150,17 @@
             "title": "Et les aides de l'État ?",
             "content": "<p>Pour le solaire, la prime à l'autoconsommation n'existe plus depuis juin 2026 : l'économie vient de l'électricité que vous produisez et consommez vous-même, et le surplus est racheté à tarif garanti. Pour les pompes à chaleur, MaPrimeRénov' et les primes CEE restent possibles : nous indiquons sur chaque fiche les aides applicables et montons le dossier avec vous lors de l'appel technique.</p>"
           }
+        },
+        "q0": {
+          "type": "item",
+          "settings": {
+            "title": "Puis-je parler à un conseiller ou recevoir un devis ?",
+            "content": "<p>Oui. Le prix est affiché pour que vous n'ayez pas à l'attendre, mais rien ne vous oblige à commander seul. Un conseiller répond à vos questions par téléphone ou par écrit et peut vous envoyer un devis détaillé, à étudier tranquillement.</p>"
+          }
         }
       },
       "block_order": [
+        "q0",
         "q1",
         "q2",
         "q3",
@@ -164,7 +172,7 @@
         "full_width": false,
         "subheading": "",
         "title": "Questions franches, réponses franches",
-        "content": "<p>Une autre question ? Appelez-nous ou écrivez-nous, on répond vite.</p>",
+        "content": "<p>Une autre question ? Appelez-nous ou écrivez-nous : un conseiller vous répond et peut vous préparer un devis.</p>",
         "support_hours": "Du lundi au samedi, 9 h – 19 h.",
         "answer_time": "Réponse en moins de 24 h",
         "button_text": "Nous écrire",

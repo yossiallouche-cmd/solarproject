@@ -138,6 +138,16 @@
             "note": "<p>Conseil indicatif, confirmé par le technicien lors de l'appel offert.</p>",
             "more_text": "Au-delà, nous étudions votre projet par téléphone."
           }
+        },
+        "devis": {
+          "type": "button",
+          "settings": {
+            "link": "/pages/contact",
+            "text": "Une question ? Demander un devis ou un rappel",
+            "size": "base",
+            "style": "outline",
+            "stretch": true
+          }
         }
       },
       "block_order": [
@@ -151,6 +161,7 @@
         "clarte_price",
         "clarte_installation",
         "buy_buttons",
+        "devis",
         "clarte_includes",
         "separator",
         "description",

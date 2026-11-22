@@ -8,15 +8,15 @@
         "m1": {
           "type": "message",
           "settings": {
-            "text": "Zéro devis : le prix posé est sur chaque page",
+            "text": "Le prix posé est affiché sur chaque page",
             "url": "/pages/comment-ca-marche"
           }
         },
         "m2": {
           "type": "message",
           "settings": {
-            "text": "Un technicien vous appelle sous 48 h, c’est offert",
-            "url": "/pages/comment-ca-marche"
+            "text": "Besoin d’un conseil ou d’un devis ? Un conseiller vous répond",
+            "url": "/pages/contact"
           }
         },
         "m3": {

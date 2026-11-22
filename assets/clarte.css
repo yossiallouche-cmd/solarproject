@@ -6,7 +6,7 @@
 .cl-pricebox, .cl-install, .cl-rdv, .cl-includes, .cl-config, .cl-advisor, .cl-sim {
   --cl-ink: var(--text-color);
   --cl-paper: var(--background);
-  --cl-accent: var(--button-background-secondary);
+  --cl-accent: var(--button-background-primary);
   --cl-green: var(--success-text);
   --cl-radius: var(--rounded);
   --cl-radius-sm: var(--rounded-sm);
@@ -26,7 +26,7 @@ clarte-configurator, clarte-rdv, clarte-installation, clarte-pricebox, clarte-cl
 .cl-pricebox { padding: 1.35rem 1.5rem 1.4rem; border-radius: var(--cl-radius); background: rgb(var(--cl-ink)); color: rgb(var(--cl-paper)); }
 .cl-pricebox__head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .5rem; }
 .cl-pricebox__head strong { font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); font-size: 1.15rem; }
-.cl-pricebox__head .cl-chip { font-size: .68rem; font-weight: bold; color: rgb(var(--cl-accent)); }
+.cl-pricebox__head .cl-chip { font-size: .68rem; font-weight: bold; color: rgb(var(--cl-paper) / .72); }
 .cl-pricebox .cl-price-line { border-bottom: var(--cl-hair-light); font-size: .95rem; }
 .cl-pricebox__note { margin: .6rem 0 0; font-size: .72rem; color: rgb(var(--cl-paper) / .5); }
 
@@ -146,7 +146,7 @@ clarte-simulator { display: grid; gap: var(--spacing-8); align-items: stretch; }
 .cl-sim__result p { margin: 0; }
 .cl-sim__lead, .cl-sim__sub { color: rgb(var(--background) / .72); }
 .cl-sim__sub strong { color: rgb(var(--background)); }
-.cl-sim__figure { color: rgb(var(--button-background-secondary)); line-height: 1; font-variant-numeric: tabular-nums; }
+.cl-sim__figure { color: rgb(var(--background)); line-height: 1; font-variant-numeric: tabular-nums; }
 .cl-sim__list { display: grid; margin: var(--spacing-6) 0 0; }
 .cl-sim__list > div { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: var(--spacing-3); border-top: 1px solid rgb(var(--background) / .18); }
 .cl-sim__list dt { color: rgb(var(--background) / .72); }
