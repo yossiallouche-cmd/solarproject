@@ -253,7 +253,11 @@
             "title": "Un toit pour la voiture. Du courant pour la maison.",
             "content": "<p>Structure métal pour une ou deux voitures, ou bois sur mesure. Panneaux, onduleur, raccordement et déclaration en mairie compris. Vous choisissez les dimensions, le prix posé s’affiche.</p>",
             "link_text": "Je configure mon carport",
-            "link_url": "shopify://products/carport-solaire-bois-sur-mesure"
+            "link_url": "shopify://products/carport-solaire-bois-sur-mesure",
+            "background": "#0a0f2c",
+            "text_color": "#ffffff",
+            "button_background": "#ffd21f",
+            "button_text_color": "#0a0f2c"
           }
         },
         "m2": {
@@ -268,7 +272,11 @@
             "title": "Le prix affiché est le prix payé. Point.",
             "content": "<p>Matériel, pose par un installateur certifié RGE, raccordement électrique, démarches (mairie, Consuel, Enedis) et mise en service. Rien n’est ajouté le jour de l’installation.</p>",
             "link_text": "Comment ça marche",
-            "link_url": "/pages/comment-ca-marche"
+            "link_url": "/pages/comment-ca-marche",
+            "background": "#ffffff",
+            "text_color": "#0a0f2c",
+            "button_background": "#1e3ae6",
+            "button_text_color": "#ffffff"
           }
         }
       },
