@@ -635,6 +635,17 @@
         "type": "text",
         "id": "clarte_founding_year",
         "label": "Année de création"
+      },
+      {
+        "type": "header",
+        "content": "Cartes produit"
+      },
+      {
+        "type": "checkbox",
+        "id": "clarte_card_facts",
+        "label": "Afficher les points clés sous le prix",
+        "info": "Gamme, pose incluse et délai, avec pictogrammes.",
+        "default": true
       }
     ]
   },

@@ -429,6 +429,9 @@
             {%- render 'clarte-clim-advisor', product: product, product_form_id: product_form_id, block: block -%}
           {%- endif -%}
 
+        {%- when 'clarte_key_facts' -%}
+          {%- render 'clarte-key-facts', product: product, layout: 'product', show_warranty: block.settings.show_warranty, text_pose: block.settings.text_pose, text_delay: block.settings.text_delay, text_warranty: block.settings.text_warranty -%}
+
         {%- when 'clarte_includes' -%}
           {%- if block.settings.items != blank -%}
             <div class="product-info__text v-stack gap-3">

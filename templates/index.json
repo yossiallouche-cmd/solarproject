@@ -1,19 +1,10 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "slideshow": {
       "type": "slideshow",
       "settings": {
         "full_width": true,
-        "allow_transparent_header": true,
+        "allow_transparent_header": false,
         "show_initial_transition": false,
         "image_size": "lg",
         "controls_type": "numbers",
@@ -35,8 +26,8 @@
             "button_text": "Voir les prix",
             "button_link": "shopify://collections/panneaux-solaires",
             "overlay_opacity": 40,
-            "button_background": "#ffffff",
-            "button_text_color": "#0a0f2c"
+            "button_background": "#e8590c",
+            "button_text_color": "#ffffff"
           }
         },
         "s2": {
@@ -52,8 +43,8 @@
             "button_text": "Je configure le mien",
             "button_link": "shopify://products/carport-solaire-bois-sur-mesure",
             "overlay_opacity": 40,
-            "button_background": "#ffffff",
-            "button_text_color": "#0a0f2c"
+            "button_background": "#e8590c",
+            "button_text_color": "#ffffff"
           }
         },
         "s3": {
@@ -69,8 +60,8 @@
             "button_text": "Voir les prix",
             "button_link": "shopify://collections/climatisation",
             "overlay_opacity": 40,
-            "button_background": "#ffffff",
-            "button_text_color": "#0a0f2c"
+            "button_background": "#e8590c",
+            "button_text_color": "#ffffff"
           }
         }
       },
@@ -96,7 +87,7 @@
             "icon_background_type": "none",
             "title": "Le prix est affiché",
             "content": "<p>Fourniture, pose, mise en service : tout est dedans.</p>",
-            "icon_color": "#1e3ae6"
+            "icon_color": "#e8590c"
           }
         },
         "i2": {
@@ -106,7 +97,7 @@
             "icon_background_type": "none",
             "title": "Un conseiller si vous voulez",
             "content": "<p>Par téléphone ou par écrit, devis sur demande.</p>",
-            "icon_color": "#1e3ae6"
+            "icon_color": "#e8590c"
           }
         },
         "i3": {
@@ -116,7 +107,7 @@
             "icon_background_type": "none",
             "title": "Posé sous 14 jours",
             "content": "<p>Vérification et installation le même jour.</p>",
-            "icon_color": "#1e3ae6"
+            "icon_color": "#e8590c"
           }
         },
         "i4": {
@@ -126,7 +117,7 @@
             "icon_background_type": "none",
             "title": "Garanti dix ans",
             "content": "<p>Installateurs certifiés RGE, garantie décennale.</p>",
-            "icon_color": "#1e3ae6"
+            "icon_color": "#e8590c"
           }
         }
       },
@@ -135,7 +126,8 @@
         "i2",
         "i3",
         "i4"
-      ]
+      ],
+      "disabled": true
     },
     "univers": {
       "type": "collection-list",
@@ -263,10 +255,10 @@
             "content": "<p>Structure métal pour une ou deux voitures, ou bois sur mesure. Panneaux, onduleur, raccordement et déclaration en mairie compris. Vous choisissez les dimensions, le prix posé s’affiche.</p>",
             "link_text": "Je configure mon carport",
             "link_url": "shopify://products/carport-solaire-bois-sur-mesure",
-            "background": "#0a0f2c",
+            "background": "#16181d",
             "text_color": "#ffffff",
-            "button_background": "#ffffff",
-            "button_text_color": "#0a0f2c"
+            "button_background": "#e8590c",
+            "button_text_color": "#ffffff"
           }
         },
         "m2": {
@@ -282,9 +274,9 @@
             "content": "<p>Matériel, pose par un installateur certifié RGE, raccordement électrique, démarches (mairie, Consuel, Enedis) et mise en service. Rien n’est ajouté le jour de l’installation.</p>",
             "link_text": "Comment ça marche",
             "link_url": "/pages/comment-ca-marche",
-            "background": "#ffffff",
-            "text_color": "#0a0f2c",
-            "button_background": "#1e3ae6",
+            "background": "#f5f5f3",
+            "text_color": "#16181d",
+            "button_background": "#16181d",
             "button_text_color": "#ffffff"
           }
         }
@@ -301,11 +293,9 @@
         "stack_mobile": true,
         "text_alignment": "center",
         "impact_text_style": "fill",
-        "text_divider": "none",
+        "text_divider": "line",
         "impact_text_size_ratio": 1,
-        "background": "#0a0f2c",
-        "heading_text_color": "#ffffff",
-        "text_color": "#ffffff"
+        "heading_text_color": "#e8590c"
       },
       "blocks": {
         "n1": {
@@ -614,7 +604,7 @@
         "full_width": true,
         "content_width": "medium",
         "text_position": "center",
-        "background": "#1e3ae6",
+        "background": "#16181d",
         "text_color": "#ffffff"
       },
       "blocks": {
@@ -644,8 +634,8 @@
             "size": "xl",
             "text": "Voir comment ça marche",
             "url": "/pages/comment-ca-marche",
-            "background": "#ffffff",
-            "text_color": "#0a0f2c"
+            "background": "#e8590c",
+            "text_color": "#ffffff"
           }
         },
         "e": {
@@ -674,8 +664,8 @@
         "full_width": true,
         "content_width": "medium",
         "text_position": "center",
-        "background": "#1e3ae6",
-        "text_color": "#ffffff"
+        "background": "#f5f5f3",
+        "text_color": "#16181d"
       },
       "blocks": {
         "a": {
@@ -698,8 +688,8 @@
             "size": "xl",
             "text": "Voir les prix",
             "url": "shopify://collections/meilleures-ventes",
-            "background": "#ffffff",
-            "text_color": "#0a0f2c"
+            "background": "#e8590c",
+            "text_color": "#ffffff"
           }
         },
         "d": {
@@ -709,8 +699,8 @@
             "size": "xl",
             "text": "Être rappelé",
             "url": "/pages/contact",
-            "background": "#ffffff",
-            "text_color": "#ffffff"
+            "background": "#16181d",
+            "text_color": "#16181d"
           }
         }
       },
@@ -719,6 +709,60 @@
         "b",
         "c",
         "d"
+      ]
+    },
+    "offres": {
+      "type": "offres-niveaux",
+      "settings": {
+        "full_width": true,
+        "subheading": "Solaire",
+        "title": "Trois façons de passer au solaire",
+        "content": "<p>Même pose, mêmes démarches comprises. Seule la part d’électricité que vous gardez pour vous change.</p>",
+        "price_prefix": "À partir de",
+        "price_suffix": "posé"
+      },
+      "blocks": {
+        "o1": {
+          "type": "offre",
+          "settings": {
+            "product": "kit-solaire-toiture",
+            "label": "Produire",
+            "text": "Vous consommez en journée ce que votre toit produit.",
+            "points": "6 à 18 panneaux de 500 W\nMicro-onduleurs, coffret électrique inclus\nDémarches mairie, Consuel et Enedis comprises",
+            "button_text": "Voir le kit",
+            "highlight": false,
+            "badge": "Notre conseil"
+          }
+        },
+        "o2": {
+          "type": "offre",
+          "settings": {
+            "product": "kit-solaire-batterie-ecoflow",
+            "label": "Produire et stocker",
+            "text": "Le soleil de l’après-midi sert encore le soir.",
+            "points": "Batterie intégrée de 5 kWh, extensible\nCompteur intelligent inclus\nDémarches mairie, Consuel et Enedis comprises",
+            "button_text": "Voir le kit avec batterie",
+            "highlight": true,
+            "badge": "Notre conseil"
+          }
+        },
+        "o3": {
+          "type": "offre",
+          "settings": {
+            "product": "kit-solaire-batterie-ucanpower-monophase",
+            "label": "Viser l’autonomie",
+            "text": "Une grande réserve pour couvrir la soirée et la nuit.",
+            "points": "De 1 à 4 batteries de 5,12 kWh\nOnduleur hybride 6 kW\nDémarches mairie, Consuel et Enedis comprises",
+            "button_text": "Voir le kit grande batterie",
+            "highlight": false,
+            "badge": "Notre conseil"
+          }
+        }
+      },
+      "block_order": [
+        "o1",
+        "o2",
+        "o3"
       ]
     }
   },
@@ -731,6 +775,7 @@
     "focus",
     "chiffres",
     "simulateur",
+    "offres",
     "solaire",
     "clim",
     "parcours",

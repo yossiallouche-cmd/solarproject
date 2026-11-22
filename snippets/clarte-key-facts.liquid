@@ -1,0 +1,91 @@
+{%- comment -%}
+  Points clés d'un produit, avec pictogrammes : gamme (puissance, surface…), pose incluse, délai, garantie.
+  La gamme est déduite des options du produit ; rien à saisir.
+
+  * product : le produit
+  * layout  : 'card' (carte produit, compact) ou 'product' (fiche produit)
+  * show_warranty, text_pose, text_delay, text_warranty : libellés (fiche produit)
+{%- endcomment -%}
+
+{%- liquid
+  assign range = ''
+  assign range_kind = 'size'
+  for o in product.options_with_values
+    assign n = o.name | downcase
+    if n contains 'puissance' or n contains 'panneaux' or n contains 'surface' or n contains 'capacit' or n contains 'places'
+      if o.values.size > 1
+        assign v_first = o.values.first
+        assign v_last = o.values.last
+        if v_first contains '·'
+          assign parts = v_first | split: '·'
+          for part in parts
+            if part contains 'kW'
+              assign v_first = part
+            endif
+          endfor
+          assign parts = v_last | split: '·'
+          for part in parts
+            if part contains 'kW'
+              assign v_last = part
+            endif
+          endfor
+        endif
+        assign v_first = v_first | split: '(' | first | strip
+        assign v_last = v_last | split: '(' | first | strip
+        if v_first contains ' à ' and v_last contains ' à '
+          assign a = v_first | split: ' à ' | first
+          assign b = v_last | split: ' à ' | last
+          assign range = a | append: ' à ' | append: b
+        else
+          assign f_num = v_first | split: ' ' | first
+          assign l_num = v_last | split: ' ' | first
+          assign f_unit = v_first | remove_first: f_num | strip
+          assign l_unit = v_last | remove_first: l_num | strip
+          assign f_unit_s = f_unit | append: 's'
+          if f_unit == l_unit or f_unit_s == l_unit
+            assign range = f_num | append: ' à ' | append: v_last
+          endif
+        endif
+        if range contains 'kW'
+          assign range_kind = 'power'
+        endif
+        assign range = range | replace: '.', ','
+      endif
+      break
+    endif
+  endfor
+
+  assign installed = false
+  for tag in product.tags
+    assign t = tag | downcase
+    if t == 'pose incluse'
+      assign installed = true
+    endif
+  endfor
+  assign days = settings.clarte_install_days | default: 14
+  assign label_pose = text_pose | default: 'Pose incluse'
+  assign label_delay = text_delay | default: 'Posé sous [pose] jours' | replace: '[pose]', days
+  assign label_warranty = text_warranty | default: 'Garantie décennale'
+-%}
+
+{%- if installed or range != blank -%}
+  <ul class="cl-facts cl-facts--{{ layout | default: 'card' }}" role="list">
+    {%- if range != blank -%}
+      <li>
+        {%- if range_kind == 'power' -%}
+          <svg aria-hidden="true" focusable="false" fill="none" viewBox="0 0 24 24"><path d="M13.2 2.5 4.8 13.4h6.1l-1 8.1 8.3-10.9h-6.1l1.1-8.1Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        {%- else -%}
+          <svg aria-hidden="true" focusable="false" fill="none" viewBox="0 0 24 24"><path d="M3.5 8.5h17v7h-17v-7Zm4 0v3m4-3v4m4-4v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        {%- endif -%}
+        <span>{{ range | escape }}</span>
+      </li>
+    {%- endif -%}
+    {%- if installed -%}
+      <li>{%- render 'icon' with 'picto-validation', width: 24, height: 24 -%}<span>{{ label_pose | escape }}</span></li>
+      <li>{%- render 'icon' with 'picto-timer', width: 24, height: 24 -%}<span>{{ label_delay | escape }}</span></li>
+      {%- if layout == 'product' and show_warranty -%}
+        <li>{%- render 'icon' with 'picto-shield', width: 24, height: 24 -%}<span>{{ label_warranty | escape }}</span></li>
+      {%- endif -%}
+    {%- endif -%}
+  </ul>
+{%- endif -%}

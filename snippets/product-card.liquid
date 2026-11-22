@@ -208,6 +208,10 @@
       {%- render 'price-list', product: product, text_alignment: text_alignment -%}
     </div>
 
+    {%- if settings.clarte_card_facts -%}
+      {%- render 'clarte-key-facts', product: product, layout: 'card' -%}
+    {%- endif -%}
+
     {%- if show_rating and mobile_reduced or text_alignment == 'center' -%}
       {%- capture rating_class -%}{% unless text_alignment == 'center' %}sm:hidden{% endunless %}{%- endcapture -%}
       {%- render 'product-rating', product: product, class: rating_class, display_mode: settings.product_rating_mode -%}

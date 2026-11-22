@@ -1,0 +1,47 @@
+{%- comment -%}Barre de réassurance, à placer sous l'en-tête : une ligne de pictogrammes et de textes courts.{%- endcomment -%}
+
+{%- if section.blocks.size > 0 -%}
+  <div class="cl-trustbar" style="{% unless section.settings.background == blank or section.settings.background == 'rgba(0,0,0,0)' %}--background: {{ section.settings.background.rgb }}; background: rgb(var(--background));{% endunless %}{% unless section.settings.text_color == blank or section.settings.text_color == 'rgba(0,0,0,0)' %}--text-color: {{ section.settings.text_color.rgb }}; color: rgb(var(--text-color));{% endunless %}">
+    <ul class="cl-trustbar__list container" role="list">
+      {%- for block in section.blocks -%}
+        <li {{ block.shopify_attributes }}>
+          {%- render 'icon' with block.settings.icon, width: 20, height: 20 -%}
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}">{{ block.settings.text | escape }}</a>
+          {%- else -%}
+            <span>{{ block.settings.text | escape }}</span>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Barre de réassurance",
+  "class": "shopify-section--trust-bar",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "color", "id": "background", "label": "Arrière-plan", "default": "rgba(0,0,0,0)" },
+    { "type": "color", "id": "text_color", "label": "Texte", "default": "rgba(0,0,0,0)" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Argument",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Pictogramme", "default": "picto-validation", "options": [
+          { "value": "picto-validation", "label": "Validation" }, { "value": "picto-money", "label": "Prix" }, { "value": "picto-phone", "label": "Téléphone" },
+          { "value": "picto-operator", "label": "Conseiller" }, { "value": "picto-timer", "label": "Délai" }, { "value": "picto-shield", "label": "Garantie" },
+          { "value": "picto-truck", "label": "Livraison" }, { "value": "picto-credit-card", "label": "Paiement" }, { "value": "picto-lock", "label": "Sécurité" },
+          { "value": "picto-star", "label": "Étoile" }, { "value": "picto-pin", "label": "Lieu" }, { "value": "picto-document", "label": "Document" }
+        ] },
+        { "type": "text", "id": "text", "label": "Texte", "default": "Pose incluse" },
+        { "type": "url", "id": "link", "label": "Lien" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Barre de réassurance", "blocks": [ { "type": "item" }, { "type": "item" }, { "type": "item" } ] } ]
+}
+{% endschema %}

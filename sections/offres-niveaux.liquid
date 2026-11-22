@@ -1,0 +1,101 @@
+{%- comment -%}
+  Offres à plusieurs niveaux : une carte par offre, reliée à un produit (photo, prix « à partir de » tenus à jour).
+{%- endcomment -%}
+
+{%- if section.blocks.size > 0 -%}
+  <div {% render 'section-properties' %}>
+    <div class="section-stack">
+      {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content -%}
+
+      <div class="cl-offers" style="--cl-offers-count: {{ section.blocks.size }}">
+        {%- for block in section.blocks -%}
+          {%- assign product = block.settings.product -%}
+          {%- assign url = product.url | default: block.settings.link -%}
+          <div class="cl-offer {% if block.settings.highlight %}cl-offer--highlight{% endif %}" {{ block.shopify_attributes }}>
+            {%- if product.featured_media != blank -%}
+              <a href="{{ url }}" class="cl-offer__media" tabindex="-1" aria-hidden="true">
+                {{- product.featured_media | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 100vw, 420px', widths: '300,450,600,900', alt: '' -}}
+              </a>
+            {%- endif -%}
+
+            <div class="cl-offer__body v-stack gap-4">
+              <div class="v-stack gap-2">
+                {%- if block.settings.badge != blank and block.settings.highlight -%}
+                  <span class="badge badge--primary cl-offer__badge">{{ block.settings.badge | escape }}</span>
+                {%- endif -%}
+                <p class="h4">{{ block.settings.label | escape }}</p>
+                {%- if block.settings.text != blank -%}<p class="text-subdued">{{ block.settings.text | escape }}</p>{%- endif -%}
+              </div>
+
+              {%- if block.settings.points != blank -%}
+                <ul class="cl-includes" role="list">
+                  {%- assign points = block.settings.points | newline_to_br | split: '<br />' -%}
+                  {%- for point in points -%}
+                    {%- assign point_text = point | strip -%}
+                    {%- if point_text != blank -%}<li>{{ point_text | escape }}</li>{%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+
+              <div class="cl-offer__foot v-stack gap-3">
+                {%- if product != blank -%}
+                  <p class="cl-offer__price">
+                    <span class="text-subdued text-sm">{{ section.settings.price_prefix | escape }}</span>
+                    <strong class="h3">{{ product.price_min | money_without_trailing_zeros }}</strong>
+                    <span class="text-subdued text-sm">{{ section.settings.price_suffix | escape }}</span>
+                  </p>
+                {%- endif -%}
+                {%- if block.settings.button_text != blank and url != blank -%}
+                  {%- if block.settings.highlight -%}
+                    {%- render 'button', content: block.settings.button_text, href: url, stretch: true -%}
+                  {%- else -%}
+                    {%- render 'button', content: block.settings.button_text, href: url, stretch: true, style: 'outline' -%}
+                  {%- endif -%}
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Offres par niveaux",
+  "class": "shopify-section--offers",
+  "tag": "section",
+  "max_blocks": 4,
+  "disabled_on": { "groups": ["header", "custom.overlay"] },
+  "settings": [
+    { "type": "checkbox", "id": "full_width", "label": "Pleine largeur", "default": true },
+    { "type": "text", "id": "subheading", "label": "Sous-titre" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Trois façons de s'équiper" },
+    { "type": "richtext", "id": "content", "label": "Texte" },
+    { "type": "text", "id": "price_prefix", "label": "Avant le prix", "default": "À partir de" },
+    { "type": "text", "id": "price_suffix", "label": "Après le prix", "default": "posé" },
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background", "label": "Arrière-plan", "default": "rgba(0,0,0,0)" },
+    { "type": "color_background", "id": "background_gradient", "label": "Dégradé d'arrière-plan" },
+    { "type": "color", "id": "text_color", "label": "Texte", "default": "rgba(0,0,0,0)" }
+  ],
+  "blocks": [
+    {
+      "type": "offre",
+      "name": "Offre",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Produit", "info": "La photo et le prix « à partir de » viennent du produit." },
+        { "type": "text", "id": "label", "label": "Nom de l'offre", "default": "Essentiel" },
+        { "type": "text", "id": "text", "label": "Phrase d'accroche" },
+        { "type": "textarea", "id": "points", "label": "Points forts", "info": "Un par ligne." },
+        { "type": "text", "id": "button_text", "label": "Texte du bouton", "default": "Voir cette offre" },
+        { "type": "url", "id": "link", "label": "Lien (si aucun produit)" },
+        { "type": "checkbox", "id": "highlight", "label": "Mettre en avant", "default": false },
+        { "type": "text", "id": "badge", "label": "Étiquette de l'offre mise en avant", "default": "Notre conseil" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Offres par niveaux", "blocks": [ { "type": "offre" }, { "type": "offre" }, { "type": "offre" } ] } ]
+}
+{% endschema %}
