@@ -45,7 +45,7 @@
 
 {%- if show -%}
   <div {% render 'section-properties' %}>
-    <div class="section-stack">
+    <div class="section-stack" id="simulateur">
       {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content -%}
 
       <clarte-simulator

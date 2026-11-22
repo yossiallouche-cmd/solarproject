@@ -611,10 +611,22 @@ class ClarteClimAdvisor extends HTMLElement {
 
     const roomsCount = rooms != null ? ClarteClimAdvisor.num(rooms) : 1;
     const units = `${roomsCount} unité${roomsCount > 1 ? 's' : ''} intérieure${roomsCount > 1 ? 's' : ''}`;
+    const reco = `<p class="cl-advisor__reco"><span>Notre conseil</span><strong>${units} · ${pick.label}${roomsCount > 1 ? ' pour la pièce principale' : ''}</strong></p>`;
+    const limit = 'Cette pièce demande plus de puissance que ce modèle n’en propose : nous retenons la plus élevée, à valider avec le technicien.';
     this.resultBox.hidden = false;
-    this.resultBox.innerHTML = `
-      <p class="cl-advisor__reco"><span>Notre conseil</span><strong>${units} · ${pick.label}${roomsCount > 1 ? ' pour la pièce principale' : ''}</strong></p>
-      <p>${enough ? 'La configuration est sélectionnée, le prix posé est à jour ci-dessous.' : 'Cette pièce demande plus de puissance que ce modèle n’en propose : nous sélectionnons la plus élevée, à valider avec le technicien.'}</p>
+    if (this.form) {
+      this.resultBox.innerHTML = `${reco}
+        <p>${enough ? 'La configuration est sélectionnée, le prix posé est à jour ci-dessous.' : limit}</p>
+        ${this.dataset.note || ''}`;
+      return;
+    }
+    // Hors fiche produit : on affiche le prix posé de la configuration et un lien vers elle
+    const variant = this.data.variants.find((v) => (rooms == null || v.options[this.roomsIdx] === rooms) && v.options[this.powerIdx] === pick.label);
+    const url = variant && this.dataset.productUrl ? `${this.dataset.productUrl}${this.dataset.productUrl.includes('?') ? '&' : '?'}variant=${variant.id}` : this.dataset.productUrl;
+    this.resultBox.innerHTML = `${reco}
+      ${enough ? '' : `<p>${limit}</p>`}
+      ${variant && variant.price ? `<p class="cl-advisor__price"><span>${this.dataset.priceLabel || 'Total posé'}</span><strong>${fmtMoney(variant.price)}</strong></p>` : ''}
+      ${url ? `<a class="button" href="${url}">${this.dataset.buttonText || 'Voir cette climatisation'}</a>` : ''}
       ${this.dataset.note || ''}`;
   }
 }
@@ -703,3 +715,53 @@ class ClarteSimulator extends HTMLElement {
   }
 }
 if (!customElements.get('clarte-simulator')) customElements.define('clarte-simulator', ClarteSimulator);
+
+
+/* ---------- Accueil : accroches qui défilent ------------------------------ */
+class ClarteHero extends HTMLElement {
+  connectedCallback() {
+    this.slides = Array.from(this.querySelectorAll('[data-slide]'));
+    if (this.slides.length < 2) return;
+    this.dots = Array.from(this.querySelectorAll('[data-dot]'));
+    this.index = 0;
+    this.delay = (parseInt(this.dataset.speed || '7', 10) || 7) * 1000;
+    this.auto = this.hasAttribute('data-autoplay') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !window.Shopify?.designMode;
+
+    this.dots.forEach((dot, i) => dot.addEventListener('click', () => { this.go(i); this.restart(); }));
+    this.querySelector('[data-prev]')?.addEventListener('click', () => { this.go(this.index - 1); this.restart(); });
+    this.querySelector('[data-next]')?.addEventListener('click', () => { this.go(this.index + 1); this.restart(); });
+    this.addEventListener('mouseenter', () => this.stop());
+    this.addEventListener('mouseleave', () => this.start());
+    this.addEventListener('focusin', () => this.stop());
+    this.addEventListener('focusout', () => this.start());
+    let x0 = null;
+    this.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; this.stop(); }, { passive: true });
+    this.addEventListener('touchend', (e) => {
+      if (x0 != null) { const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) this.go(this.index + (dx < 0 ? 1 : -1)); }
+      x0 = null; this.start();
+    }, { passive: true });
+    // Éditeur de thème : afficher l'accroche sélectionnée
+    this.addEventListener('shopify:block:select', (e) => { const i = this.slides.indexOf(e.target.closest('[data-slide]')); if (i >= 0) this.go(i); });
+
+    this.go(0);
+    this.start();
+  }
+
+  disconnectedCallback() { this.stop(); }
+
+  go(i) {
+    const n = this.slides.length;
+    this.index = ((i % n) + n) % n;
+    this.slides.forEach((slide, k) => {
+      const active = k === this.index;
+      slide.classList.toggle('is-active', active);
+      slide.inert = !active;
+    });
+    this.dots.forEach((dot, k) => { if (k === this.index) dot.setAttribute('aria-current', 'true'); else dot.removeAttribute('aria-current'); });
+  }
+
+  start() { if (!this.auto || this.timer) return; this.timer = setInterval(() => this.go(this.index + 1), this.delay); }
+  stop() { clearInterval(this.timer); this.timer = null; }
+  restart() { this.stop(); this.start(); }
+}
+if (!customElements.get('clarte-hero')) customElements.define('clarte-hero', ClarteHero);

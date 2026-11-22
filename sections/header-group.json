@@ -104,64 +104,10 @@
         "mm_solaire",
         "mm_clim"
       ]
-    },
-    "reassurance": {
-      "type": "barre-reassurance",
-      "settings": {},
-      "blocks": {
-        "a": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-money",
-            "text": "Prix posé affiché",
-            "link": "/pages/comment-ca-marche"
-          }
-        },
-        "b": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-phone",
-            "text": "Appel technique offert sous 48 h",
-            "link": "/pages/comment-ca-marche"
-          }
-        },
-        "c": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-timer",
-            "text": "Posé sous 14 jours",
-            "link": "/pages/comment-ca-marche"
-          }
-        },
-        "d": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-shield",
-            "text": "Garantie décennale",
-            "link": ""
-          }
-        },
-        "e": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-operator",
-            "text": "Conseiller et devis sur demande",
-            "link": "/pages/contact"
-          }
-        }
-      },
-      "block_order": [
-        "a",
-        "b",
-        "c",
-        "d",
-        "e"
-      ]
     }
   },
   "order": [
     "announcement-bar",
-    "header",
-    "reassurance"
+    "header"
   ]
 }

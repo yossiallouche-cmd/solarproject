@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "type": "footer",
   "name": "Footer group",
@@ -18,7 +9,7 @@
           "type": "text",
           "settings": {
             "title": "Clarté",
-            "content": "<p>Le solaire, le chauffage et la clim au prix affiché, pose comprise. Un technicien vous appelle sous 48 h, on installe sous 14 jours. Et si vous préférez un conseiller ou un devis, il suffit de demander.</p>",
+            "content": "<p>Le solaire, le chauffage et la clim au prix affiché, pose comprise. Un technicien vous appelle sous 48 h, on installe sous 14 jours. Et si vous préférez un conseiller ou un devis, il suffit de demander.</p><p>* Pose sous 72 h : avec l’option pose express (99 €), sous réserve de renoncer à votre droit de rétractation.</p>",
             "enable_follow_on_shop": false
           }
         },

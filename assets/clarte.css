@@ -134,6 +134,18 @@ clarte-configurator, clarte-rdv, clarte-installation, clarte-pricebox, clarte-cl
 @keyframes cl-advisor-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .cl-advisor__step.is-entering, .cl-advisor__result { animation: none; } }
 
+/* conseil clim hors fiche produit */
+.cl-climfinder { display: grid; gap: var(--spacing-8); align-items: center; scroll-margin-top: 8rem; }
+@media screen and (min-width: 1000px) { .cl-climfinder { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: var(--spacing-16); } }
+.cl-advisor--large { padding: var(--spacing-6); background: rgb(var(--product-card-background)); border-color: transparent; }
+@media screen and (min-width: 700px) { .cl-advisor--large { padding: var(--spacing-10); } }
+.cl-advisor--large .cl-advisor__step legend { font-size: 1rem; }
+.cl-advisor--large .block-swatch { background-color: rgb(var(--background)); }
+.cl-advisor__price { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: .4rem; }
+.cl-advisor__price strong { font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); font-size: var(--text-h3); }
+.cl-advisor__result .button { justify-self: start; margin-block: .3rem; }
+#simulateur { scroll-margin-top: 8rem; }
+
 /* ---------- Simulateur d'économies ---------------------------------------- */
 clarte-simulator { display: grid; gap: var(--spacing-8); align-items: stretch; }
 @media screen and (min-width: 1000px) { clarte-simulator { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--spacing-12); } }
@@ -163,7 +175,7 @@ clarte-simulator { display: grid; gap: var(--spacing-8); align-items: stretch; }
 .cl-facts--product svg { width: 1.6rem; height: 1.6rem; }
 
 /* ---------- Barre de réassurance sous l'en-tête --------------------------- */
-.cl-trustbar { border-bottom: 1px solid rgb(var(--text-color) / .1); background: rgb(var(--background)); color: rgb(var(--text-color)); font-size: .78rem; }
+.cl-trustbar { border-block: 1px solid rgb(var(--text-color) / .1); background: rgb(var(--background)); color: rgb(var(--text-color)); font-size: .78rem; }
 .cl-trustbar__list { display: flex; justify-content: space-between; gap: 1.75rem; margin-block: 0; padding-block: .65rem; list-style: none; overflow-x: auto; scrollbar-width: none; }
 .cl-trustbar__list::-webkit-scrollbar { display: none; }
 .cl-trustbar__list li { display: inline-flex; align-items: center; gap: .45rem; white-space: nowrap; flex: none; }
@@ -208,6 +220,18 @@ clarte-simulator { display: grid; gap: var(--spacing-8); align-items: stretch; }
 .cl-hero__card { position: absolute; left: var(--spacing-4); right: var(--spacing-4); bottom: 0; display: block; border-radius: var(--rounded); box-shadow: 0 24px 50px rgb(0 0 0 / .16); }
 @media screen and (min-width: 700px) { .cl-hero__visual { padding-bottom: 2.5rem; } .cl-hero__card { left: calc(-1 * var(--spacing-6)); right: auto; width: 21rem; } .cl-hero__media { aspect-ratio: 1 / 1; } }
 @media screen and (min-width: 700px) and (max-width: 999px) { .cl-hero__card { left: var(--spacing-6); } }
+
+/* accroches qui défilent */
+clarte-hero { display: block; }
+.cl-hero-slides { display: grid; }
+.cl-hero-slides > [data-slide] { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity .5s ease, visibility .5s; }
+.cl-hero-slides > [data-slide].is-active { opacity: 1; visibility: visible; }
+.cl-hero-nav { display: flex; align-items: center; gap: var(--spacing-4); margin-top: var(--spacing-8); }
+.cl-hero-nav__arrow { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: var(--rounded-full); border: 1px solid rgb(var(--text-color) / .2); background: none; color: inherit; cursor: pointer; transition: border-color .2s; }
+.cl-hero-nav__arrow:hover { border-color: rgb(var(--text-color)); }
+.cl-hero-nav__dots { display: flex; align-items: center; gap: .5rem; }
+.cl-hero-nav__dots button { width: 2rem; height: .25rem; padding: 0; border: 0; border-radius: var(--rounded-full); background: rgb(var(--text-color) / .18); cursor: pointer; transition: background .2s, width .2s; }
+.cl-hero-nav__dots button[aria-current] { width: 3.25rem; background: rgb(var(--button-background-primary)); }
 
 /* ---------- Produit phare ------------------------------------------------------- */
 .cl-phare { display: grid; overflow: hidden; border-radius: var(--rounded-lg, var(--rounded)); background: rgb(var(--background)); color: rgb(var(--text-color)); }

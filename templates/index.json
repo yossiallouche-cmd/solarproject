@@ -777,19 +777,67 @@
       "type": "accueil-accroche",
       "settings": {
         "full_width": true,
-        "subheading": "Carports solaires · Panneaux · Batteries · Pompes à chaleur · Climatisation",
-        "title": "Votre énergie,\nau prix affiché.",
-        "title_accent": "Pose incluse.",
-        "content": "<p>Choisissez votre installation, voyez le prix exact, commandez en ligne. Un technicien valide votre projet par téléphone, puis l’équipe vérifie et installe le même jour. Et si vous préférez un conseiller ou un devis écrit, il suffit de demander.</p>",
-        "button_text": "Voir les prix posés",
-        "button_link": "shopify://collections/meilleures-ventes",
-        "button2_text": "Configurer mon carport",
-        "button2_link": "shopify://products/carport-solaire-bois-sur-mesure",
-        "checks": "Installateurs certifiés RGE\nGarantie décennale\nÉquipes en Île-de-France",
-        "image": "shopify://shop_images/clarte-hero-toiture-solaire.jpg",
-        "product": "kit-solaire-toiture",
-        "card_title": "Kit 6 panneaux · 3 kWc"
-      }
+        "autoplay": true,
+        "speed": 7
+      },
+      "blocks": {
+        "a1": {
+          "type": "accroche",
+          "settings": {
+            "subheading": "Carports solaires · Panneaux · Batteries · Pompes à chaleur · Climatisation",
+            "title": "Votre énergie,\nau prix affiché.",
+            "title_accent": "Pose incluse.",
+            "content": "<p>Choisissez votre installation, voyez le prix exact, commandez en ligne. Un technicien valide votre projet par téléphone, puis l’équipe vérifie et installe le même jour. Et si vous préférez un conseiller ou un devis écrit, il suffit de demander.</p>",
+            "button_text": "Voir les prix posés",
+            "button_link": "shopify://collections/meilleures-ventes",
+            "button2_text": "Configurer mon carport",
+            "button2_link": "shopify://products/carport-solaire-bois-sur-mesure",
+            "checks": "Installateurs certifiés RGE\nGarantie décennale\nÉquipes en Île-de-France",
+            "image": "shopify://shop_images/clarte-hero-toiture-solaire.jpg",
+            "product": "kit-solaire-toiture",
+            "card_title": "Kit 6 panneaux · 3 kWc"
+          }
+        },
+        "a2": {
+          "type": "accroche",
+          "settings": {
+            "subheading": "Climatisation réversible",
+            "title": "Votre clim,\nposée et réglée.",
+            "title_accent": "Prix affiché.",
+            "content": "<p>Indiquez le nombre de pièces et la surface : on vous dit combien de splits et quelle puissance il vous faut, avec le prix posé. Chaud l’hiver, frais l’été.</p>",
+            "button_text": "Trouver ma clim",
+            "button_link": "/#conseil-clim",
+            "button2_text": "Voir les climatisations",
+            "button2_link": "shopify://collections/climatisation",
+            "checks": "Chaud et froid\nPose et mise en service incluses\nDe 1 à 3 pièces",
+            "image": "shopify://shop_images/pexels-photo-39318564.jpg",
+            "product": "clim-reversible-airwell",
+            "card_title": "Climatisation 1 pièce · 2,5 kW"
+          }
+        },
+        "a3": {
+          "type": "accroche",
+          "settings": {
+            "subheading": "Panneaux solaires",
+            "title": "Votre toit,\nvotre électricité.",
+            "title_accent": "Posé en une journée.",
+            "content": "<p>De 6 à 18 panneaux, avec ou sans batterie, démarches comprises. Faites vos comptes avec le simulateur, puis commandez au prix affiché.</p>",
+            "button_text": "Calculer mes économies",
+            "button_link": "/#simulateur",
+            "button2_text": "Voir les kits solaires",
+            "button2_link": "shopify://collections/panneaux-solaires",
+            "checks": "Panneaux garantis 25 ans\nMairie, Consuel, Enedis : on s’en occupe\nAvec ou sans batterie",
+            "image": "shopify://shop_images/guide-dimensionnement-panneaux.jpg",
+            "product": "kit-solaire-batterie-ecoflow",
+            "card_title": "Kit 6 panneaux + batterie 5 kWh"
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ]
     },
     "phare": {
       "type": "produit-phare",
@@ -1025,18 +1073,93 @@
         "e2",
         "e3"
       ]
+    },
+    "barre": {
+      "type": "barre-reassurance",
+      "settings": {},
+      "blocks": {
+        "a": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-money",
+            "text": "Prix posé affiché",
+            "link": "/pages/comment-ca-marche"
+          }
+        },
+        "b": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-phone",
+            "text": "Appel technique offert sous 48 h",
+            "link": "/pages/comment-ca-marche"
+          }
+        },
+        "c": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-timer",
+            "text": "Posé sous 72 h*",
+            "link": "/pages/comment-ca-marche"
+          }
+        },
+        "d": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-shield",
+            "text": "Garantie décennale",
+            "link": ""
+          }
+        },
+        "e": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-operator",
+            "text": "Conseiller et devis sur demande",
+            "link": "/pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ]
+    },
+    "conseil_clim": {
+      "type": "conseil-clim",
+      "settings": {
+        "full_width": true,
+        "subheading": "Climatisation",
+        "title": "Quelle clim pour votre logement ?",
+        "content": "<p>Deux réponses suffisent. On vous indique le nombre d’unités, la puissance et le prix posé.</p>",
+        "link_text": "Voir toutes les climatisations",
+        "link_url": "shopify://collections/climatisation",
+        "product": "clim-reversible-airwell",
+        "q_rooms": "Combien de pièces à climatiser ?",
+        "q_surface": "Surface de la plus grande pièce ?",
+        "watts_per_m2": 100,
+        "surfaces": "20, 25, 35, 50, 70",
+        "price_label": "Total posé",
+        "button_text": "Voir cette climatisation",
+        "note": "<p>Conseil indicatif, confirmé par le technicien lors de l'appel offert.</p>",
+        "more_text": "Au-delà, nous étudions votre projet par téléphone."
+      }
     }
   },
   "order": [
     "accroche",
+    "barre",
     "phare",
     "marques",
     "besoins",
     "transparence",
     "bestsellers",
     "offres",
-    "etapes",
     "simulateur",
+    "conseil_clim",
+    "etapes",
     "reassurance",
     "guides",
     "faq",
