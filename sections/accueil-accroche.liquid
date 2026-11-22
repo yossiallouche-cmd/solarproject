@@ -1,0 +1,80 @@
+{%- comment -%}Accroche d'accueil : texte et boutons à gauche, photo à droite avec la carte « prix posé » d'un produit.{%- endcomment -%}
+
+<div {% render 'section-properties' %}>
+  <div class="cl-hero">
+    <div class="cl-hero__text v-stack gap-6">
+      {%- if section.settings.subheading != blank -%}<p class="subheading">{{ section.settings.subheading | escape }}</p>{%- endif -%}
+      <h1 class="h0">
+        {{- section.settings.title | escape | newline_to_br -}}
+        {%- if section.settings.title_accent != blank -%}<br><span class="cl-hero__accent">{{ section.settings.title_accent | escape }}</span>{%- endif -%}
+      </h1>
+      {%- if section.settings.content != blank -%}<div class="prose cl-hero__lead">{{ section.settings.content }}</div>{%- endif -%}
+
+      <div class="cl-hero__buttons">
+        {%- if section.settings.button_text != blank -%}
+          {%- render 'button', content: section.settings.button_text, href: section.settings.button_link, size: 'xl' -%}
+        {%- endif -%}
+        {%- if section.settings.button2_text != blank -%}
+          {%- render 'button', content: section.settings.button2_text, href: section.settings.button2_link, size: 'xl', style: 'outline', background: settings.text_color, text_color: settings.text_color -%}
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.checks != blank -%}
+        <ul class="cl-hero__checks" role="list">
+          {%- assign checks = section.settings.checks | newline_to_br | split: '<br />' -%}
+          {%- for check in checks -%}
+            {%- assign check_text = check | strip -%}
+            {%- if check_text != blank -%}
+              <li><svg aria-hidden="true" focusable="false" fill="none" viewBox="0 0 24 24" width="16" height="16"><path d="m5 12 5 5L20 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>{{ check_text | escape }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    <div class="cl-hero__visual">
+      <div class="cl-hero__media">
+        {%- if section.settings.image != blank -%}
+          {{- section.settings.image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(max-width: 999px) 100vw, 50vw', widths: '500,800,1100,1600' -}}
+        {%- else -%}
+          {{- 'lifestyle-1' | placeholder_svg_tag: 'placeholder' -}}
+        {%- endif -%}
+      </div>
+      {%- if section.settings.product != blank -%}
+        <a class="cl-hero__card" href="{{ section.settings.product.url }}" aria-label="{{ section.settings.product.title | escape }}">
+          {%- render 'clarte-price-card', product: section.settings.product, title: section.settings.card_title -%}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Accueil : accroche",
+  "class": "shopify-section--home-hero",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "custom.overlay"] },
+  "settings": [
+    { "type": "checkbox", "id": "full_width", "label": "Pleine largeur", "default": true },
+    { "type": "text", "id": "subheading", "label": "Sous-titre" },
+    { "type": "textarea", "id": "title", "label": "Titre", "default": "Votre énergie,\nau prix affiché." },
+    { "type": "text", "id": "title_accent", "label": "Dernière ligne du titre, en couleur", "default": "Pose incluse." },
+    { "type": "richtext", "id": "content", "label": "Texte" },
+    { "type": "text", "id": "button_text", "label": "Bouton principal", "default": "Voir les prix posés" },
+    { "type": "url", "id": "button_link", "label": "Lien du bouton principal" },
+    { "type": "text", "id": "button2_text", "label": "Second bouton" },
+    { "type": "url", "id": "button2_link", "label": "Lien du second bouton" },
+    { "type": "textarea", "id": "checks", "label": "Arguments cochés", "info": "Un par ligne." },
+    { "type": "header", "content": "Visuel" },
+    { "type": "image_picker", "id": "image", "label": "Photo" },
+    { "type": "product", "id": "product", "label": "Produit de la carte de prix", "info": "La carte affiche fourniture, pose et total de la première variante." },
+    { "type": "text", "id": "card_title", "label": "Titre de la carte" },
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background", "label": "Arrière-plan", "default": "rgba(0,0,0,0)" },
+    { "type": "color_background", "id": "background_gradient", "label": "Dégradé d'arrière-plan" },
+    { "type": "color", "id": "text_color", "label": "Texte", "default": "rgba(0,0,0,0)" }
+  ],
+  "presets": [ { "name": "Accueil : accroche" } ]
+}
+{% endschema %}

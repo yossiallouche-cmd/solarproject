@@ -3,7 +3,7 @@
    Tout s'appuie sur les variables du thème : couleurs, arrondis, typographie.
    ====================================================================== */
 
-.cl-pricebox, .cl-install, .cl-rdv, .cl-includes, .cl-config, .cl-advisor, .cl-sim {
+.cl-pricebox, .cl-install, .cl-rdv, .cl-includes, .cl-config, .cl-advisor, .cl-sim, .cl-pricecard, .cl-steps {
   --cl-ink: var(--text-color);
   --cl-paper: var(--background);
   --cl-accent: var(--button-background-primary);
@@ -181,6 +181,105 @@ clarte-simulator { display: grid; gap: var(--spacing-8); align-items: stretch; }
 .cl-offer__badge { justify-self: start; }
 .cl-offer__body p { margin: 0; }
 .cl-offer__price { display: flex; align-items: baseline; gap: .4rem; flex-wrap: wrap; }
+
+/* ---------- Carte « prix posé » ---------------------------------------------- */
+.cl-pricecard { display: grid; gap: 0; padding: 1.25rem 1.4rem; border-radius: var(--rounded); background: rgb(var(--background)); color: rgb(var(--text-color)); font-size: .9rem; text-align: start; }
+.cl-pricecard__head { display: flex; justify-content: space-between; align-items: center; gap: .75rem; padding-bottom: .5rem; }
+.cl-pricecard__head strong { font-size: 1rem; }
+.cl-pricecard__badge { flex: none; padding: .2rem .55rem; border-radius: var(--rounded-full); background: rgb(var(--success-text) / .12); color: rgb(var(--success-text)); font-size: .68rem; font-weight: bold; white-space: nowrap; }
+.cl-pricecard .cl-price-line { padding: .45rem 0; color: rgb(var(--text-color) / .7); }
+.cl-pricecard .cl-price-line .cl-amount { font-weight: normal; }
+.cl-pricecard .cl-price-line--total { color: rgb(var(--text-color)); border-top-color: rgb(var(--text-color) / .12); padding-top: .7rem; }
+.cl-pricecard .cl-price-line--total .cl-amount { font-weight: var(--heading-font-weight); font-size: var(--text-h3); }
+.cl-pricecard__note { margin: .5rem 0 0; font-size: .75rem; color: rgb(var(--text-color) / .6); }
+
+/* ---------- Accueil : accroche ------------------------------------------------ */
+.cl-hero { display: grid; gap: var(--spacing-10); align-items: center; }
+@media screen and (min-width: 1000px) { .cl-hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: var(--spacing-16); } }
+.cl-hero__accent { color: rgb(var(--button-background-primary)); }
+.cl-hero__lead { max-width: 34rem; font-size: 1.1rem; color: rgb(var(--text-color) / .75); }
+.cl-hero__buttons { display: flex; flex-wrap: wrap; gap: var(--spacing-3); }
+.cl-hero__checks { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; padding: 0; margin: 0; list-style: none; font-size: .88rem; color: rgb(var(--text-color) / .7); }
+.cl-hero__checks li { display: inline-flex; align-items: center; gap: .4rem; }
+.cl-hero__checks svg { color: rgb(var(--success-text)); }
+.cl-hero__visual { position: relative; padding-bottom: 2.5rem; }
+.cl-hero__media { aspect-ratio: 5 / 4; border-radius: var(--rounded-lg, var(--rounded)); overflow: hidden; background: rgb(var(--text-color) / .06); }
+.cl-hero__media img, .cl-hero__media svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cl-hero__card { position: absolute; left: var(--spacing-4); right: var(--spacing-4); bottom: 0; display: block; border-radius: var(--rounded); box-shadow: 0 24px 50px rgb(0 0 0 / .16); }
+@media screen and (min-width: 700px) { .cl-hero__card { left: calc(-1 * var(--spacing-6)); right: auto; width: 21rem; } .cl-hero__media { aspect-ratio: 1 / 1; } }
+@media screen and (min-width: 700px) and (max-width: 999px) { .cl-hero__card { left: var(--spacing-6); } }
+
+/* ---------- Produit phare ------------------------------------------------------- */
+.cl-phare { display: grid; overflow: hidden; border-radius: var(--rounded-lg, var(--rounded)); background: rgb(var(--background)); color: rgb(var(--text-color)); }
+@media screen and (min-width: 1000px) { .cl-phare { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); } }
+.cl-phare__text { padding: var(--spacing-8); align-content: center; }
+@media screen and (min-width: 700px) { .cl-phare__text { padding: var(--spacing-14, 3.5rem); } }
+.cl-phare__text .subheading { color: rgb(var(--button-background-primary)); }
+.cl-phare__lead, .cl-phare__note { color: rgb(var(--text-color) / .72); }
+.cl-phare__note { margin: 0; font-size: .82rem; }
+.cl-phare__media { min-height: 18rem; order: -1; }
+@media screen and (min-width: 1000px) { .cl-phare__media { order: 0; min-height: 34rem; } }
+.cl-phare__media img, .cl-phare__media svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cl-rows { display: grid; gap: .6rem; }
+.cl-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .85rem 1rem; border-radius: var(--rounded-sm); border: 1px solid rgb(var(--text-color) / .16); background: rgb(var(--text-color) / .06); transition: border-color .2s; }
+.cl-row:hover { border-color: rgb(var(--text-color) / .5); }
+.cl-row__label { display: grid; gap: .1rem; }
+.cl-row__label small, .cl-row__note { font-size: .8rem; color: rgb(var(--text-color) / .7); }
+.cl-row__note { text-align: end; }
+.cl-row__price { flex: none; font-family: var(--heading-font-family); font-weight: var(--heading-font-weight); font-size: var(--text-h5); white-space: nowrap; }
+.cl-row__price small { font-family: var(--text-font-family); font-weight: normal; font-size: .8rem; color: rgb(var(--text-color) / .7); }
+
+/* ---------- Marques ------------------------------------------------------------- */
+.cl-brands { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 2.5rem; padding: 0; margin: 0; list-style: none; }
+.cl-brands li { margin: 0; color: rgb(var(--text-color) / .8); }
+.cl-brands__label { font-size: .8rem; color: rgb(var(--text-color) / .55); }
+
+/* ---------- Entrées par besoin ---------------------------------------------------- */
+.cl-needs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing-4); }
+@media screen and (min-width: 1000px) { .cl-needs { grid-template-columns: repeat(var(--cl-needs-columns, 3), minmax(0, 1fr)); gap: var(--spacing-6); } }
+.cl-need { display: grid; grid-template-rows: auto 1fr; overflow: hidden; border-radius: var(--rounded); background: rgb(var(--product-card-background)); border: 1px solid transparent; transition: border-color .2s; }
+.cl-need:hover, .cl-need--featured { border-color: rgb(var(--text-color)); }
+.cl-need__media { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; }
+.cl-need__media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+.cl-need:hover .cl-need__media img { transform: scale(1.03); }
+.cl-need__media .badge { position: absolute; top: .75rem; left: .75rem; }
+.cl-need__body { display: grid; gap: .35rem; align-content: start; padding: var(--spacing-4); }
+@media screen and (min-width: 700px) { .cl-need__body { padding: var(--spacing-6); } }
+.cl-need__text { font-size: .88rem; }
+.cl-need__price { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; margin-top: .6rem; font-size: .85rem; }
+@media screen and (max-width: 699px) { .cl-need__text { display: none; } .cl-need__price { flex-direction: column; gap: 0; } }
+
+/* ---------- Prix transparent -------------------------------------------------------- */
+.cl-transp { display: grid; gap: var(--spacing-10); align-items: center; }
+@media screen and (min-width: 1000px) { .cl-transp { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--spacing-16); } }
+.cl-transp .subheading { color: rgb(var(--button-background-primary)); }
+.cl-transp__lead { color: rgb(var(--text-color) / .75); max-width: 34rem; }
+.cl-transp__figures { display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem; }
+.cl-transp__figures p { margin: 0; }
+.cl-transp__figure-label { font-size: .85rem; color: rgb(var(--text-color) / .7); max-width: 11rem; }
+.cl-transp__compare { display: grid; gap: var(--spacing-4); align-items: stretch; }
+@media screen and (min-width: 700px) { .cl-transp__compare { grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); } }
+.cl-transp__other { display: grid; gap: .7rem; align-content: start; padding: 1.5rem; border-radius: var(--rounded); background: rgb(var(--text-color) / .07); color: rgb(var(--text-color) / .7); font-size: .88rem; }
+.cl-transp__other .subheading { color: rgb(var(--text-color) / .7); margin: 0 0 .3rem; }
+.cl-transp__other p { margin: .5rem 0 0; }
+.cl-transp__bar { display: block; height: .8rem; border-radius: var(--rounded-full); background: rgb(var(--text-color) / .14); }
+.cl-transp__here { position: relative; display: block; border-radius: var(--rounded); box-shadow: 0 30px 60px rgb(0 0 0 / .3); }
+.cl-transp__here .cl-pricecard { height: 100%; align-content: start; padding-top: 2.6rem; }
+.cl-transp__here-label { position: absolute; top: 1.1rem; left: 1.4rem; z-index: 1; font-size: .72rem; font-weight: bold; color: rgb(var(--button-background-primary)); }
+
+/* ---------- Étapes ---------------------------------------------------------------------- */
+.cl-steps { display: grid; gap: var(--spacing-10); padding: var(--spacing-8); border-radius: var(--rounded-lg, var(--rounded)); background: rgb(var(--product-card-background)); }
+@media screen and (min-width: 700px) { .cl-steps { padding: var(--spacing-14, 3.5rem); } }
+.cl-steps__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: var(--spacing-6); }
+.cl-steps__head .h2 { max-width: 22ch; }
+.cl-steps__list { display: grid; gap: var(--spacing-8); padding: 0; margin: 0; list-style: none; }
+@media screen and (min-width: 1000px) { .cl-steps__list { grid-template-columns: repeat(var(--cl-steps-count, 3), minmax(0, 1fr)); } }
+.cl-step { display: grid; gap: .7rem; align-content: start; padding-top: 1.1rem; border-top: 2px solid rgb(var(--text-color)); }
+.cl-step:nth-child(2) { border-top-color: rgb(var(--button-background-primary)); }
+.cl-step:nth-child(n+3) { border-top-color: rgb(var(--success-text)); }
+.cl-step p { margin: 0; }
+.cl-step__label { font-size: .85rem; font-weight: bold; color: rgb(var(--button-background-primary)); }
+.cl-step:nth-child(n+3) .cl-step__label { color: rgb(var(--success-text)); }
 
 /* header : navigation sur une ligne */
 .header__link-list.wrap { flex-wrap: nowrap; white-space: nowrap; }

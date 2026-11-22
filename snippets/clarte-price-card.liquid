@@ -1,0 +1,40 @@
+{%- comment -%}
+  Carte « prix posé » d'un produit : fourniture, pose, appel technique offert, total. Les montants viennent du produit.
+
+  * product : le produit ; variant (facultatif) : sinon la première variante
+  * title : titre de la carte (sinon la première option de la variante, ou le titre du produit)
+  * note : petite ligne sous le total (facultatif)
+{%- endcomment -%}
+
+{%- liquid
+  assign v = variant | default: product.variants.first
+  capture vp
+    render 'clarte-variant-prices', product: product, variant: v
+  endcapture
+  assign vp = vp | split: '|'
+  assign f = vp[0] | plus: 0
+  assign p = vp[1] | plus: 0
+  assign card_title = title
+  if card_title == blank
+    if product.has_only_default_variant
+      assign card_title = product.title
+    else
+      assign card_title = v.option1
+    endif
+  endif
+  assign call_hours = settings.clarte_call_hours | default: 48
+-%}
+
+<div class="cl-pricecard" style="--background: {{ settings.dialog_background.rgb | default: '255 255 255' }}; --text-color: {{ settings.text_color.rgb }};">
+  <div class="cl-pricecard__head">
+    <strong>{{ card_title | escape }}</strong>
+    <span class="cl-pricecard__badge">Pose incluse</span>
+  </div>
+  {%- if f > 0 or p > 0 -%}
+    <div class="cl-price-line"><span>Fourniture</span><span class="cl-amount">{{ f | money_without_trailing_zeros }}</span></div>
+    <div class="cl-price-line"><span>Pose et mise en service</span><span class="cl-amount">{{ p | money_without_trailing_zeros }}</span></div>
+  {%- endif -%}
+  <div class="cl-price-line"><span>Appel technique sous {{ call_hours }} h</span><span class="cl-free">Offert</span></div>
+  <div class="cl-price-line cl-price-line--total"><span>Total posé</span><span class="cl-amount">{{ v.price | money_without_trailing_zeros }}</span></div>
+  {%- if note != blank -%}<p class="cl-pricecard__note">{{ note | escape }}</p>{%- endif -%}
+</div>

@@ -1,0 +1,55 @@
+{%- comment -%}Étapes du parcours, en colonnes dans un encadré.{%- endcomment -%}
+
+{%- if section.blocks.size > 0 -%}
+  <div {% render 'section-properties' %}>
+    <div class="cl-steps">
+      <div class="cl-steps__head">
+        <div class="prose">
+          {%- if section.settings.subheading != blank -%}<p class="subheading">{{ section.settings.subheading | escape }}</p>{%- endif -%}
+          {%- if section.settings.title != blank -%}<h2 class="h2">{{ section.settings.title | escape }}</h2>{%- endif -%}
+        </div>
+        {%- if section.settings.link_text != blank and section.settings.link_url != blank -%}
+          {%- render 'button', content: section.settings.link_text, href: section.settings.link_url, style: 'outline', background: settings.text_color, text_color: settings.text_color -%}
+        {%- endif -%}
+      </div>
+      <ol class="cl-steps__list" role="list" style="--cl-steps-count: {{ section.blocks.size }}">
+        {%- for block in section.blocks -%}
+          <li class="cl-step" {{ block.shopify_attributes }}>
+            {%- if block.settings.label != blank -%}<p class="cl-step__label">{{ block.settings.label | escape }}</p>{%- endif -%}
+            <p class="h4">{{ block.settings.title | escape }}</p>
+            {%- if block.settings.content != blank -%}<div class="prose text-subdued">{{ block.settings.content }}</div>{%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ol>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Étapes",
+  "class": "shopify-section--steps",
+  "tag": "section",
+  "max_blocks": 4,
+  "disabled_on": { "groups": ["header", "custom.overlay"] },
+  "settings": [
+    { "type": "checkbox", "id": "full_width", "label": "Pleine largeur", "default": true },
+    { "type": "text", "id": "subheading", "label": "Sous-titre", "default": "Comment ça marche" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "De la commande à la mise en service, en trois étapes." },
+    { "type": "text", "id": "link_text", "label": "Texte du bouton" },
+    { "type": "url", "id": "link_url", "label": "Lien du bouton" },
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background", "label": "Arrière-plan", "default": "rgba(0,0,0,0)" },
+    { "type": "color_background", "id": "background_gradient", "label": "Dégradé d'arrière-plan" },
+    { "type": "color", "id": "text_color", "label": "Texte", "default": "rgba(0,0,0,0)" }
+  ],
+  "blocks": [
+    { "type": "etape", "name": "Étape", "settings": [
+      { "type": "text", "id": "label", "label": "Moment", "default": "Aujourd'hui" },
+      { "type": "text", "id": "title", "label": "Titre", "default": "Vous choisissez et commandez" },
+      { "type": "richtext", "id": "content", "label": "Texte" }
+    ] }
+  ],
+  "presets": [ { "name": "Étapes", "blocks": [ { "type": "etape" }, { "type": "etape" }, { "type": "etape" } ] } ]
+}
+{% endschema %}

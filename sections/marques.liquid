@@ -1,0 +1,32 @@
+{%- comment -%}Ligne de marques du matériel posé (noms en texte, à remplacer par des logos avec la section « Logo list » si besoin).{%- endcomment -%}
+
+{%- if section.settings.names != blank -%}
+  <div {% render 'section-properties', tight: true %}>
+    <ul class="cl-brands" role="list">
+      {%- if section.settings.label != blank -%}<li class="cl-brands__label">{{ section.settings.label | escape }}</li>{%- endif -%}
+      {%- assign names = section.settings.names | newline_to_br | split: '<br />' -%}
+      {%- for name in names -%}
+        {%- assign name_text = name | strip -%}
+        {%- if name_text != blank -%}<li class="h5">{{ name_text | escape }}</li>{%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Marques",
+  "class": "shopify-section--brands",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "custom.overlay"] },
+  "settings": [
+    { "type": "checkbox", "id": "full_width", "label": "Pleine largeur", "default": true },
+    { "type": "text", "id": "label", "label": "Libellé", "default": "Matériel" },
+    { "type": "textarea", "id": "names", "label": "Marques", "info": "Une par ligne.", "default": "EcoFlow\nAtlantic\nHoymiles" },
+    { "type": "color", "id": "background", "label": "Arrière-plan", "default": "rgba(0,0,0,0)" },
+    { "type": "color_background", "id": "background_gradient", "label": "Dégradé d'arrière-plan" },
+    { "type": "color", "id": "text_color", "label": "Texte", "default": "rgba(0,0,0,0)" }
+  ],
+  "presets": [ { "name": "Marques" } ]
+}
+{% endschema %}

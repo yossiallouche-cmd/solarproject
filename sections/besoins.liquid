@@ -1,0 +1,87 @@
+{%- comment -%}Entrées par besoin : une carte par univers, avec photo, bénéfice et prix posé le plus bas de la collection.{%- endcomment -%}
+
+{%- if section.blocks.size > 0 -%}
+  <div {% render 'section-properties' %}>
+    <div class="section-stack">
+      {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, content: section.settings.content, link_text: section.settings.link_text, link_url: section.settings.link_url -%}
+
+      <div class="cl-needs" style="--cl-needs-columns: {{ section.settings.columns }}">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign collection = block.settings.collection
+            assign image = block.settings.image | default: collection.image | default: collection.products.first.featured_image
+            assign min = nil
+            for p in collection.products
+              assign installed = false
+              for tag in p.tags
+                assign t = tag | downcase
+                if t == 'pose incluse'
+                  assign installed = true
+                endif
+              endfor
+              if installed
+                if min == nil or p.price_min < min
+                  assign min = p.price_min
+                endif
+              endif
+            endfor
+          -%}
+          <a class="cl-need {% if block.settings.badge != blank %}cl-need--featured{% endif %}" href="{{ collection.url | default: block.settings.link }}" {{ block.shopify_attributes }}>
+            <span class="cl-need__media">
+              {%- if image != blank -%}
+                {{- image | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 50vw, 400px', widths: '300,450,600,800', alt: '' -}}
+              {%- endif -%}
+              {%- if block.settings.badge != blank -%}<span class="badge badge--primary">{{ block.settings.badge | escape }}</span>{%- endif -%}
+            </span>
+            <span class="cl-need__body">
+              <span class="h5">{{ block.settings.title | escape }}</span>
+              {%- if block.settings.text != blank -%}<span class="cl-need__text text-subdued">{{ block.settings.text | escape }}</span>{%- endif -%}
+              {%- if min != nil -%}
+                <span class="cl-need__price"><span class="text-subdued">{{ block.settings.price_prefix | escape }}</span> <strong class="h5">{{ min | money_without_trailing_zeros }}</strong></span>
+              {%- endif -%}
+            </span>
+          </a>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Entrées par besoin",
+  "class": "shopify-section--needs",
+  "tag": "section",
+  "max_blocks": 8,
+  "disabled_on": { "groups": ["header", "custom.overlay"] },
+  "settings": [
+    { "type": "checkbox", "id": "full_width", "label": "Pleine largeur", "default": true },
+    { "type": "text", "id": "subheading", "label": "Sous-titre" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Qu'est-ce que vous voulez changer chez vous ?" },
+    { "type": "richtext", "id": "content", "label": "Texte" },
+    { "type": "text", "id": "link_text", "label": "Texte du lien" },
+    { "type": "url", "id": "link_url", "label": "Lien" },
+    { "type": "range", "id": "columns", "label": "Cartes par ligne (ordinateur)", "min": 2, "max": 6, "step": 1, "default": 3 },
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background", "label": "Arrière-plan", "default": "rgba(0,0,0,0)" },
+    { "type": "color_background", "id": "background_gradient", "label": "Dégradé d'arrière-plan" },
+    { "type": "color", "id": "text_color", "label": "Texte", "default": "rgba(0,0,0,0)" }
+  ],
+  "blocks": [
+    {
+      "type": "besoin",
+      "name": "Besoin",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection", "info": "Le prix affiché est le plus bas des produits posés de la collection." },
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "badge", "label": "Étiquette" },
+        { "type": "text", "id": "title", "label": "Titre", "default": "Produire mon électricité" },
+        { "type": "text", "id": "text", "label": "Précision" },
+        { "type": "text", "id": "price_prefix", "label": "Avant le prix", "default": "posé, dès" },
+        { "type": "url", "id": "link", "label": "Lien (si aucune collection)" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Entrées par besoin", "blocks": [ { "type": "besoin" }, { "type": "besoin" }, { "type": "besoin" } ] } ]
+}
+{% endschema %}
