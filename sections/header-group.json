@@ -49,7 +49,7 @@
         "cycle_speed": 4,
         "scrolling_speed": 10,
         "text_size": "text-xs",
-        "background": "#1515DB",
+        "background": "#1e3ae6",
         "background_gradient": "",
         "text_color": "#ffffff"
       }
