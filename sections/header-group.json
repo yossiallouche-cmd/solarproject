@@ -8,21 +8,39 @@
         "m1": {
           "type": "message",
           "settings": {
-            "text": "Pose incluse dans tous nos prix · Appel technique offert sous 48 h",
+            "text": "Zéro devis : le prix posé est sur chaque page",
+            "url": "/pages/comment-ca-marche"
+          }
+        },
+        "m2": {
+          "type": "message",
+          "settings": {
+            "text": "Un technicien vous appelle sous 48 h, c’est offert",
+            "url": "/pages/comment-ca-marche"
+          }
+        },
+        "m3": {
+          "type": "message",
+          "settings": {
+            "text": "Commandé aujourd’hui, posé sous 14 jours",
             "url": "/pages/comment-ca-marche"
           }
         }
       },
       "block_order": [
-        "m1"
+        "m1",
+        "m2",
+        "m3"
       ],
       "settings": {
         "enable_sticky": false,
         "text_size": "text-xs",
         "navigation_mode": "arrows",
         "scrolling_speed": 10,
-        "background": "#1a1a1a",
-        "text_color": "#ffffff"
+        "background": "#1e3ae6",
+        "text_color": "#ffffff",
+        "autoplay": true,
+        "cycle_speed": 4
       }
     },
     "header": {

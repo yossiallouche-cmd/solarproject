@@ -26,7 +26,7 @@
         "clarte_price": {
           "type": "clarte_price",
           "settings": {
-            "title": "Votre prix, tout compris",
+            "title": "Le prix. Tout le prix.",
             "badge": "Pose incluse",
             "label_fourniture": "Fourniture",
             "label_pose": "Pose par installateur certifié",
@@ -63,7 +63,7 @@
         "clarte_includes": {
           "type": "clarte_includes",
           "settings": {
-            "title": "Ce que comprend le prix",
+            "title": "Compris dans ce prix",
             "items": "Fourniture du matériel et livraison sur site\nPose par installateur certifié RGE\nMise en service et paramétrage\nDéclaration préalable et demande de raccordement\nGarantie décennale installation"
           }
         },

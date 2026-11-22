@@ -20,12 +20,14 @@
             "content_max_width": 780,
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
-            "subheading": "Panneaux solaires",
-            "title": "Le solaire posé chez vous, au prix affiché",
+            "subheading": "Panneaux solaires posés",
+            "title": "Le solaire sans devis.",
             "heading_tag": "h0",
-            "button_text": "Voir les kits solaires",
+            "button_text": "Voir les prix",
             "button_link": "shopify://collections/panneaux-solaires",
-            "overlay_opacity": 35
+            "overlay_opacity": 40,
+            "button_background": "#ffd21f",
+            "button_text_color": "#0a0f2c"
           }
         },
         "s2": {
@@ -36,11 +38,13 @@
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
             "subheading": "Carports solaires",
-            "title": "Un abri pour la voiture, de l’électricité pour la maison",
+            "title": "Votre parking devient une centrale.",
             "heading_tag": "h0",
-            "button_text": "Configurer mon carport",
-            "button_link": "shopify://products/carport-solaire-metal",
-            "overlay_opacity": 35
+            "button_text": "Je configure le mien",
+            "button_link": "shopify://products/carport-solaire-bois-sur-mesure",
+            "overlay_opacity": 40,
+            "button_background": "#ffd21f",
+            "button_text_color": "#0a0f2c"
           }
         },
         "s3": {
@@ -51,11 +55,13 @@
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
             "subheading": "Chauffage et climatisation",
-            "title": "Pompes à chaleur et climatisation, pose incluse",
+            "title": "Clim posée. Prix posé.",
             "heading_tag": "h0",
-            "button_text": "Découvrir",
-            "button_link": "shopify://collections/pompes-a-chaleur",
-            "overlay_opacity": 35
+            "button_text": "Voir les prix",
+            "button_link": "shopify://collections/climatisation",
+            "overlay_opacity": 40,
+            "button_background": "#ffd21f",
+            "button_text_color": "#0a0f2c"
           }
         }
       },
@@ -79,8 +85,9 @@
           "settings": {
             "icon": "picto-money",
             "icon_background_type": "none",
-            "title": "Prix affiché, pose incluse",
-            "content": "<p>Fourniture, pose et mise en service comprises.</p>"
+            "title": "Le prix est affiché",
+            "content": "<p>Fourniture, pose, mise en service : tout est dedans.</p>",
+            "icon_color": "#1e3ae6"
           }
         },
         "i2": {
@@ -88,8 +95,9 @@
           "settings": {
             "icon": "picto-phone",
             "icon_background_type": "none",
-            "title": "Appel technique offert",
-            "content": "<p>Un technicien vous rappelle sous 48 h.</p>"
+            "title": "Aucun commercial",
+            "content": "<p>Un technicien vous appelle sous 48 h. C’est tout.</p>",
+            "icon_color": "#1e3ae6"
           }
         },
         "i3": {
@@ -97,8 +105,9 @@
           "settings": {
             "icon": "picto-timer",
             "icon_background_type": "none",
-            "title": "Pose sous 14 jours",
-            "content": "<p>Vérification et installation le même jour.</p>"
+            "title": "Posé sous 14 jours",
+            "content": "<p>Vérification et installation le même jour.</p>",
+            "icon_color": "#1e3ae6"
           }
         },
         "i4": {
@@ -106,8 +115,9 @@
           "settings": {
             "icon": "picto-shield",
             "icon_background_type": "none",
-            "title": "Garantie décennale",
-            "content": "<p>Installateurs certifiés RGE.</p>"
+            "title": "Garanti dix ans",
+            "content": "<p>Installateurs certifiés RGE, garantie décennale.</p>",
+            "icon_color": "#1e3ae6"
           }
         }
       },
@@ -126,7 +136,7 @@
         "collections_per_row_mobile": "2",
         "collections_per_row": 3,
         "show_progress_bar": false,
-        "title": "Nos univers",
+        "title": "Que voulez-vous installer ?",
         "link_text": "",
         "link_url": ""
       },
@@ -217,9 +227,10 @@
         "products_count": 8,
         "products_per_row_mobile": "2",
         "products_per_row_desktop": 4,
-        "title": "Meilleures ventes",
+        "title": "Les incontournables",
         "link_url": "shopify://collections/meilleures-ventes",
-        "link_text": "Tout voir"
+        "link_text": "Tout voir",
+        "subheading": "Prix posés"
       }
     },
     "focus": {
@@ -239,10 +250,10 @@
             "text_position": "place-self-center-start text-start",
             "icon": "none",
             "subheading": "Produit phare",
-            "title": "Le carport solaire",
+            "title": "Un toit pour la voiture. Du courant pour la maison.",
             "content": "<p>Structure métal pour une ou deux voitures, ou bois sur mesure. Panneaux, onduleur, raccordement et déclaration en mairie compris. Vous choisissez les dimensions, le prix posé s’affiche.</p>",
-            "link_text": "Configurer mon carport",
-            "link_url": "shopify://products/carport-solaire-metal"
+            "link_text": "Je configure mon carport",
+            "link_url": "shopify://products/carport-solaire-bois-sur-mesure"
           }
         },
         "m2": {
@@ -253,8 +264,8 @@
             "media_position": "start",
             "text_position": "place-self-center-start text-start",
             "icon": "none",
-            "subheading": "Notre engagement",
-            "title": "Le prix affiché est le prix posé",
+            "subheading": "Notre règle",
+            "title": "Le prix affiché est le prix payé. Point.",
             "content": "<p>Matériel, pose par un installateur certifié RGE, raccordement électrique, démarches (mairie, Consuel, Enedis) et mise en service. Rien n’est ajouté le jour de l’installation.</p>",
             "link_text": "Comment ça marche",
             "link_url": "/pages/comment-ca-marche"
@@ -273,35 +284,38 @@
         "stack_mobile": true,
         "text_alignment": "center",
         "impact_text_style": "fill",
-        "text_divider": "line",
-        "impact_text_size_ratio": 1
+        "text_divider": "none",
+        "impact_text_size_ratio": 1,
+        "background": "#0a0f2c",
+        "heading_text_color": "#ffd21f",
+        "text_color": "#ffffff"
       },
       "blocks": {
         "n1": {
           "type": "item",
           "settings": {
-            "title": "48 h",
+            "title": "0 devis",
             "content": "",
             "animate_impact_text": false,
-            "subheading": "Pour être rappelé par un technicien"
+            "subheading": "Le prix posé est déjà sur la page"
           }
         },
         "n2": {
           "type": "item",
           "settings": {
-            "title": "14 jours",
+            "title": "48 h",
             "content": "",
             "animate_impact_text": false,
-            "subheading": "Entre la commande et la pose"
+            "subheading": "Pour parler à un technicien, pas à un vendeur"
           }
         },
         "n3": {
           "type": "item",
           "settings": {
-            "title": "0 €",
+            "title": "14 jours",
             "content": "",
             "animate_impact_text": false,
-            "subheading": "De supplément le jour de l’installation"
+            "subheading": "Entre votre commande et la pose"
           }
         }
       },
@@ -321,9 +335,10 @@
         "products_count": 8,
         "products_per_row_mobile": "2",
         "products_per_row_desktop": 4,
-        "title": "Panneaux solaires",
+        "title": "Kits solaires",
         "link_url": "shopify://collections/panneaux-solaires",
-        "link_text": "Tout voir"
+        "link_text": "Tout voir",
+        "subheading": "Prix posés, démarches comprises"
       }
     },
     "clim": {
@@ -338,7 +353,8 @@
         "products_per_row_desktop": 4,
         "title": "Climatisation",
         "link_url": "shopify://collections/climatisation",
-        "link_text": "Tout voir"
+        "link_text": "Tout voir",
+        "subheading": "Posée et mise en service"
       }
     },
     "parcours": {
@@ -352,8 +368,8 @@
           "settings": {
             "image": "shopify://shop_images/clarte-famille-maison.jpg",
             "navigation_label": "Commande",
-            "subheading": "Étape 1",
-            "title": "Vous commandez en ligne",
+            "subheading": "01",
+            "title": "Vous cliquez.",
             "content": "<p>Vous choisissez votre installation et ses options. Le prix posé est affiché : c’est celui que vous payez.</p>"
           }
         },
@@ -362,9 +378,9 @@
           "settings": {
             "image": "shopify://shop_images/pexels-photo-9875405.jpg",
             "navigation_label": "Appel technique",
-            "subheading": "Étape 2",
-            "title": "Un technicien vous appelle sous 48 h",
-            "content": "<p>Toiture, tableau électrique, accès : il valide la faisabilité avec vous et fixe la date de pose.</p>"
+            "subheading": "02",
+            "title": "On vous appelle.",
+            "content": "<p>Sous 48 h, un technicien regarde avec vous la toiture, le tableau électrique, l’accès. Il fixe la date de pose.</p>"
           }
         },
         "t3": {
@@ -372,19 +388,19 @@
           "settings": {
             "image": "shopify://shop_images/clarte-technicien-pose.jpg",
             "navigation_label": "Pose",
-            "subheading": "Étape 3",
-            "title": "Installation en une journée",
-            "content": "<p>Sous 14 jours, l’équipe vérifie sur place puis installe. Une seule visite, pas de supplément.</p>"
+            "subheading": "03",
+            "title": "On pose.",
+            "content": "<p>Sous 14 jours, l’équipe vérifie sur place puis installe dans la journée. Une seule visite, aucun supplément.</p>"
           }
         },
         "t4": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/clarte-hero-toiture-solaire.jpg",
-            "navigation_label": "Mise en service",
-            "subheading": "Étape 4",
-            "title": "Démarches et mise en service",
-            "content": "<p>Consuel, Enedis, déclaration en mairie : nous nous en occupons jusqu’à la mise en service.</p>"
+            "navigation_label": "Production",
+            "subheading": "04",
+            "title": "Vous produisez.",
+            "content": "<p>Consuel, Enedis, mairie : on s’occupe des démarches jusqu’à la mise en service.</p>"
           }
         }
       },
@@ -419,7 +435,7 @@
         "z2": {
           "type": "heading",
           "settings": {
-            "text": "Des équipes locales, certifiées RGE",
+            "text": "On pose près de chez vous.",
             "heading_tag": "h2"
           }
         },
@@ -466,8 +482,8 @@
         "show_author": false,
         "show_comments_count": false,
         "show_category": true,
-        "subheading": "",
-        "title": "Guides et conseils",
+        "subheading": "Guides",
+        "title": "Comprendre avant d’acheter",
         "content": "",
         "link_url": "/blogs/guides",
         "link_text": "Tous les guides"
@@ -543,8 +559,8 @@
       "settings": {
         "full_width": false,
         "subheading": "",
-        "title": "Questions fréquentes",
-        "content": "<p>Une autre question ? Appelez-nous ou écrivez-nous, on répond vite.</p>",
+        "title": "Questions franches, réponses franches",
+        "content": "<p>Une autre question ? Appelez-nous ou écrivez-nous, on répond vite. Et sans vous rappeler dix fois.</p>",
         "support_hours": "Du lundi au samedi, 9 h – 19 h.",
         "answer_time": "Réponse en moins de 24 h",
         "button_text": "Nous écrire",
@@ -557,8 +573,8 @@
       "settings": {
         "full_width": true,
         "subheading": "",
-        "title": "Combien allez-vous économiser ?",
-        "content": "<p>Indiquez votre facture d'électricité et le nombre de panneaux : l'estimation se met à jour immédiatement.</p>",
+        "title": "Faites vos comptes.",
+        "content": "<p>Votre facture, un nombre de panneaux : l’estimation s’affiche tout de suite. Sans laisser votre numéro.</p>",
         "bill_default": 150,
         "panels_min": 4,
         "panels_max": 24,
@@ -566,12 +582,116 @@
         "button_text": "Voir les kits solaires",
         "button_link": "shopify://collections/panneaux-solaires"
       }
+    },
+    "defile": {
+      "type": "scrolling-text",
+      "settings": {
+        "full_width": true,
+        "text": "Sans devis • Sans commercial • Sans surprise •",
+        "text_size": "small",
+        "text_style": "fill",
+        "scrolling_mode": "auto",
+        "scrolling_speed": 12,
+        "background": "#ffd21f",
+        "text_color": "#0a0f2c"
+      }
+    },
+    "manifeste": {
+      "type": "rich-text",
+      "settings": {
+        "full_width": true,
+        "content_width": "medium",
+        "text_position": "center",
+        "background": "#1e3ae6",
+        "text_color": "#ffffff"
+      },
+      "blocks": {
+        "a": {
+          "type": "subheading",
+          "settings": {
+            "text": "Notre parti pris"
+          }
+        },
+        "b": {
+          "type": "heading",
+          "settings": {
+            "text": "On a supprimé le devis.",
+            "heading_tag": "h1"
+          }
+        },
+        "c": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Dans ce métier, on vous demande d’abord votre numéro. Viennent ensuite le commercial, la visite, puis un devis à négocier. Ici, le prix posé est écrit sur chaque page. Vous comparez tranquillement, vous commandez quand vous voulez, on pose.</p>"
+          }
+        },
+        "d": {
+          "type": "button",
+          "settings": {
+            "style": "fill",
+            "size": "xl",
+            "text": "Voir comment ça marche",
+            "url": "/pages/comment-ca-marche",
+            "background": "#ffd21f",
+            "text_color": "#0a0f2c"
+          }
+        }
+      },
+      "block_order": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ]
+    },
+    "final": {
+      "type": "rich-text",
+      "settings": {
+        "full_width": true,
+        "content_width": "medium",
+        "text_position": "center",
+        "background": "#ffd21f",
+        "text_color": "#0a0f2c"
+      },
+      "blocks": {
+        "a": {
+          "type": "heading",
+          "settings": {
+            "text": "Le prix est déjà sur la page.",
+            "heading_tag": "h1"
+          }
+        },
+        "b": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Il ne vous reste qu’à choisir.</p>"
+          }
+        },
+        "c": {
+          "type": "button",
+          "settings": {
+            "style": "fill",
+            "size": "xl",
+            "text": "Voir les prix",
+            "url": "shopify://collections/meilleures-ventes",
+            "background": "#0a0f2c",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "a",
+        "b",
+        "c"
+      ]
     }
   },
   "order": [
     "slideshow",
+    "defile",
     "reassurance",
     "univers",
+    "manifeste",
     "bestsellers",
     "focus",
     "chiffres",
@@ -582,6 +702,7 @@
     "zone",
     "testimonials",
     "guides",
-    "faq"
+    "faq",
+    "final"
   ]
 }

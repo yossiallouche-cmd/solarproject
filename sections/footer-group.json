@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "type": "footer",
   "name": "Footer group",
@@ -18,7 +9,7 @@
           "type": "text",
           "settings": {
             "title": "Clarté",
-            "content": "<p>Panneaux solaires, batteries, pompes à chaleur, climatisation et carports solaires, vendus et posés au prix affiché. Appel technique offert sous 48 h, pose sous 14 jours par des installateurs certifiés RGE, garantie décennale.</p>",
+            "content": "<p>Le solaire, le chauffage et la clim, sans devis. Le prix posé est affiché, un technicien vous appelle sous 48 h, on installe sous 14 jours. Installateurs certifiés RGE, garantie décennale.</p>",
             "enable_follow_on_shop": false
           }
         },
@@ -43,8 +34,8 @@
           "settings": {
             "image_width": 150,
             "heading_size": "h4",
-            "title": "Recevez nos conseils énergie",
-            "content": "<p>Aides, autoconsommation, nouveautés : un e-mail par mois, pas plus.</p>"
+            "title": "L’énergie expliquée, sans blabla",
+            "content": "<p>Un e-mail par mois. Pas plus, promis.</p>"
           }
         }
       },
